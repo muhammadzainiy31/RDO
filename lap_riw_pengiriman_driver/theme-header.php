@@ -22,7 +22,7 @@
                     <div class="collapse navbar-collapse justify-content-between">
                         <div class="header-left">
                             <div class="dashboard_bar">
-														APPLIKASI REPORT DELIVERY ORDER SDC BANJARMASIN
+														APLIKASI REPORT DELIVERY ORDER SDC BANJARMASIN
                             </div>
                         </div>
                                 <a class="nav-link" href="javascript:;" role="button" data-toggle="dropdown">

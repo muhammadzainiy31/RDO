@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>APPLIKASI REPORT DELIVERY ORDER  | CETAK DATA ARMADA</title>
+    <title>APLIKASI REPORT DELIVERY ORDER  | CETAK DATA ARMADA</title>
 	<style Type="text/css">
 		body {font-family: arial;background-color: #ccc}
 		.rangkasurat {width: 900px;margin:0 auto;background-color: #fff; height: 1000px;padding:50px;}
@@ -21,7 +21,7 @@
 					<h2>PT. HOME CENTER INDONESIA </h2>
 					<h2>INFORMA BANJARMASIN</h2>
 					<h2>SDC BANJARMASIN</h2>
-					<h1>APPLIKASI REPORT DELIVERY ORDER</h1>
+					<h1>APLIKASI REPORT DELIVERY ORDER</h1>
 					<b>KM.15 GAMBUT Komplek Pergudangan Cipta Jaya NO.12F Banjarmasin</b>
 </td>
 </td>

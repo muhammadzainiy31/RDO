@@ -8,7 +8,7 @@
     <title>APLIKASI REPORT DELIVERY ORDER | DATA</title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../images/2.png">
-    	<link href="../vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
+    <link href="../vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
 
 </head>
@@ -24,27 +24,27 @@
 
     <div id="main-wrapper">
 
-    <?php include "../theme-header.php" ?>
-    <?php include "../theme-sidebar.php" ?>
+        <?php include "../theme-header.php" ?>
+        <?php include "../theme-sidebar.php" ?>
 
         <!--**********************************
             Content body start
         ***********************************-->
         <div class="content-body">
             <div class="container-fluid">
-            <div class="card-body">
-                <div class="card-header">
-                    <h4 class="card-title">LAPORAN RIWAYAT SERVIS ARMADA/MOBIL</h4>
-                      <br> <br>
-              </div>
+                <div class="card-body">
+                    <div class="card-header">
+                        <h4 class="card-title">LAPORAN RIWAYAT SERVIS ARMADA/MOBIL</h4>
+                        <br> <br>
+                    </div>
                     <br>
                     <div class="input-group search-area ml-auto d-inline-flex">
-                        <input type="text" class="form-control" placeholder="Search here">
+                        <input type="text" class="form-control" id="searchInput" onkeyup="searchTable()" placeholder="Search here">
                         <div class="input-group-append">
                             <button type="button" class="input-group-text"><i class="flaticon-381-search-2"></i></button>
                         </div>
                     </div>
-                    
+
 
                     <!-- Bagian form filter -->
                     <div class="container align-items-center">
@@ -65,126 +65,126 @@
                         </form>
                     </div>
 
-                    <!-- Bagian proses filter -->
-                    <?php
-                    // Cek apakah filter sudah di-submit
-                    if (isset($_POST['filter'])) {
-                        // Ambil tanggal mulai dan tanggal sampai dari form
-                        $mulai_tanggal = $_POST['mulai_tanggal'];
-                        $sampai_tanggal = $_POST['sampai_tanggal'];
-
-                        // Buat query dengan kondisi filter tanggal
-                        $query = "SELECT * FROM pemasukan WHERE tgl_pemasukan BETWEEN '$mulai_tanggal' AND '$sampai_tanggal'";
-                        $result = mysqli_query($conn, $query);
-
-                        // Tampilkan data sesuai hasil filter
-                        if (mysqli_num_rows($result) > 0) {
-                            while ($row = mysqli_fetch_assoc($result)) {
-                                // Tampilkan data sesuai kebutuhan Anda
-                                // ...
-                            }
-                        } else {
-                            echo "Data tidak ditemukan.";
-                        }
-                    }
-                    ?>
                     <br>
                     <br>
-                <a href="input.php" class="btn btn-primary">Tambah Data Servis</a> 
-                <a href="cetak.php" class="btn btn-primary">Cetak Report</a>
-                <br> <br>
-                <table class="table table-bordered">
-            <tr align="center"  bgcolor="#E9967A">
-                <th>No</th>
-                <th>ID Servis</th>
-                <th>NO Plat</th>
-                <th>Type Armada</th>
-                <th>Tanggal Servis</th>
-                <th>Keterangan</th>
-                <th>estimasi</th>
-                <th>Biaya</th>
-            </tr>
-            <?php
-            include'../koneksi.php';
-            $no =1;
-            $tampil = mysqli_query ($conn, "SELECT rs.*, a.type_armada
-            FROM riwayat_servis rs
-            INNER JOIN tb_armada a ON rs.no_plat = a.no_plat
-            ORDER BY rs.id_servis DESC
-             ");
-            if (mysqli_num_rows ($tampil)>0) {
-              while($hasil = mysqli_fetch_array($tampil)){
+                    <a href="input.php" class="btn btn-primary">Tambah Data Servis</a>
+                    <a href="cetak.php" class="btn btn-primary">Cetak Report</a>
+                    <br> <br>
+                    <table id="dataTable" class="table table-bordered">
+                        <tr align="center" bgcolor="#E9967A">
+                            <th>No</th>
+                            <th>ID Servis</th>
+                            <th>NO Plat</th>
+                            <th>Type Armada</th>
+                            <th>Tanggal Servis</th>
+                            <th>Keterangan</th>
+                            <th>Estimasi Selesai</th>
+                            <th>Biaya</th>
+                        </tr>
 
-            ?>
-                <tr align="center" >
-                  <td><?php echo $no++ ?> </td>
-                  <td><?php echo $hasil ['id_servis']?></td>
-                  <td><?php echo $hasil ['no_plat']?></td>
-                  <td><?php echo $hasil ['type_armada']?></td>
-                  <td><?php echo $hasil ['tanggal_servis']?></td>
-                  <td><?php echo $hasil ['keterangan']?> </td>
-                  <td><?php echo $hasil ['estimasi']?></td>
-                  <td><?php echo $hasil ['biaya']?></td>
-                </tr>
-                <?php }} else{ ?>
-                <tr>
-                    <td colspan="7" align="center" >Data kosong</td>
-                </tr>
-                <?php } ?>
-           </table>
-           <br>
+<?php
+include '../koneksi.php';
+$no = 1;
+if (isset($_POST['filter'])) {
+    // Ambil tanggal mulai dan tanggal sampai dari form
+    $mulai_tanggal = $_POST['mulai_tanggal'];
+    $sampai_tanggal = $_POST['sampai_tanggal'];
 
-         </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                     
+    // Buat query dengan kondisi filter tanggal
+    $query = "SELECT rs.*, a.type_armada
+    FROM riwayat_servis rs
+    INNER JOIN tb_armada a ON rs.no_plat = a.no_plat
+    WHERE rs.tanggal_servis BETWEEN '$mulai_tanggal' AND '$sampai_tanggal'
+    GROUP BY a.no_plat, rs.nama_driver
+    ORDER BY rs.tanggal_servis";
+    $result = mysqli_query($conn, $query);
+} else {
+    $query = "SELECT rs.*, a.type_armada
+    FROM riwayat_servis rs
+    INNER JOIN tb_armada a ON rs.no_plat = a.no_plat
+    ORDER BY rs.id_servis DESC";
+    $result = mysqli_query($conn, $query);
+}
+
+if (mysqli_num_rows($result) > 0) {
+    while ($hasil = mysqli_fetch_assoc($result)) {
+        // Kode HTML untuk menampilkan data
+        ?>
+
+
+                                <tr align="center">
+                                    <td><?php echo $no++ ?> </td>
+                                    <td><?php echo $hasil['id_servis'] ?></td>
+                                    <td><?php echo $hasil['no_plat'] ?></td>
+                                    <td><?php echo $hasil['type_armada'] ?></td>
+                                    <td><?php echo $hasil['tanggal_servis'] ?></td>
+                                    <td><?php echo $hasil['keterangan'] ?> </td>
+                                    <td><?php echo $hasil['estimasi'] ?></td>
+                                    <td><?php echo $hasil['biaya'] ?></td>
+                                </tr>
+                        <?php }
+                        } else { ?>
+                            <tr>
+                                <td colspan="8" align="center">Data kosong</td>
+                            </tr>
+                        <?php } ?>
+                    </table>
+                    <br>
+
                 </div>
             </div>
         </div>
-        <!--**********************************
-            Content body end
-        ***********************************-->
-
-				<?php include "../theme-footer.php" ?>
-
         </div>
+    </div>
+    </div>
+
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+
+    <?php include "../theme-footer.php" ?>
+
+    </div>
 
     <!-- Required vendors -->
     <script src="../vendor/global/global.min.js"></script>
-	<script src="../vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+    <script src="../vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
     <script src="../js/custom.min.js"></script>
-	<script src="../js/deznav-init.js"></script>
-	
+    <script src="../js/deznav-init.js"></script>
+
 
     <script src="../vendor/highlightjs/highlight.pack.min.js"></script>
     <!-- Circle progress -->
 
-<!-- Circle progress -->
+    <!-- Circle progress -->
 
 
-<script>
-function searchTable() {
-var input, filter, table, tr, td, i, txtValue;
-input = document.getElementById("searchInput");
-filter = input.value.toUpperCase();
-table = document.getElementById("dataTable");
-tr = table.getElementsByTagName("tr");
+    <script>
+        function searchTable() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("searchInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("dataTable");
+            tr = table.getElementsByTagName("tr");
 
-for (i = 0; i < tr.length; i++) {
-td = tr[i].getElementsByTagName("td")[2]; // Adjust the column index for the desired search
-if (td) {
-    txtValue = td.textContent || td.innerText;
-    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-    } else {
-        tr[i].style.display = "none";
-    }
-}
-}
-}
-</script>
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[2]; // Adjust the column index for the desired search
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
 
 
 </body>

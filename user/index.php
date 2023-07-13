@@ -87,6 +87,7 @@ if (!isset($_SESSION["login"])) {
                             </tr>
                             <?php
                             include '../koneksi.php';
+                            $nik=$_SESSION["nik"];
                             $no = 1;
                             $tampil = mysqli_query($conn, "SELECT 
                             tb_pengirim.*,   
@@ -103,11 +104,8 @@ if (!isset($_SESSION["login"])) {
                         JOIN 
                             tb_armada ON tb_pengirim.no_plat = tb_armada.no_plat
                         JOIN 
-                            tb_driver ON tb_pengirim.nik_driver = tb_driver.nik_driver
-                        
-                             ORDER BY id_pengiriman DESC");
-
-                            if (mysqli_num_rows($tampil) > 0) {
+                            tb_driver ON tb_pengirim.nik_driver = tb_driver.nik_driver WHERE tb_pengirim.nik_driver='$nik' ORDER BY id_pengiriman DESC");
+                         if (mysqli_num_rows($tampil) > 0) {
                                 while ($hasil = mysqli_fetch_array($tampil)) { // Mengubah string pembelian menjadi array
                                     ?>
                                     <tr align="center">

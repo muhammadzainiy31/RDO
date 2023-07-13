@@ -152,24 +152,26 @@ if (!isset($_SESSION["login"])) {
                     </button>
                 </div>
                 <div class="modal-body">
-                    <?php
-                    $query_pembelian = "SELECT * FROM tb_pembelian WHERE id_surat = " . $hasil['id_surat'];
-                    $result_pembelian = mysqli_query($conn, $query_pembelian);
+    <?php
+    $query_pembelian = "SELECT p.*, b.nama_brg FROM tb_pembelian p JOIN tb_barang b ON p.kode_brg = b.kode_brg WHERE p.id_surat = " . $hasil['id_surat'];
+    $result_pembelian = mysqli_query($conn, $query_pembelian);
 
-                    if (mysqli_num_rows($result_pembelian) > 0) {
-                        while ($pembelian = mysqli_fetch_assoc($result_pembelian)) {
-                            echo "<p>ID Pembelian: " . $pembelian['id_pembelian'] . "</p>";
-                            echo "<p>ID Surat: " . $pembelian['id_surat'] . "</p>";
-                            echo "<p>ID Customer: " . $pembelian['id_cust'] . "</p>";
-                            echo "<p>ID Barang: " . $pembelian['kode_brg'] . "</p>";
-                            echo "<p>Jumlah: " . $pembelian['qty'] . "</p>";
-                            echo "<br>";
-                        }
-                    } else {
-                        echo "Data pembelian tidak tersedia.";
-                    }
-                    ?>
-                </div>
+    if (mysqli_num_rows($result_pembelian) > 0) {
+        while ($pembelian = mysqli_fetch_assoc($result_pembelian)) {
+            echo "<p>ID Pembelian: " . $pembelian['id_pembelian'] . "</p>";
+            echo "<p>ID Surat: " . $pembelian['id_surat'] . "</p>";
+            echo "<p>ID Customer: " . $pembelian['id_cust'] . "</p>";
+            echo "<p>Kode Barang: " . $pembelian['kode_brg'] . "</p>";
+            echo "<p>Nama Barang: " . $pembelian['nama_brg'] . "</p>";
+            echo "<p>Jumlah: " . $pembelian['qty'] . "</p>";
+            echo "<br>";
+        }
+    } else {
+        echo "Data pembelian tidak tersedia.";
+    }
+    ?>
+</div>
+
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                 </div>

@@ -6,6 +6,11 @@ if (isset($_POST['simpan_kedua'])) {
     $id_cust = $_POST['id_cust'];
     $kode_brg = $_POST['kode_brg'];
     $qty = $_POST['qty'];
+
+    // Mengurangi jumlah barang di tb_barang berdasarkan kode barang dan jumlah yang diinput
+    $updateBarang = "UPDATE tb_barang SET jumlah_brg = jumlah_brg - $qty WHERE kode_brg = '$kode_brg'";
+    mysqli_query($conn, $updateBarang) or die(mysqli_error($conn));
+
     $input = "INSERT INTO tb_pembelian (id_surat, id_cust,  kode_brg, qty) VALUES ('$id_surat', '$id_cust', '$kode_brg', '$qty')";
     mysqli_query($conn, $input) or die(mysqli_error($conn));
 
@@ -70,13 +75,15 @@ $hasil = mysqli_fetch_array($ambilData);
                                     <form method="POST" action="" enctype="multipart/form-data">
 
                                         <div class="form-group">
-                                        <h4><label for="id_surat">ID SURAT</label></h4>
-                                        <input type="text" class="form-control input-default" name="id_surat" id="id_surat" value="<?php echo $hasil['id_surat']; ?>" readonly>
+                                            <h4><label for="id_surat">ID SURAT</label></h4>
+                                            <input type="text" class="form-control input-default" name="id_surat"
+                                                id="id_surat" value="<?php echo $hasil['id_surat']; ?>" readonly>
                                         </div>
-                                        
+
                                         <div class="form-group">
-                                        <h4><label for="id_cust">ID CUSTOMER</label></h4>
-                                        <input type="text" class="form-control input-default" name="id_cust" id="id_cust" value="<?php echo $hasil['id_cust']; ?>" readonly>
+                                            <h4><label for="id_cust">ID CUSTOMER</label></h4>
+                                            <input type="text" class="form-control input-default" name="id_cust"
+                                                id="id_cust" value="<?php echo $hasil['id_cust']; ?>" readonly>
                                         </div>
 
 
@@ -107,12 +114,14 @@ $hasil = mysqli_fetch_array($ambilData);
                                             }
 
                                             // Panggil fungsi autofill saat combo box berubah
-                                            document.getElementById("kode_brg").addEventListener("change", autofillBrg);
+                                            document.getElementById("kode_brg").addEventListener("change",
+                                                autofillBrg);
                                         </script>
 
                                         <div class="form-group">
                                             <h4><label for="qty">Qty</label></h4>
-                                            <input type="number" class="form-control input-default" name="qty" id="qty" min="1" required>
+                                            <input type="number" class="form-control input-default" name="qty"
+                                                id="qty" min="1" required>
                                         </div>
                                         <div class="mt-4"></div>
                                         <button class="btn btn-primary mr-2" name="simpan_kedua">Simpan</button>

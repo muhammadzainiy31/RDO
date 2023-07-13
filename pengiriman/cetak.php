@@ -39,14 +39,15 @@
 	<table border="1" style="width: 100%">
 		<tr>
 								<th width="1%">No</th>
-                                <th>ID Surat</th>
-                                <th>ID Customer</th>
-                                <th>Nama Customer</th>
-                                <th>Telpon</th>
-                                <th>Alamat</th>
-                                <th>Kelurahan</th>
-                                <th>Rute</th>
-                                <th>Tanggal Kirim</th>
+    <th>ID Surat</th>
+    <th>ID Customer</th>
+    <th>Nama Customer</th>
+    <th>Telpon</th>
+    <th>Alamat</th>
+    <th>Kelurahan</th>
+    <th>Rute</th>
+    <th>Pembelian</th>
+    <th>Tanggal Pengiriman</th>
 		</tr>
 		<?php 
 		$no = 1;

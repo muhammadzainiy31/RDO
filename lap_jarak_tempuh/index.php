@@ -52,14 +52,19 @@
                             <th>Armada</th>
                             <th>Type</th>
                             <th>KM Sekarang</th>
-                            <th>Aksi</th>
                         </tr>
                         <?php
                         include '../koneksi.php';
                         $no = 1;
-                        $tampil = mysqli_query($conn, "SELECT tb_jrk_tempuh.*, tb_armada.type_armada
-                                FROM tb_jrk_tempuh
-                                JOIN tb_armada ON tb_jrk_tempuh.no_plat = tb_armada.no_plat");
+                        $tampil = mysqli_query($conn, "SELECT tb_armada.no_plat, tb_armada.type_armada, tb_pengirim.id_pengiriman, tb_cekout.km_tiba
+                        FROM tb_armada
+                        JOIN tb_pengirim ON tb_armada.no_plat = tb_pengirim.no_plat
+                        JOIN (
+                            SELECT id_pengiriman, MAX(km_tiba) AS km_tiba
+                            FROM tb_cekout
+                            GROUP BY id_pengiriman
+                        ) AS tb_cekout ON tb_pengirim.id_pengiriman = tb_cekout.id_pengiriman
+                        ");
                         if (mysqli_num_rows($tampil) > 0) {
                             while ($hasil = mysqli_fetch_array($tampil)) {
                                 ?>
@@ -67,7 +72,7 @@
                                     <td><?php echo $no++ ?></td>
                                     <td><?php echo $hasil['no_plat'] ?></td>
                                     <td><?php echo $hasil['type_armada'] ?></td>
-                                    <td><?php echo $hasil['km_sekarang'] ?></td>
+                                    <td><?php echo $hasil['km_tiba'] ?></td>
                                 </tr>
                             <?php
                             }

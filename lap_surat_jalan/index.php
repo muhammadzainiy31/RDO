@@ -43,9 +43,9 @@
                     </div>
                     <br>
                     <div class="input-group search-area ml-auto d-inline-flex">
-                        <input type="text" class="form-control" placeholder="Search here">
+                        <input type="text" class="form-control" placeholder="Masukkan Nama Customer" id="searchInput">
                         <div class="input-group-append">
-                            <button type="button" class="input-group-text"><i class="flaticon-381-search-2"></i></button>
+                            <button type="button" class="input-group-text" onclick="searchData()"><i class="flaticon-381-search-2"></i></button>
                         </div>
                     </div>
                     
@@ -69,29 +69,6 @@
                         </form>
                     </div>
 
-                    <!-- Bagian proses filter -->
-                    <?php
-                    // Cek apakah filter sudah di-submit
-                    if (isset($_POST['filter'])) {
-                        // Ambil tanggal mulai dan tanggal sampai dari form
-                        $mulai_tanggal = $_POST['mulai_tanggal'];
-                        $sampai_tanggal = $_POST['sampai_tanggal'];
-
-                        // Buat query dengan kondisi filter tanggal
-                        $query = "SELECT * FROM pemasukan WHERE tgl_pemasukan BETWEEN '$mulai_tanggal' AND '$sampai_tanggal'";
-                        $result = mysqli_query($conn, $query);
-
-                        // Tampilkan data sesuai hasil filter
-                        if (mysqli_num_rows($result) > 0) {
-                            while ($row = mysqli_fetch_assoc($result)) {
-                                // Tampilkan data sesuai kebutuhan Anda
-                                // ...
-                            }
-                        } else {
-                            echo "Data tidak ditemukan.";
-                        }
-                    }
-                    ?>
                     <br>
                     <br>
                     <a href="../pengiriman/index.php" class="btn btn-primary">Lihat Pengiriman</a>
@@ -118,31 +95,62 @@
                                 <th>Nama Driver</th>
                                 <th>Aksi</th>
                             </tr>
+
                             <?php
                             include '../koneksi.php';
                             $no = 1;
-                            $tampil = mysqli_query($conn, "SELECT 
-                            tb_pengirim.*,   
-                            tb_surat.*, 
-                            tb_customer.*, 
-                            tb_armada.type_armada, 
-                            tb_driver.nama_driver
-                        FROM 
-                            tb_pengirim
-                        JOIN 
-                            tb_surat ON tb_pengirim.id_surat = tb_surat.id_surat
-                        JOIN 
-                            tb_customer ON tb_pengirim.id_cust = tb_customer.id_cust
-                        JOIN 
-                            tb_armada ON tb_pengirim.no_plat = tb_armada.no_plat
-                        JOIN 
-                            tb_driver ON tb_pengirim.nik_driver = tb_driver.nik_driver
-                        
-                             ORDER BY id_pengiriman DESC");
 
-                            if (mysqli_num_rows($tampil) > 0) {
-                                while ($hasil = mysqli_fetch_array($tampil)) {
-                                    ?>
+                            if (isset($_POST['filter'])) {
+                                // Ambil tanggal mulai dan tanggal sampai dari form
+                                $mulai_tanggal = $_POST['mulai_tanggal'];
+                                $sampai_tanggal = $_POST['sampai_tanggal'];
+
+                                // Buat query dengan kondisi filter tanggal
+                                $query = "SELECT 
+                                tb_pengirim.*,   
+                                tb_surat.*, 
+                                tb_customer.*, 
+                                tb_armada.type_armada, 
+                                tb_driver.nama_driver
+                            FROM 
+                                tb_pengirim
+                            JOIN 
+                                tb_surat ON tb_pengirim.id_surat = tb_surat.id_surat
+                            JOIN 
+                                tb_customer ON tb_pengirim.id_cust = tb_customer.id_cust
+                            JOIN 
+                                tb_armada ON tb_pengirim.no_plat = tb_armada.no_plat
+                            JOIN 
+                                tb_driver ON tb_pengirim.nik_driver = tb_driver.nik_driver
+                                        WHERE tanggal_kirim BETWEEN '$mulai_tanggal' AND '$sampai_tanggal'
+                                        ORDER BY tb_surat.tanggal_kirim";
+                                $result = mysqli_query($conn, $query);
+                            } else {
+                                $query = "SELECT 
+                                tb_pengirim.*,   
+                                tb_surat.*, 
+                                tb_customer.*, 
+                                tb_armada.type_armada, 
+                                tb_driver.nama_driver
+                            FROM 
+                                tb_pengirim
+                            JOIN 
+                                tb_surat ON tb_pengirim.id_surat = tb_surat.id_surat
+                            JOIN 
+                                tb_customer ON tb_pengirim.id_cust = tb_customer.id_cust
+                            JOIN 
+                                tb_armada ON tb_pengirim.no_plat = tb_armada.no_plat
+                            JOIN 
+                                tb_driver ON tb_pengirim.nik_driver = tb_driver.nik_driver
+                            
+                                 ORDER BY id_pengiriman DESC";
+                                $result = mysqli_query($conn, $query);
+                            }
+
+                            if (mysqli_num_rows($result) > 0) {
+                                while ($hasil = mysqli_fetch_assoc($result)) {
+                                    // Kode HTML untuk menampilkan data
+                            ?>
                                     <tr align="center">
                                         <td><?php echo $no++ ?></td>
                                         <td><?php echo $hasil['id_pengiriman'] ?></td>
@@ -231,6 +239,30 @@
     <script src="../js/custom.min.js"></script>
     <script src="../js/deznav-init.js"></script>
     <script src="../vendor/highlightjs/highlight.pack.min.js"></script>
+
+
+    <script>
+        function searchData() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("searchInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementsByClassName("table")[0];
+            tr = table.getElementsByTagName("tr");
+
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[4]; // Ganti angka 2 dengan indeks kolom nama
+
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
     <!-- Circle progress -->
 </body>
 

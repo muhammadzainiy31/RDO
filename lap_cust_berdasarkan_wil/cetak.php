@@ -28,7 +28,7 @@
 </table> 
 	<center>
  
-		<h2>REPORT DATA DRIVER</h2>
+		<h2>REPORT DATA CUSTOMER BERDASARKAN WILAYAH</h2>
  
 	</center>
  
@@ -39,26 +39,22 @@
 	<table border="1" style="width: 100%">
 		<tr>
 								<th width="1%">No</th>
-                <th>NIK Driver</th>
-                <th>Nama</th>
-                <th>Tanggal Lahir</th>
-                <th>Jabatan</th>
-                <th>Tingkat SIM</th>
+                <th>Kode Customer</th>
+                <th>Nama Customer</th>
                 <th>Alamat</th>
+                <th>Kelurahan</th>
 		</tr>
 		<?php 
 		$no = 1;
-		$ambilData = mysqli_query($conn,"select * from tb_driver");
+		$ambilData = mysqli_query($conn,"SELECT * FROM tb_customer ORDER BY id_cust DESC");
 		while($hasil = mysqli_fetch_array($ambilData)){
 		?>
  <tr align="center" >
                   <td><?php echo $no++ ?> </td>
-                  <td><?php echo $hasil ['nik_driver']?></td>
-                  <td><?php echo $hasil ['nama_driver']?></td>
-                  <td><?php echo $hasil ['tanggal_lahir']?></td>
-                  <td><?php echo $hasil ['jabatan']?> </td>
-                  <td><?php echo $hasil ['sim']?></td>
-                  <td><?php echo $hasil ['alamat_driver']?></td>
+                  <td><?php echo $hasil ['id_cust']?></td>
+                  <td><?php echo $hasil ['nama_cust']?></td>
+                  <td><?php echo $hasil ['alamat_cust']?></td>
+                  <td><?php echo $hasil ['kelurahan']?> </td>
 		</tr>
 		<?php 
 		}

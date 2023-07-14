@@ -43,13 +43,12 @@
                     </div>
                     <br>
                     <div class="input-group search-area ml-auto d-inline-flex">
-                        <input type="text" class="form-control" placeholder="Search here">
+                        <input type="text" class="form-control" placeholder="Masukkan Nama Driver" id="searchInput">
                         <div class="input-group-append">
-                            <button type="button" class="input-group-text"><i class="flaticon-381-search-2"></i></button>
+                            <button type="button" class="input-group-text" onclick="searchData()"><i class="flaticon-381-search-2"></i></button>
                         </div>
                     </div>
 
-                    
 
                     <!-- Bagian form filter -->
                     <div class="container align-items-center">
@@ -101,6 +100,8 @@
                                 <th>Keterangan</th>
                                 <th>Foto</th>
                             </tr>
+
+
                             <?php
                             include '../koneksi.php';
                             $no = 1;
@@ -110,24 +111,20 @@
                                 $sampai_tanggal = $_POST['sampai_tanggal'];
 
                                 // Hindari SQL Injection dengan menggunakan prepared statement
-                                $query = "SELECT tb_pengirim.*, tb_surat.*, tb_cekin.*, tb_cekout.*, tb_armada.type_armada, tb_driver.nama_driver
-                                        FROM tb_pengirim
-                                        JOIN tb_surat ON tb_pengirim.id_surat = tb_surat.id_surat
-                                        JOIN tb_armada ON tb_pengirim.no_plat = tb_armada.no_plat
-                                        JOIN tb_driver ON tb_pengirim.nik_driver = tb_driver.nik_driver
-                                        JOIN tb_cekin ON tb_pengirim.id_pengiriman = tb_cekin.id_pengiriman
-                                        JOIN tb_cekout ON tb_pengirim.id_pengiriman = tb_cekout.id_pengiriman
-                                        LEFT JOIN tb_barang b ON tb_pengirim.kode_brg = b.kode_brg
+                                $query = "SELECT tb_pengirim.*, tb_surat.*,tb_customer.*, tb_cekin.*, tb_cekout.*, tb_armada.type_armada, tb_driver.nama_driver
+                                FROM tb_pengirim
+                                JOIN tb_surat ON tb_pengirim.id_surat = tb_surat.id_surat
+                            JOIN 
+                                tb_customer ON tb_pengirim.id_cust = tb_customer.id_cust
+                                JOIN tb_armada ON tb_pengirim.no_plat = tb_armada.no_plat
+                                JOIN tb_driver ON tb_pengirim.nik_driver = tb_driver.nik_driver
+                                JOIN tb_cekin ON tb_pengirim.id_pengiriman = tb_cekin.id_pengiriman
+                                JOIN tb_cekout ON tb_pengirim.id_pengiriman = tb_cekout.id_pengiriman
                                         WHERE tanggal_kirim BETWEEN '$mulai_tanggal' AND '$sampai_tanggal'
-                                        ORDER BY tanggal_kirim";
-
-                                $stmt = $conn->prepare($query);
-                                $stmt->bind_param("ss", $mulai_tanggal, $sampai_tanggal);
-                                $stmt->execute();
-                                $result = $stmt->get_result();
+                                        ORDER BY tb_surat.tanggal_kirim";
+                                $result = mysqli_query($conn, $query);
                             } else {
-                                $query = "SELECT tb_pengirim.*, tb_surat.*, 
-                                tb_customer.*, tb_cekin.*, tb_cekout.*, tb_armada.type_armada, tb_driver.nama_driver
+                                $query = "SELECT tb_pengirim.*, tb_surat.*,tb_customer.*, tb_cekin.*, tb_cekout.*, tb_armada.type_armada, tb_driver.nama_driver
                                 FROM tb_pengirim
                                 JOIN tb_surat ON tb_pengirim.id_surat = tb_surat.id_surat
                             JOIN 
@@ -144,6 +141,8 @@
                             if (mysqli_num_rows($result) > 0) {
                                 while ($hasil = mysqli_fetch_array($result)) {
                                     ?>
+
+
                                     <tr align="center">
                                         <td><?php echo $no++ ?></td>
                                         <td><?php echo $hasil['id_pengiriman'] ?></td>
@@ -237,6 +236,29 @@
     <script src="../js/custom.min.js"></script>
     <script src="../js/deznav-init.js"></script>
     <script src="../vendor/highlightjs/highlight.pack.min.js"></script>
+
+    <script>
+        function searchData() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("searchInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementsByClassName("table")[0];
+            tr = table.getElementsByTagName("tr");
+
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[4]; // Ganti angka 2 dengan indeks kolom nama
+
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
     <!-- Circle progress -->
 </body>
 

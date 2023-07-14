@@ -39,7 +39,7 @@
                     </div>
                     <br>
                     <div class="input-group search-area ml-auto d-inline-flex">
-                        <input type="text" class="form-control" id="searchInput" onkeyup="searchTable()" placeholder="Search here">
+                        <input type="text" class="form-control" id="searchInput" onkeyup="searchTable()" placeholder="Masukkan NO Plat">
                         <div class="input-group-append">
                             <button type="button" class="input-group-text"><i class="flaticon-381-search-2"></i></button>
                         </div>
@@ -94,9 +94,7 @@ if (isset($_POST['filter'])) {
     $query = "SELECT rs.*, a.type_armada
     FROM riwayat_servis rs
     INNER JOIN tb_armada a ON rs.no_plat = a.no_plat
-    WHERE rs.tanggal_servis BETWEEN '$mulai_tanggal' AND '$sampai_tanggal'
-    GROUP BY a.no_plat, rs.nama_driver
-    ORDER BY rs.tanggal_servis";
+            WHERE tanggal_servis BETWEEN '$mulai_tanggal' AND '$sampai_tanggal'";
     $result = mysqli_query($conn, $query);
 } else {
     $query = "SELECT rs.*, a.type_armada

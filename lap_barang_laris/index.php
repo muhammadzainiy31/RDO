@@ -39,9 +39,9 @@
                     </div>
                     <br>
                     <div class="input-group search-area ml-auto d-inline-flex">
-                        <input type="text" class="form-control" placeholder="Search here">
+                        <input type="text" class="form-control" placeholder="Masukkan Nama Barang" id="searchInput">
                         <div class="input-group-append">
-                            <button type="button" class="input-group-text"><i class="flaticon-381-search-2"></i></button>
+                            <button type="button" class="input-group-text" onclick="searchData()"><i class="flaticon-381-search-2"></i></button>
                         </div>
                     </div>
                     <br>
@@ -105,9 +105,30 @@ if (mysqli_num_rows($tampil) > 0) {
     <script src="../vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
     <script src="../js/custom.min.js"></script>
     <script src="../js/deznav-init.js"></script>
-
-
     <script src="../vendor/highlightjs/highlight.pack.min.js"></script>
+
+    <script>
+        function searchData() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("searchInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementsByClassName("table")[0];
+            tr = table.getElementsByTagName("tr");
+
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[2]; // Ganti angka 2 dengan indeks kolom nama
+
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
     <!-- Circle progress -->
 
 </body>

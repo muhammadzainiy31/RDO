@@ -28,7 +28,7 @@
 </table> 
 	<center>
  
-		<h2>REPORT DATA DRIVER</h2>
+		<h2>REPORT DATA BARANG LARIS</h2>
  
 	</center>
  
@@ -39,26 +39,25 @@
 	<table border="1" style="width: 100%">
 		<tr>
 								<th width="1%">No</th>
-                <th>NIK Driver</th>
-                <th>Nama</th>
-                <th>Tanggal Lahir</th>
-                <th>Jabatan</th>
-                <th>Tingkat SIM</th>
-                <th>Alamat</th>
-		</tr>
+                <th>Kode Barang</th>
+                <th>Nama Barang</th>
+                <th>Departemen</th>
+                <th>Jumlah Penjualan</th>
 		<?php 
 		$no = 1;
-		$ambilData = mysqli_query($conn,"select * from tb_driver");
+		$ambilData = mysqli_query($conn,"SELECT tb_pembelian.kode_brg, tb_barang.nama_brg, tb_barang.departemen, SUM(tb_pembelian.qty) AS jumlah_transaksi
+		FROM tb_pembelian
+		JOIN tb_barang ON tb_pembelian.kode_brg = tb_barang.kode_brg
+		GROUP BY tb_pembelian.kode_brg, tb_barang.nama_brg, tb_barang.departemen
+		ORDER BY jumlah_transaksi DESC");
 		while($hasil = mysqli_fetch_array($ambilData)){
 		?>
  <tr align="center" >
                   <td><?php echo $no++ ?> </td>
-                  <td><?php echo $hasil ['nik_driver']?></td>
-                  <td><?php echo $hasil ['nama_driver']?></td>
-                  <td><?php echo $hasil ['tanggal_lahir']?></td>
-                  <td><?php echo $hasil ['jabatan']?> </td>
-                  <td><?php echo $hasil ['sim']?></td>
-                  <td><?php echo $hasil ['alamat_driver']?></td>
+                  <td><?php echo $hasil ['kode_brg']?></td>
+                  <td><?php echo $hasil ['nama_brg']?></td>
+                  <td><?php echo $hasil ['departemen']?></td>
+                  <td><?php echo $hasil ['jumlah_transaksi']?> </td>
 		</tr>
 		<?php 
 		}

@@ -46,7 +46,6 @@
     <th>Alamat</th>
     <th>Kelurahan</th>
     <th>Rute</th>
-    <th>Pembelian</th>
     <th>Tanggal Pengiriman</th>
 		</tr>
 		<?php 

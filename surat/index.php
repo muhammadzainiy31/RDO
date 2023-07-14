@@ -53,7 +53,7 @@ if (!isset($_SESSION["login"])) {
                     </div>
                     <br>
                     <div class="input-group search-area ml-auto d-inline-flex">
-                        <input type="text" class="form-control" placeholder="Masukkan Nama Customer" id="searchInput">
+                        <input type="text" class="form-control" placeholder="Masukkan Nama Driver" id="searchInput">
                         <div class="input-group-append">
                             <button type="button" class="input-group-text" onclick="searchData()"><i class="flaticon-381-search-2"></i></button>
                         </div>

@@ -43,32 +43,12 @@
                     </div>
                     <br>
                     <div class="input-group search-area ml-auto d-inline-flex">
-                        <input type="text" class="form-control" placeholder="Search here">
+                        <input type="text" class="form-control" placeholder="Masukkan Nama Customer" id="searchInput">
                         <div class="input-group-append">
-                            <button type="button" class="input-group-text"><i class="flaticon-381-search-2"></i></button>
+                            <button type="button" class="input-group-text" onclick="searchData()"><i class="flaticon-381-search-2"></i></button>
                         </div>
                     </div>
 
-
-
-                    <!-- Bagian form filter -->
-                    <div class="container align-items-center">
-                        <form action="" method="post">
-                            <div class="row">
-                                <div class="col form-group">
-                                    <label for="inputMulaiTanggal" class="font-weight-bold">Mulai Tanggal :</label>
-                                    <input type="date" id="inputMulaiTanggal" name="mulai_tanggal" class="form-control" required>
-                                </div>
-                                <div class="col form-group">
-                                    <label for="inputSampaiTanggal" class="font-weight-bold">Sampai Tanggal :</label>
-                                    <input type="date" id="inputSampaiTanggal" name="sampai_tanggal" class="form-control" required>
-                                </div>
-                                <div class="col-auto form-group">
-                                    <button type="submit" name="filter" class="btn btn-success mt-3">Tampilkan</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
 
                     <!-- Bagian proses filter -->
 
@@ -162,40 +142,28 @@
     <script src="../js/custom.min.js"></script>
     <script src="../js/deznav-init.js"></script>
     <script src="../vendor/highlightjs/highlight.pack.min.js"></script>
-
-
     <script>
-function searchTable() {
-    var input, filter, table, tr, td, i, j, txtValue;
-    input = document.getElementById("searchInput");
-    filter = input.value.toUpperCase();
-    table = document.querySelector(".scroll-horizontal table");
-    tr = table.getElementsByTagName("tr");
+        function searchData() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("searchInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementsByClassName("table")[0];
+            tr = table.getElementsByTagName("tr");
 
-    // Loop through all table rows, and hide those that don't match the search query
-    for (i = 1; i < tr.length; i++) {
-        var visible = false;
-        td = tr[i].getElementsByTagName("td");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[2]; // Ganti angka 2 dengan indeks kolom nama
 
-        // Loop through all table cells in current row
-        for (j = 0; j < td.length; j++) {
-            if (td[j]) {
-                txtValue = td[j].textContent || td[j].innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    visible = true;
-                    break;
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
                 }
             }
         }
-
-        if (visible) {
-            tr[i].style.display = "";
-        } else {
-            tr[i].style.display = "none";
-        }
-    }
-}
-</script>
+    </script>
 
     <!-- Circle progress -->
 </body>

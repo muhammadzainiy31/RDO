@@ -28,7 +28,7 @@
 </table> 
 	<center>
  
-		<h2>REPORT DATA DRIVER</h2>
+		<h2>REPORT DATA RIWAYAT SERVIS ARMADA</h2>
  
 	</center>
  
@@ -39,26 +39,31 @@
 	<table border="1" style="width: 100%">
 		<tr>
 								<th width="1%">No</th>
-                <th>NIK Driver</th>
-                <th>Nama</th>
-                <th>Tanggal Lahir</th>
-                <th>Jabatan</th>
-                <th>Tingkat SIM</th>
-                <th>Alamat</th>
+                            <th>ID Servis</th>
+                            <th>NO Plat</th>
+                            <th>Type Armada</th>
+                            <th>Tanggal Servis</th>
+                            <th>Keterangan</th>
+                            <th>Estimasi Selesai</th>
+                            <th>Biaya</th>
 		</tr>
 		<?php 
 		$no = 1;
-		$ambilData = mysqli_query($conn,"select * from tb_driver");
+		$ambilData = mysqli_query($conn,"SELECT rs.*, a.type_armada
+    FROM riwayat_servis rs
+    INNER JOIN tb_armada a ON rs.no_plat = a.no_plat
+    ORDER BY rs.id_servis DESC");
 		while($hasil = mysqli_fetch_array($ambilData)){
 		?>
  <tr align="center" >
                   <td><?php echo $no++ ?> </td>
-                  <td><?php echo $hasil ['nik_driver']?></td>
-                  <td><?php echo $hasil ['nama_driver']?></td>
-                  <td><?php echo $hasil ['tanggal_lahir']?></td>
-                  <td><?php echo $hasil ['jabatan']?> </td>
-                  <td><?php echo $hasil ['sim']?></td>
-                  <td><?php echo $hasil ['alamat_driver']?></td>
+                  <td><?php echo $hasil ['id_servis']?></td>
+                  <td><?php echo $hasil ['no_plat']?></td>
+                  <td><?php echo $hasil ['type_armada']?></td>
+                  <td><?php echo $hasil ['tanggal_servis']?> </td>
+                  <td><?php echo $hasil ['keterangan']?></td>
+                  <td><?php echo $hasil ['estimasi']?></td>
+                  <td><?php echo $hasil ['biaya']?></td>
 		</tr>
 		<?php 
 		}

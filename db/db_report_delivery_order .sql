@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 10 Jul 2023 pada 14.23
+-- Waktu pembuatan: 14 Jul 2023 pada 17.53
 -- Versi server: 10.4.27-MariaDB
 -- Versi PHP: 8.2.0
 
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `db_report_delivery_order`
 --
-CREATE DATABASE IF NOT EXISTS `db_report_delivery_order` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `db_report_delivery_order`;
 
 -- --------------------------------------------------------
 
@@ -29,7 +27,6 @@ USE `db_report_delivery_order`;
 -- Struktur dari tabel `riwayat_pemakaian_mobil`
 --
 
-DROP TABLE IF EXISTS `riwayat_pemakaian_mobil`;
 CREATE TABLE `riwayat_pemakaian_mobil` (
   `id` int(11) NOT NULL,
   `nomor_kendaraan` varchar(10) DEFAULT NULL,
@@ -48,7 +45,6 @@ CREATE TABLE `riwayat_pemakaian_mobil` (
 -- Struktur dari tabel `riwayat_pengiriman_driver`
 --
 
-DROP TABLE IF EXISTS `riwayat_pengiriman_driver`;
 CREATE TABLE `riwayat_pengiriman_driver` (
   `id` int(11) NOT NULL,
   `id_driver` int(11) DEFAULT NULL,
@@ -74,7 +70,6 @@ INSERT INTO `riwayat_pengiriman_driver` (`id`, `id_driver`, `tanggal_pengiriman`
 -- Struktur dari tabel `riwayat_servis`
 --
 
-DROP TABLE IF EXISTS `riwayat_servis`;
 CREATE TABLE `riwayat_servis` (
   `id_servis` int(11) NOT NULL,
   `no_plat` varchar(11) NOT NULL,
@@ -100,7 +95,6 @@ INSERT INTO `riwayat_servis` (`id_servis`, `no_plat`, `tanggal_servis`, `keteran
 -- Struktur dari tabel `tb_armada`
 --
 
-DROP TABLE IF EXISTS `tb_armada`;
 CREATE TABLE `tb_armada` (
   `id` int(11) NOT NULL,
   `no_plat` varchar(11) NOT NULL,
@@ -124,7 +118,6 @@ INSERT INTO `tb_armada` (`id`, `no_plat`, `type_armada`, `tahun`) VALUES
 -- Struktur dari tabel `tb_barang`
 --
 
-DROP TABLE IF EXISTS `tb_barang`;
 CREATE TABLE `tb_barang` (
   `kode_brg` int(11) NOT NULL,
   `nama_brg` varchar(100) NOT NULL,
@@ -138,9 +131,9 @@ CREATE TABLE `tb_barang` (
 --
 
 INSERT INTO `tb_barang` (`kode_brg`, `nama_brg`, `departemen`, `restok`, `jumlah_brg`) VALUES
-(114, 'Barang 1', 'KAMAR TIDUR', 10, '50'),
+(114, 'Barang 1', 'KAMAR TIDUR', 10, '45'),
 (115, 'Barang 2', 'RUANG TAMU', 5, '20'),
-(116, 'Barang 3', 'DAPUR DAN RUANG MAKAN', 15, '10'),
+(116, 'Barang 3', 'DAPUR DAN RUANG MAKAN', 15, '5'),
 (117, 'Barang 4', 'RUANG TAMU', 8, '90'),
 (118, 'Barang 5', 'RUANG KERJA', 12, '100'),
 (119, 'Barang 6', 'RUANG TAMU', 3, '70'),
@@ -155,7 +148,6 @@ INSERT INTO `tb_barang` (`kode_brg`, `nama_brg`, `departemen`, `restok`, `jumlah
 -- Struktur dari tabel `tb_berlaku_sim`
 --
 
-DROP TABLE IF EXISTS `tb_berlaku_sim`;
 CREATE TABLE `tb_berlaku_sim` (
   `id_sim` int(11) NOT NULL,
   `driver` text NOT NULL,
@@ -170,7 +162,6 @@ CREATE TABLE `tb_berlaku_sim` (
 -- Struktur dari tabel `tb_brg_laku`
 --
 
-DROP TABLE IF EXISTS `tb_brg_laku`;
 CREATE TABLE `tb_brg_laku` (
   `id_laris` int(11) NOT NULL,
   `kode_brg` int(11) NOT NULL,
@@ -190,7 +181,6 @@ INSERT INTO `tb_brg_laku` (`id_laris`, `kode_brg`, `terjual`) VALUES
 -- Struktur dari tabel `tb_cekin`
 --
 
-DROP TABLE IF EXISTS `tb_cekin`;
 CREATE TABLE `tb_cekin` (
   `id_cekin` int(11) NOT NULL,
   `id_pengiriman` int(11) NOT NULL,
@@ -215,7 +205,6 @@ INSERT INTO `tb_cekin` (`id_cekin`, `id_pengiriman`, `dari`, `tujuan`, `km_beran
 -- Struktur dari tabel `tb_cekout`
 --
 
-DROP TABLE IF EXISTS `tb_cekout`;
 CREATE TABLE `tb_cekout` (
   `id_cekout` int(11) NOT NULL,
   `id_pengiriman` int(11) NOT NULL,
@@ -231,8 +220,8 @@ CREATE TABLE `tb_cekout` (
 --
 
 INSERT INTO `tb_cekout` (`id_cekout`, `id_pengiriman`, `km_tiba`, `jam_tiba`, `status`, `keterangan`, `foto`) VALUES
-(10, 400071, '0.00', '21:23:00', 'PENDING', 'ganti oli', 'download.jf'),
-(11, 400070, '123.00', '22:25:00', 'TERKIRIM', 'ok', 'download.jf'),
+(10, 400071, '0.00', '21:23:00', 'PENDING', 'ganti oli', '2.png'),
+(11, 400070, '123.00', '22:25:00', 'TERKIRIM', 'ok', '1.png'),
 (12, 400073, '123.00', '00:57:00', 'TERKIRIM', 'ok', '');
 
 -- --------------------------------------------------------
@@ -241,7 +230,6 @@ INSERT INTO `tb_cekout` (`id_cekout`, `id_pengiriman`, `km_tiba`, `jam_tiba`, `s
 -- Struktur dari tabel `tb_customer`
 --
 
-DROP TABLE IF EXISTS `tb_customer`;
 CREATE TABLE `tb_customer` (
   `id_cust` int(11) NOT NULL,
   `nama_cust` varchar(100) NOT NULL,
@@ -271,7 +259,6 @@ INSERT INTO `tb_customer` (`id_cust`, `nama_cust`, `no_telpon`, `alamat_cust`, `
 -- Struktur dari tabel `tb_cus_royal`
 --
 
-DROP TABLE IF EXISTS `tb_cus_royal`;
 CREATE TABLE `tb_cus_royal` (
   `id` int(11) NOT NULL,
   `nama` int(11) NOT NULL,
@@ -285,7 +272,6 @@ CREATE TABLE `tb_cus_royal` (
 -- Struktur dari tabel `tb_driver`
 --
 
-DROP TABLE IF EXISTS `tb_driver`;
 CREATE TABLE `tb_driver` (
   `id_driver` int(11) NOT NULL,
   `nik_driver` int(5) NOT NULL,
@@ -317,7 +303,6 @@ INSERT INTO `tb_driver` (`id_driver`, `nik_driver`, `nama_driver`, `tanggal_lahi
 -- Struktur dari tabel `tb_jrk_tempuh`
 --
 
-DROP TABLE IF EXISTS `tb_jrk_tempuh`;
 CREATE TABLE `tb_jrk_tempuh` (
   `id_jrk` int(11) NOT NULL,
   `no_plat` varchar(11) NOT NULL,
@@ -338,7 +323,6 @@ INSERT INTO `tb_jrk_tempuh` (`id_jrk`, `no_plat`, `km_sekarang`) VALUES
 -- Struktur dari tabel `tb_pembelian`
 --
 
-DROP TABLE IF EXISTS `tb_pembelian`;
 CREATE TABLE `tb_pembelian` (
   `id_pembelian` int(11) NOT NULL,
   `id_surat` int(11) NOT NULL,
@@ -355,7 +339,9 @@ INSERT INTO `tb_pembelian` (`id_pembelian`, `id_surat`, `id_cust`, `kode_brg`, `
 (45, 10127, 2024, 119, '5'),
 (46, 10127, 2024, 119, '3'),
 (47, 10131, 2016, 121, '2'),
-(48, 10133, 2015, 119, '5');
+(48, 10133, 2015, 119, '5'),
+(49, 10129, 2015, 114, '5'),
+(50, 10130, 2016, 116, '5');
 
 -- --------------------------------------------------------
 
@@ -363,7 +349,6 @@ INSERT INTO `tb_pembelian` (`id_pembelian`, `id_surat`, `id_cust`, `kode_brg`, `
 -- Struktur dari tabel `tb_pengirim`
 --
 
-DROP TABLE IF EXISTS `tb_pengirim`;
 CREATE TABLE `tb_pengirim` (
   `id_pengiriman` int(11) NOT NULL,
   `id_surat` int(11) NOT NULL,
@@ -378,7 +363,12 @@ CREATE TABLE `tb_pengirim` (
 
 INSERT INTO `tb_pengirim` (`id_pengiriman`, `id_surat`, `id_cust`, `no_plat`, `nik_driver`) VALUES
 (400071, 10134, 2015, 'JK 7890 LM', '34567'),
-(400073, 10133, 2015, 'AB 1234 CM', '90123');
+(400073, 10133, 2015, 'AB 1234 CM', '90123'),
+(400082, 10136, 2012, 'AB 1234 CM', '34567'),
+(400083, 10137, 2014, 'AB 1234 CM', '34567'),
+(400084, 10138, 2015, 'JK 7890 LM', '34567'),
+(400085, 10138, 2015, 'FG 3456 HI', '34567'),
+(400086, 10140, 2012, 'JK 7890 LM', '34567');
 
 -- --------------------------------------------------------
 
@@ -386,7 +376,6 @@ INSERT INTO `tb_pengirim` (`id_pengiriman`, `id_surat`, `id_cust`, `no_plat`, `n
 -- Struktur dari tabel `tb_rdo`
 --
 
-DROP TABLE IF EXISTS `tb_rdo`;
 CREATE TABLE `tb_rdo` (
   `id_rdo` int(11) NOT NULL,
   `id_pengiriman` int(11) NOT NULL
@@ -405,7 +394,6 @@ INSERT INTO `tb_rdo` (`id_rdo`, `id_pengiriman`) VALUES
 -- Struktur dari tabel `tb_surat`
 --
 
-DROP TABLE IF EXISTS `tb_surat`;
 CREATE TABLE `tb_surat` (
   `id_surat` int(11) NOT NULL,
   `id_cust` int(11) NOT NULL,
@@ -423,7 +411,12 @@ INSERT INTO `tb_surat` (`id_surat`, `id_cust`, `tanggal_kirim`) VALUES
 (10130, 2016, '2023-07-06'),
 (10133, 2015, '2023-07-10'),
 (10134, 2015, '2023-07-10'),
-(10135, 2016, '2023-07-11');
+(10135, 2016, '2023-07-11'),
+(10136, 2012, '2023-07-14'),
+(10137, 2014, '2023-07-14'),
+(10138, 2015, '2023-07-14'),
+(10139, 2017, '2023-07-14'),
+(10140, 2012, '2023-07-15');
 
 -- --------------------------------------------------------
 
@@ -431,7 +424,6 @@ INSERT INTO `tb_surat` (`id_surat`, `id_cust`, `tanggal_kirim`) VALUES
 -- Struktur dari tabel `tb_user`
 --
 
-DROP TABLE IF EXISTS `tb_user`;
 CREATE TABLE `tb_user` (
   `id` int(11) NOT NULL,
   `nm_user` varchar(100) NOT NULL,
@@ -451,8 +443,8 @@ INSERT INTO `tb_user` (`id`, `nm_user`, `nik`, `password`, `status`, `level`, `k
 (2, 'Budi Santoso', 98765, '$2y$10$R1G8QXHO/zulS/AVfX.TFuWebHaKgh9biRLubmU/tEhbJ0a9qrtaO', 'driver', '2', '2'),
 (3, 'Doni Prasetyo', 23456, '$2y$10$R1G8QXHO/zulS/AVfX.TFuWebHaKgh9biRLubmU/tEhbJ0a9qrtaO', 'driver', '2', '2'),
 (4, 'Ahmad Santoso', 56789, '$2y$10$R1G8QXHO/zulS/AVfX.TFuWebHaKgh9biRLubmU/tEhbJ0a9qrtaO', 'driver', '2', '64aa560fb4c9d'),
-(5, 'Rudi Kusuma', 90123, '$2y$10$R1G8QXHO/zulS/AVfX.TFuWebHaKgh9biRLubmU/tEhbJ0a9qrtaO', 'driver', '2', '64abf42672e79'),
-(6, 'rapi', 123, '$2y$10$4dC/U8WPU50t2UkjQovOGecN.KFuI07S2Kvyc9VzV.78MugogOQYO', 'staff', '1', '64abe75b44732'),
+(5, 'Rudi Kusuma', 90123, '$2y$10$R1G8QXHO/zulS/AVfX.TFuWebHaKgh9biRLubmU/tEhbJ0a9qrtaO', 'driver', '2', '64ae966b6205c'),
+(6, 'rapi', 123, '$2y$10$4dC/U8WPU50t2UkjQovOGecN.KFuI07S2Kvyc9VzV.78MugogOQYO', 'staff', '1', '64b1256ac5f98'),
 (8, 'Faisal Prasetya', 1234, '$2y$10$R1G8QXHO/zulS/AVfX.TFuWebHaKgh9biRLubmU/tEhbJ0a9qrtaO', 'driver', '2', '64a7f8524075d'),
 (10, 'Hadi Pranata', 34567, '$2y$10$R1G8QXHO/zulS/AVfX.TFuWebHaKgh9biRLubmU/tEhbJ0a9qrtaO', 'driver', '2', '2'),
 (11, 'Rizki Santoso', 67890, '$2y$10$R1G8QXHO/zulS/AVfX.TFuWebHaKgh9biRLubmU/tEhbJ0a9qrtaO', 'driver', '2', '64a2a86ac2e73');
@@ -644,13 +636,13 @@ ALTER TABLE `tb_jrk_tempuh`
 -- AUTO_INCREMENT untuk tabel `tb_pembelian`
 --
 ALTER TABLE `tb_pembelian`
-  MODIFY `id_pembelian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id_pembelian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_pengirim`
 --
 ALTER TABLE `tb_pengirim`
-  MODIFY `id_pengiriman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=400082;
+  MODIFY `id_pengiriman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=400087;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_rdo`
@@ -662,7 +654,7 @@ ALTER TABLE `tb_rdo`
 -- AUTO_INCREMENT untuk tabel `tb_surat`
 --
 ALTER TABLE `tb_surat`
-  MODIFY `id_surat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10136;
+  MODIFY `id_surat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10141;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_user`

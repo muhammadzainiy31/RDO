@@ -96,7 +96,7 @@ if (isset($_POST['submit'])) {
 
                                         <div class="form-group">
                                             <h4><label for="km_tiba">KM TIBA</label></h4>
-                                            <input type="text" class="form-control input-default" name="km_tiba" placeholder="Masukkan KM Tiba">
+                                            <input type="number" class="form-control input-default" name="km_tiba" placeholder="Masukkan KM Tiba">
                                         </div>
 
                                         <div class="form-group">

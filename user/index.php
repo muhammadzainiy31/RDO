@@ -63,7 +63,6 @@ if (!isset($_SESSION["login"])) {
                     <br>
                     <br>
                     <a href="rdo.php" class="btn btn-primary">Lihat RDO</a>
-                    <a href="cetak.php" class="btn btn-primary">Cetak Report</a>
                     <br> <br>
                     <div class="scroll-horizontal">
                         <table class="table table-bordered">

@@ -57,8 +57,8 @@ if (isset($_POST['submit'])) {
     ***********************************-->
     <div id="main-wrapper">
 
-        <?php include "theme-header.php" ?>
-        <?php include "theme-sidebar.php" ?>
+        <?php include "../theme-header.php" ?>
+        <?php include "../theme-sidebar.php" ?>
 
         <!--**********************************
          Content body start
@@ -138,7 +138,7 @@ if (isset($_POST['submit'])) {
         ***********************************-->
 
 
-        <?php include "theme-footer.php" ?>
+        <?php include "../theme-footer.php" ?>
 
     </div>
     <!--**********************************

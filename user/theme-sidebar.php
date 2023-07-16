@@ -10,7 +10,7 @@
                     <span class="nav-text">RDO</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="./rdo.php">Report</a></li>
+                    <li><a href="./rdo.php">RDO</a></li>
                     <li><a href="index.php">Surat</a></li>
                 </ul>
             </li>

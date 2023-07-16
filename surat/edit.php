@@ -1,9 +1,20 @@
-
 <?php
-    include "koneksi.php";
-    $surat_id = $_GET['surat_id'];
-    $ambilData = mysqli_query($conn, "SELECT * FROM tb_report WHERE surat_id='$surat_id'");
-    $hasil=mysqli_fetch_array($ambilData);
+    include "../koneksi.php";
+    $id_surat = $_GET['id_surat'];
+    $ambilData = mysqli_query($conn, "SELECT * FROM tb_surat WHERE id_surat='$id_surat'");
+    $hasil = mysqli_fetch_array($ambilData);
+
+    include "../theme-header.php";
+    include "../theme-sidebar.php";
+
+    if (isset($_POST['simpan'])) {
+        $tanggal_kirim = $_POST['tanggal_kirim'];
+
+        mysqli_query($conn, "UPDATE tb_surat SET tanggal_kirim='$tanggal_kirim' WHERE id_surat='$id_surat'") or die(mysqli_error($conn));
+
+        echo "<div align='center'><h5> Silahkan Tunggu, Data Sedang Disimpan....</h5></div>";
+        echo "<meta http-equiv='refresh' content='1;url=http://localhost/RDO/surat/index.php'>";
+    }
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +28,7 @@
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../images/2.png">
     <!-- Custom Stylesheet -->
-    	<link href="../vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
+    <link href="../vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
 
 </head>
@@ -43,102 +54,71 @@
     ***********************************-->
     <div id="main-wrapper">
 
-    <?php include "../theme-header.php" ?>
-    <?php include "../theme-sidebar.php" ?>
+        <!--**********************************
+            Header start
+        ***********************************-->
+        <?php include "../theme-header.php" ?>
+        <!--**********************************
+            Header end
+        ***********************************-->
 
-     <!--**********************************
-         Content body start
-     ***********************************-->
+        <!--**********************************
+            Sidebar start
+        ***********************************-->
+        <?php include "../theme-sidebar.php" ?>
+        <!--**********************************
+            Sidebar end
+        ***********************************-->
+
+        <!--**********************************
+            Content body start
+        ***********************************-->
         <div class="content-body">
             <div class="container-fluid">
                 <div class="page-titles">
-					<ol class="breadcrumb">
-						<li class="breadcrumb-item"><a href="index.php">Input</a></li>
-						<li class="breadcrumb-item active"><a href="javascript:void(0)">Tambah Data</a></li>
-					</ol>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.php">Input</a></li>
+                        <li class="breadcrumb-item active"><a href="javascript:void(0)">Edit Data</a></li>
+                    </ol>
                 </div>
                 <!-- row -->
                 <div class="row">
                     <div class="col-xl-12 col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Input RDO</h4>
+                                <h4 class="card-title">Edit Surat</h4>
                             </div>
-                             <div class="card-body">
+                            <div class="card-body">
                                 <div class="basic-form">
-                                    <form action=""method="POST" enctype="multipart/form-data" >
-                                <div class="form-group">
-                                    <h4 <label for="surat_id"> ID SURAT </label></h4>
-                                    <input type="number"  class="form-control input-default " name="surat_id" class="form-control col-md-9" placeholder="Masukkan Id Surat" autofocus required>
-                                     </div>
-
-                                 <div class="form-group">
-                                      <h4 <label for="dari"> DARI </label>
-                                         <input type="text" class="form-control input-default " name="dari" class="form-control col-md-9" placeholder="Masukkan Dari">
-                                     </div>
-
-                              <div class="form-group">
-                                              <h4 <label for="tujuan"> TUJUAN </label>
-                                       <input type="text" class="form-control input-default " name="tujuan" class="form-control col-md-9" placeholder="Masukkan Tujuan">
-                                   </div>
-
-                                     <div class="form-group">
-                                                 <h4 <label for="jam_berangkat"> JAM BERANGKAT </label>
-                                                 <input type="time" class="form-control input-default " name="jam_berangkat" class="form-control col-md-9" placeholder="Masukkan Jam">
-                                     </div>
-
-                                          <div class="form-group">
-                                        <h4 <label for="km_berangkat"> KM BERANGKAT </label>
-                                        <input type="number" class="form-control input-default " name="km_berangkat" class="form-control col-md-9" placeholder="Masukkan KM BERANGKAT">
-                                      </div>
-
-                                      <div class="form-group">
-                                        <h4 <label for="jam_tiba"> JAM TIBA </label>
-                                           <input type="time" class="form-control input-default " name="jam_tiba" class="form-control col-md-9" placeholder="Masukkan JAM TIBA">
-                                       </div>
-
-                                      <div class="form-group">
-                                            <h4 <label for="km_tiba"> KM TIBA </label>
-                                          <input type="number" class="form-control input-default " name="km_tiba" class="form-control col-md-9" placeholder="Masukkan KM TIBA">
-                                         </div>
-
-                                         <div class="form-group">
-                                         <h4 <label for="jumlah_km"> JUMLAH KM </label>
-                                           <input type="number" class="form-control input-default " name="jumlah_km" class="form-control col-md-9" placeholder="Masukkan JUMLAH KM">
-                                         </div>
-
-                                         <div class="form-group">
-                                             <h4 <label for="status"> STATUS </label>
-                                       <br>
-                                            <h4 <label><input type="radio" name="status" value="Terkrim"> Terkirim</label>
-                                           <h4 <label><input type="radio" name="status" value="Pending"> Pending</label>    
-                                         </div>
-
-                                         <div class="form-group">
-                                         <h4 <label for="keterangan"> KETERANGAN </label>
-                                        <textarea class="form-control" name="deskripsi" id="deskripsi"  rows="5" placeholder="Deskripsi Produk" required></textarea>
-                                        </div>
-
+                                    <form action="" method="POST" enctype="multipart/form-data">
+                                        <div class="form-group">
+                                            <h4><label for="tanggal_kirim">Tanggal Kirim</label></h4>
+                                            <input type="date" class="form-control input-default" name="tanggal_kirim" id="tanggal_kirim" value="<?php echo $hasil['tanggal_kirim']; ?>">
                                         </div>
                                         <input type="hidden" name="status" value="1">
                                         <div class="mt-4"></div>
-                                        <button class="btn btn-primary mr-2" name="simpan" >Simpan</button>
-                                        <a href="transaksi.php" class="btn btn-danger" >Batal</a>
+                                        <button class="btn btn-primary mr-2" name="simpan">Simpan</button>
+                                        <a href="index.php" class="btn btn-danger">Batal</a>
                                     </form>
                                 </div>
                             </div>
-                         </div>
                         </div>
                     </div>
-				</div>
+                </div>
+            </div>
         </div>
         <!--**********************************
             Content body end
         ***********************************-->
 
-
+        <!--**********************************
+            Footer start
+        ***********************************-->
         <?php include "../theme-footer.php" ?>
-        
+        <!--**********************************
+            Footer end
+        ***********************************-->
+
     </div>
     <!--**********************************
         Main wrapper end
@@ -149,31 +129,10 @@
     ***********************************-->
     <!-- Required vendors -->
     <script src="../vendor/global/global.min.js"></script>
-	<script src="../vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+    <script src="../vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
     <script src="../js/custom.min.js"></script>
-	<script src="../js/deznav-init.js"></script>
+    <script src="../js/deznav-init.js"></script>
 
 </body>
-</html>
 
-<?php
-    include "koneksi.php";
-    if(isset($_POST['simpan']))
-    {
-        $surat_id = $_POST['surat_id'];
-        $dari = $_POST['dari']; 
-        $tujuan = $_POST['tujuan']; 
-        $jam_berangkat = $_POST['jam_berangkat'];
-        $km_berangkat = $_POST['km_berangkat'];
-        $jam_tiba = $_POST['jam_tiba'];
-        $km_tiba= $_POST['km_tiba'];
-        $jumlah_km = $_POST['jumlah_km'];
-        $status = $_POST['status'];
-        $keterangan = $_POST['keterangan'];
-        $input = "INSERT INTO tb_report VALUES (' ', '$surat_id', '$dari', '$tujuan', '$jam_berangkat', '$km_berangkat', '$jam_tiba', '$km_tiba', '$jumlah_km', '$status','$keterangan'
-        )";
-        mysqli_query($conn, $input );
-    header('location:..user/index.php'); 
-          echo "<div align='center'><h5> Silahkan Tunggu, Data Sedang Disimpan....</h5></div>";
-          echo "<meta http-equiv='refresh' content='1;url=http://localhost/RDO/user/index.php'>";
-    }
+</html>

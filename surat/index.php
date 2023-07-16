@@ -53,7 +53,7 @@ if (!isset($_SESSION["login"])) {
                     </div>
                     <br>
                     <div class="input-group search-area ml-auto d-inline-flex">
-                        <input type="text" class="form-control" placeholder="Masukkan Nama Driver" id="searchInput">
+                        <input type="text" class="form-control" placeholder="Masukkan Nama Customer" id="searchInput">
                         <div class="input-group-append">
                             <button type="button" class="input-group-text" onclick="searchData()"><i class="flaticon-381-search-2"></i></button>
                         </div>
@@ -120,7 +120,7 @@ if (!isset($_SESSION["login"])) {
                                 $query = "SELECT tb_surat.*, tb_customer.*
                                 FROM tb_surat
                                 JOIN tb_customer ON tb_surat.id_cust = tb_customer.id_cust
-                                ORDER BY tb_surat.tanggal_kirim ";
+                                ORDER BY id_surat DESC";
                                 $result = mysqli_query($conn, $query);
                             }
 

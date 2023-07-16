@@ -1,9 +1,23 @@
-
 <?php
-    include "koneksi.php";
-    $surat_id = $_GET['surat_id'];
-    $ambilData = mysqli_query($conn, "SELECT * FROM tb_report WHERE surat_id='$surat_id'");
-    $hasil=mysqli_fetch_array($ambilData);
+    include "../koneksi.php";
+    $id_pengiriman = $_GET['id_pengiriman'];
+    $ambilData = mysqli_query($conn, "SELECT * FROM tb_pengirim WHERE id_pengiriman='$id_pengiriman'");
+    $hasil = mysqli_fetch_array($ambilData);
+
+    include "../theme-header.php";
+    include "../theme-sidebar.php";
+
+    if (isset($_POST['simpan'])) {
+        $id_pengiriman = $_POST['id_pengiriman'];
+        $id_surat = $_POST['id_surat'];
+        $no_plat = $_POST['no_plat'];
+        $nik_driver = $_POST['nik_driver'];
+
+        mysqli_query($conn, "UPDATE tb_pengirim SET id_surat='$id_surat', no_plat='$no_plat', nik_driver='$nik_driver' WHERE id_pengiriman='$id_pengiriman'") or die(mysqli_error($conn));
+
+        echo "<div align='center'><h5> Silahkan Tunggu, Data Sedang Disimpan....</h5></div>";
+        echo "<meta http-equiv='refresh' content='1;url=http://localhost/RDO/lap_surat_jalan/index.php'>";
+    }
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +31,7 @@
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../images/2.png">
     <!-- Custom Stylesheet -->
-    	<link href="../vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
+    <link href="../vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
 
 </head>
@@ -43,102 +57,115 @@
     ***********************************-->
     <div id="main-wrapper">
 
-    <?php include "../theme-header.php" ?>
-    <?php include "../theme-sidebar.php" ?>
+        <!--**********************************
+            Header start
+        ***********************************-->
+        <?php include "../theme-header.php" ?>
+        <!--**********************************
+            Header end
+        ***********************************-->
 
-     <!--**********************************
-         Content body start
-     ***********************************-->
+        <!--**********************************
+            Sidebar start
+        ***********************************-->
+        <?php include "../theme-sidebar.php" ?>
+        <!--**********************************
+            Sidebar end
+        ***********************************-->
+
+        <!--**********************************
+            Content body start
+        ***********************************-->
         <div class="content-body">
             <div class="container-fluid">
                 <div class="page-titles">
-					<ol class="breadcrumb">
-						<li class="breadcrumb-item"><a href="index.php">Input</a></li>
-						<li class="breadcrumb-item active"><a href="javascript:void(0)">Tambah Data</a></li>
-					</ol>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.php">Input</a></li>
+                        <li class="breadcrumb-item active"><a href="javascript:void(0)">Edit Data</a></li>
+                    </ol>
                 </div>
                 <!-- row -->
                 <div class="row">
                     <div class="col-xl-12 col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Input RDO</h4>
+                                <h4 class="card-title">Edit Pengiriman</h4>
                             </div>
-                             <div class="card-body">
+                            <div class="card-body">
                                 <div class="basic-form">
-                                    <form action=""method="POST" enctype="multipart/form-data" >
-                                <div class="form-group">
-                                    <h4 <label for="surat_id"> ID SURAT </label></h4>
-                                    <input type="number"  class="form-control input-default " name="surat_id" class="form-control col-md-9" placeholder="Masukkan Id Surat" autofocus required>
-                                     </div>
-
-                                 <div class="form-group">
-                                      <h4 <label for="dari"> DARI </label>
-                                         <input type="text" class="form-control input-default " name="dari" class="form-control col-md-9" placeholder="Masukkan Dari">
-                                     </div>
-
-                              <div class="form-group">
-                                              <h4 <label for="tujuan"> TUJUAN </label>
-                                       <input type="text" class="form-control input-default " name="tujuan" class="form-control col-md-9" placeholder="Masukkan Tujuan">
-                                   </div>
-
-                                     <div class="form-group">
-                                                 <h4 <label for="jam_berangkat"> JAM BERANGKAT </label>
-                                                 <input type="time" class="form-control input-default " name="jam_berangkat" class="form-control col-md-9" placeholder="Masukkan Jam">
-                                     </div>
-
-                                          <div class="form-group">
-                                        <h4 <label for="km_berangkat"> KM BERANGKAT </label>
-                                        <input type="number" class="form-control input-default " name="km_berangkat" class="form-control col-md-9" placeholder="Masukkan KM BERANGKAT">
-                                      </div>
-
-                                      <div class="form-group">
-                                        <h4 <label for="jam_tiba"> JAM TIBA </label>
-                                           <input type="time" class="form-control input-default " name="jam_tiba" class="form-control col-md-9" placeholder="Masukkan JAM TIBA">
-                                       </div>
-
-                                      <div class="form-group">
-                                            <h4 <label for="km_tiba"> KM TIBA </label>
-                                          <input type="number" class="form-control input-default " name="km_tiba" class="form-control col-md-9" placeholder="Masukkan KM TIBA">
-                                         </div>
-
-                                         <div class="form-group">
-                                         <h4 <label for="jumlah_km"> JUMLAH KM </label>
-                                           <input type="number" class="form-control input-default " name="jumlah_km" class="form-control col-md-9" placeholder="Masukkan JUMLAH KM">
-                                         </div>
-
-                                         <div class="form-group">
-                                             <h4 <label for="status"> STATUS </label>
-                                       <br>
-                                            <h4 <label><input type="radio" name="status" value="Terkrim"> Terkirim</label>
-                                           <h4 <label><input type="radio" name="status" value="Pending"> Pending</label>    
-                                         </div>
-
-                                         <div class="form-group">
-                                         <h4 <label for="keterangan"> KETERANGAN </label>
-                                        <textarea class="form-control" name="deskripsi" id="deskripsi"  rows="5" placeholder="Deskripsi Produk" required></textarea>
+                                    <form action="" method="POST" enctype="multipart/form-data">
+                                        <div class="form-group">
+                                            <h4><label for="id_pengiriman">ID PENGIRIMAN</label></h4>
+                                            <input type="number" class="form-control input-default" name="id_pengiriman" id="id_pengiriman" value="<?php echo $hasil['id_pengiriman']; ?>" readonly>
                                         </div>
-
+                                        <div class="form-group">
+                                            <h4><label for="id_surat">ID SURAT</label></h4>
+                                            <input type="number" class="form-control input-default" name="id_surat" id="id_surat" value="<?php echo $hasil['id_surat']; ?>" readonly>
                                         </div>
-                                        <input type="hidden" name="status" value="1">
+                                        <div class="form-group">
+                                            <h4><label for="no_plat">NO PLAT</label></h4>
+                                            <select name="no_plat" id="no_plat" class="form-control" required onchange="autofill()">
+                                                <option value="">-PILIH-</option>
+                                                <?php
+                                                $ambilDataArmada = mysqli_query($conn, "SELECT * FROM tb_armada") or die(mysqli_error($conn));
+                                                while ($hasilArmada = mysqli_fetch_array($ambilDataArmada)) {
+                                                    $selected = ($hasilArmada['no_plat'] == $hasil['no_plat']) ? 'selected' : '';
+                                                    echo '<option value="' . $hasilArmada['no_plat'] . '" ' . $selected . '>' . $hasilArmada['no_plat'] . ' - ' . $hasilArmada['type_armada'] . '</option>';
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+                                        <script>
+                                            // Fungsi untuk melakukan autofill pada no_telpon dan alamat_cust
+                                            function autofill() {
+                                                var no_plat = document.getElementById("no_plat").value;
+                                                <?php
+                                                $ambilDataCustomer = mysqli_query($conn, "SELECT * FROM tb_customer") or die(mysqli_error($conn));
+                                                while ($hasilCustomer = mysqli_fetch_array($ambilDataCustomer)) {
+                                                    echo "if (no_plat === '" . $hasilCustomer['no_plat'] . "') {";
+                                                    echo "document.getElementById('no_telpon').value = '" . $hasilCustomer['no_telpon'] . "';";
+                                                    echo "document.getElementById('alamat_cust').value = '" . $hasilCustomer['alamat_cust'] . "';";
+                                                    echo "}";
+                                                }
+                                                ?>
+                                            }
+                                        </script>
+                                        <div class="form-group">
+                                            <h4><label for="nik_driver">NIK Driver</label></h4>
+                                            <select name="nik_driver" id="nik_driver" class="form-control" required>
+                                                <option value="">-PILIH-</option>
+                                                <?php
+                                                $ambilDataDriver = mysqli_query($conn, "SELECT * FROM tb_driver") or die(mysqli_error($conn));
+                                                while ($hasilDriver = mysqli_fetch_array($ambilDataDriver)) {
+                                                    $selected = ($hasilDriver['nik_driver'] == $hasil['nik_driver']) ? 'selected' : '';
+                                                    echo '<option value="' . $hasilDriver['nik_driver'] . '" ' . $selected . '>' . $hasilDriver['nik_driver'] . ' - ' . $hasilDriver['nama_driver'] . '</option>';
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
                                         <div class="mt-4"></div>
-                                        <button class="btn btn-primary mr-2" name="simpan" >Simpan</button>
-                                        <a href="transaksi.php" class="btn btn-danger" >Batal</a>
+                                        <button class="btn btn-primary mr-2" name="simpan">Simpan</button>
+                                        <a href="index.php" class="btn btn-danger">Batal</a>
                                     </form>
                                 </div>
                             </div>
-                         </div>
                         </div>
                     </div>
-				</div>
+                </div>
+            </div>
         </div>
         <!--**********************************
             Content body end
         ***********************************-->
 
-
+        <!--**********************************
+            Footer start
+        ***********************************-->
         <?php include "../theme-footer.php" ?>
-        
+        <!--**********************************
+            Footer end
+        ***********************************-->
+
     </div>
     <!--**********************************
         Main wrapper end
@@ -149,31 +176,10 @@
     ***********************************-->
     <!-- Required vendors -->
     <script src="../vendor/global/global.min.js"></script>
-	<script src="../vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+    <script src="../vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
     <script src="../js/custom.min.js"></script>
-	<script src="../js/deznav-init.js"></script>
+    <script src="../js/deznav-init.js"></script>
 
 </body>
-</html>
 
-<?php
-    include "koneksi.php";
-    if(isset($_POST['simpan']))
-    {
-        $surat_id = $_POST['surat_id'];
-        $dari = $_POST['dari']; 
-        $tujuan = $_POST['tujuan']; 
-        $jam_berangkat = $_POST['jam_berangkat'];
-        $km_berangkat = $_POST['km_berangkat'];
-        $jam_tiba = $_POST['jam_tiba'];
-        $km_tiba= $_POST['km_tiba'];
-        $jumlah_km = $_POST['jumlah_km'];
-        $status = $_POST['status'];
-        $keterangan = $_POST['keterangan'];
-        $input = "INSERT INTO tb_report VALUES (' ', '$surat_id', '$dari', '$tujuan', '$jam_berangkat', '$km_berangkat', '$jam_tiba', '$km_tiba', '$jumlah_km', '$status','$keterangan'
-        )";
-        mysqli_query($conn, $input );
-    header('location:..user/index.php'); 
-          echo "<div align='center'><h5> Silahkan Tunggu, Data Sedang Disimpan....</h5></div>";
-          echo "<meta http-equiv='refresh' content='1;url=http://localhost/RDO/user/index.php'>";
-    }
+</html>

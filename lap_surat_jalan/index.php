@@ -208,8 +208,8 @@
                                         <td><?php echo $hasil['nama_driver'] ?></td>
                                         <td>
                                             <div class="d-flex">
-                                                <a href="edit.php?id_surat=<?php echo $hasil['id_surat']; ?>" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-pencil"></i></a>
-                                                <a href="hapus.php?id_surat=<?php echo $hasil['id_surat']; ?>" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
+                                                <a href="edit.php?id_pengiriman=<?php echo $hasil['id_pengiriman']; ?>" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-pencil"></i></a>
+                                                <a href="hapus.php?id_pengiriman=<?php echo $hasil['id_pengiriman']; ?>" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
                                             </div>
                                         </td>
                                     </tr>

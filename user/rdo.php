@@ -50,7 +50,6 @@
                     </div>
                     <br> <br>
                     <a href="index.php" class="btn btn-primary">Lihat Surat Jalan</a>
-                    <a href="cetak.php" class="btn btn-primary">Cetak Report</a>
                     <br> <br>
                     <div class="scroll-horizontal">
                         <table class="table table-bordered">

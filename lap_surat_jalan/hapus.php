@@ -1,6 +1,6 @@
 <?php
     include "../koneksi.php";
-    $id = $_GET['id_surat'];
-    $ambilData = mysqli_query($conn, "DELETE FROM tb_surat WHERE id_surat='$id'");
-    echo "<meta http-equiv='refresh' content='1;url=http://localhost/RDO/surat/index.php'>";
+    $id_pengiriman = $_GET['id_pengiriman'];
+    $ambilData = mysqli_query($conn, "DELETE FROM tb_pengirim WHERE id_pengiriman='$id_pengiriman'");
+    echo "<meta http-equiv='refresh' content='1;url=http://localhost/RDO/lap_surat_jalan/index.php'>";
 ?>

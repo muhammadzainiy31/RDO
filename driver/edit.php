@@ -135,6 +135,7 @@ $hasil = mysqli_fetch_array($ambilData);
     <script src="../js/deznav-init.js"></script>
 
 </body>
+
 </html>
 
 <?php

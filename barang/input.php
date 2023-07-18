@@ -35,19 +35,19 @@
     ***********************************-->
     <div id="main-wrapper">
 
-    <?php include "../theme-header.php" ?>
-    <?php include "../theme-sidebar.php" ?>
+        <?php include "../theme-header.php" ?>
+        <?php include "../theme-sidebar.php" ?>
 
-     <!--**********************************
-         Content body start
-     ***********************************-->
+        <!--**********************************
+        Content body start
+        ***********************************-->
         <div class="content-body">
             <div class="container-fluid">
                 <div class="page-titles">
-					<ol class="breadcrumb">
-						<li class="breadcrumb-item"><a href="index.php">Input</a></li>
-						<li class="breadcrumb-item active"><a href="javascript:void(0)">Tambah Data</a></li>
-					</ol>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="index.php">Input</a></li>
+                        <li class="breadcrumb-item active"><a href="javascript:void(0)">Tambah Data</a></li>
+                    </ol>
                 </div>
                 <!-- row -->
                 <div class="row">
@@ -56,9 +56,9 @@
                             <div class="card-header">
                                 <h4 class="card-title">Input Data Barang</h4>
                             </div>
-                             <div class="card-body">
+                            <div class="card-body">
                                 <div class="basic-form">
-                                    <form action="" method="POST" enctype="multipart/form-data" >
+                                    <form action="" method="POST" enctype="multipart/form-data">
 
                                         <div class="form-group">
                                             <label for="nama_brg">BARANG</label>
@@ -89,10 +89,10 @@
                                     </form>
                                 </div>
                             </div>
-                         </div>
                         </div>
                     </div>
-				</div>
+                </div>
+            </div>
         </div>
         <!--**********************************
             Content body end
@@ -116,19 +116,19 @@
     <script src="../js/deznav-init.js"></script>
 
 </body>
+
 </html><?php
-include "../koneksi.php";
+        include "../koneksi.php";
 
-if (isset($_POST['simpan'])) {
-    $nama_brg = $_POST['nama_brg'];
-    $departemen = $_POST['departemen'];
-    $restok = $_POST['restok'];
-    $jumlah_brg = !empty($_POST['jumlah_brg']) ? $_POST['jumlah_brg'] : 0; // Menggunakan nilai 0 jika tidak ada nilai yang diberikan
-    $input = "INSERT INTO tb_barang (nama_brg, departemen, restok, jumlah_brg) VALUES ('$nama_brg', '$departemen', '$restok', '$jumlah_brg')";
+        if (isset($_POST['simpan'])) {
+            $nama_brg = $_POST['nama_brg'];
+            $departemen = $_POST['departemen'];
+            $restok = $_POST['restok'];
+            $jumlah_brg = !empty($_POST['jumlah_brg']) ? $_POST['jumlah_brg'] : 0; // Menggunakan nilai 0 jika tidak ada nilai yang diberikan
+            $input = "INSERT INTO tb_barang (nama_brg, departemen, restok, jumlah_brg) VALUES ('$nama_brg', '$departemen', '$restok', '$jumlah_brg')";
 
-    mysqli_query($conn, $input);
-    echo "<div align='center'><h5> Silahkan Tunggu, Data Sedang Disimpan....</h5></div>";
-    echo "<meta http-equiv='refresh' content='1;url=http://localhost/RDO/barang/index.php'>";
-}
-?>
-
+            mysqli_query($conn, $input);
+            echo "<div align='center'><h5> Silahkan Tunggu, Data Sedang Disimpan....</h5></div>";
+            echo "<meta http-equiv='refresh' content='1;url=http://localhost/RDO/barang/index.php'>";
+        }
+        ?>

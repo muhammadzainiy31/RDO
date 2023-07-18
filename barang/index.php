@@ -35,27 +35,27 @@
 
     <div id="main-wrapper">
 
-    <?php include "../theme-header.php" ?>
-    <?php include "../theme-sidebar.php" ?>
+        <?php include "../theme-header.php" ?>
+        <?php include "../theme-sidebar.php" ?>
 
         <!--**********************************
             Content body start
         ***********************************-->
         <div class="content-body">
             <div class="container-fluid">
-            <div class="card-body">
-                <div class="card-header">
-                    <h4 class="card-title">DATA BARANG</h4>
-                      <br> <br>
-              </div>
-              <br>
-					<div class="search-form">
-						<input type="text" class="form-control search-input" placeholder="Masukkan Nama Barang" id="searchInput">
-						<div class="input-group-append">
-							<button type="button" class="input-group-text" onclick="searchTable()"><i class="flaticon-381-search-2"></i></button>
-						</div>
-					</div>
-                    
+                <div class="card-body">
+                    <div class="card-header">
+                        <h4 class="card-title">DATA BARANG</h4>
+                        <br> <br>
+                    </div>
+                    <br>
+                    <div class="search-form">
+                        <input type="text" class="form-control search-input" placeholder="Masukkan Nama Barang" id="searchInput">
+                        <div class="input-group-append">
+                            <button type="button" class="input-group-text" onclick="searchTable()"><i class="flaticon-381-search-2"></i></button>
+                        </div>
+                    </div>
+
 
                     <!-- Bagian form filter -->
                     <div class="container align-items-center">
@@ -101,79 +101,80 @@
                     ?>
                     <br>
                     <br>
-                <a href="../barang/input.php" class="btn btn-primary">Tambah Data</a> 
-                <a href="cetak.php" class="btn btn-primary">Cetak Report</a>
-                <br> <br>
-                <table class="table table-bordered" id="dataTable">
-            <tr align="center"  bgcolor="#32c8ed">
-                <th>No</th>
-                <th>Kode Barang</th>
-                <th>Nama Barang</th>
-                <th>Departemen</th>
-                <th>Minim Stok/ Restok</th>
-                <th>Jumlah</th>
-                <th>Aksi</th>
-            </tr>
-            <?php
-            include'../koneksi.php';
-            $no =1;
-            $tampil = mysqli_query ($conn, "SELECT * FROM tb_barang ORDER BY kode_brg DESC");
-            if (mysqli_num_rows ($tampil)>0) {
-              while($hasil = mysqli_fetch_array($tampil)){
+                    <a href="../barang/input.php" class="btn btn-primary">Tambah Data</a>
+                    <a href="cetak.php" class="btn btn-primary">Cetak Report</a>
+                    <br> <br>
+                    <table class="table table-bordered" id="dataTable">
+                        <tr align="center" bgcolor="#32c8ed">
+                            <th>No</th>
+                            <th>Kode Barang</th>
+                            <th>Nama Barang</th>
+                            <th>Departemen</th>
+                            <th>Minim Stok/ Restok</th>
+                            <th>Jumlah</th>
+                            <th>Aksi</th>
+                        </tr>
+                        <?php
+                        include '../koneksi.php';
+                        $no = 1;
+                        $tampil = mysqli_query($conn, "SELECT * FROM tb_barang ORDER BY kode_brg DESC");
+                        if (mysqli_num_rows($tampil) > 0) {
+                            while ($hasil = mysqli_fetch_array($tampil)) {
 
-            ?>
-                <tr align="center" >
-                  <td><?php echo $no++ ?> </td>
-                  <td><?php echo $hasil ['kode_brg']?></td>
-                  <td><?php echo $hasil ['nama_brg']?></td>
-                  <td><?php echo $hasil ['departemen']?></td>
-                  <td><?php echo $hasil ['restok']?> </td>
-                  <td><?php echo $hasil ['jumlah_brg']?> </td>
-                  <td>
-                    
-                  <div class="d-flex">
-                   
-                  <div>
-    <a href="tambah.php?kode_brg=<?php echo $hasil['kode_brg']; ?>" class="btn btn-primary">Tambah Stok</a>
-</div>
+                        ?>
+                                <tr align="center">
+                                    <td><?php echo $no++ ?> </td>
+                                    <td><?php echo $hasil['kode_brg'] ?></td>
+                                    <td><?php echo $hasil['nama_brg'] ?></td>
+                                    <td><?php echo $hasil['departemen'] ?></td>
+                                    <td><?php echo $hasil['restok'] ?> </td>
+                                    <td><?php echo $hasil['jumlah_brg'] ?> </td>
+                                    <td>
 
-                  </td>
-                </tr>
-                <?php }} else{ ?>
-                <tr>
-                    <td colspan="7" align="center" >Data kosong</td>
-                </tr>
-                <?php } ?>
-           </table>
-           <br>
+                                        <div class="d-flex">
 
-         </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                     
+                                            <div>
+                                                <a href="tambah.php?kode_brg=<?php echo $hasil['kode_brg']; ?>" class="btn btn-primary">Tambah Stok</a>
+                                            </div>
+
+                                    </td>
+                                </tr>
+                            <?php }
+                        } else { ?>
+                            <tr>
+                                <td colspan="7" align="center">Data kosong</td>
+                            </tr>
+                        <?php } ?>
+                    </table>
+                    <br>
+
                 </div>
             </div>
         </div>
-        <!--**********************************
+    </div>
+    </div>
+
+    </div>
+    </div>
+    </div>
+    <!--**********************************
             Content body end
         ***********************************-->
 
-				<?php include "../theme-footer.php" ?>
+    <?php include "../theme-footer.php" ?>
 
-        </div>
+    </div>
 
     <!-- Required vendors -->
     <script src="../vendor/global/global.min.js"></script>
-	<script src="../vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+    <script src="../vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
     <script src="../js/custom.min.js"></script>
-	<script src="../js/deznav-init.js"></script>
-	
+    <script src="../js/deznav-init.js"></script>
+
 
     <script src="../vendor/highlightjs/highlight.pack.min.js"></script>
     <!-- Circle progress -->
-    
+
     <script>
         function searchTable() {
             var input, filter, table, tr, td, i, txtValue;

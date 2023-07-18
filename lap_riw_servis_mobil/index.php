@@ -82,32 +82,32 @@
                             <th>Biaya</th>
                         </tr>
 
-<?php
-include '../koneksi.php';
-$no = 1;
-if (isset($_POST['filter'])) {
-    // Ambil tanggal mulai dan tanggal sampai dari form
-    $mulai_tanggal = $_POST['mulai_tanggal'];
-    $sampai_tanggal = $_POST['sampai_tanggal'];
+                        <?php
+                        include '../koneksi.php';
+                        $no = 1;
+                        if (isset($_POST['filter'])) {
+                            // Ambil tanggal mulai dan tanggal sampai dari form
+                            $mulai_tanggal = $_POST['mulai_tanggal'];
+                            $sampai_tanggal = $_POST['sampai_tanggal'];
 
-    // Buat query dengan kondisi filter tanggal
-    $query = "SELECT rs.*, a.type_armada
+                            // Buat query dengan kondisi filter tanggal
+                            $query = "SELECT rs.*, a.type_armada
     FROM riwayat_servis rs
     INNER JOIN tb_armada a ON rs.no_plat = a.no_plat
             WHERE tanggal_servis BETWEEN '$mulai_tanggal' AND '$sampai_tanggal'";
-    $result = mysqli_query($conn, $query);
-} else {
-    $query = "SELECT rs.*, a.type_armada
+                            $result = mysqli_query($conn, $query);
+                        } else {
+                            $query = "SELECT rs.*, a.type_armada
     FROM riwayat_servis rs
     INNER JOIN tb_armada a ON rs.no_plat = a.no_plat
     ORDER BY rs.id_servis DESC";
-    $result = mysqli_query($conn, $query);
-}
+                            $result = mysqli_query($conn, $query);
+                        }
 
-if (mysqli_num_rows($result) > 0) {
-    while ($hasil = mysqli_fetch_assoc($result)) {
-        // Kode HTML untuk menampilkan data
-        ?>
+                        if (mysqli_num_rows($result) > 0) {
+                            while ($hasil = mysqli_fetch_assoc($result)) {
+                                // Kode HTML untuk menampilkan data
+                        ?>
 
 
                                 <tr align="center">
@@ -120,7 +120,7 @@ if (mysqli_num_rows($result) > 0) {
                                     <td><?php echo $hasil['estimasi'] ?></td>
                                     <td><?php echo $hasil['biaya'] ?></td>
                                 </tr>
-                        <?php }
+                            <?php }
                         } else { ?>
                             <tr>
                                 <td colspan="8" align="center">Data kosong</td>
@@ -132,7 +132,7 @@ if (mysqli_num_rows($result) > 0) {
                 </div>
             </div>
         </div>
-        </div>
+    </div>
     </div>
     </div>
 

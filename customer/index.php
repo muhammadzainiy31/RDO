@@ -41,8 +41,7 @@
                     <div class="input-group search-area ml-auto d-inline-flex">
                         <input type="text" class="form-control" placeholder="Masukan Nama Customer" id="searchInput">
                         <div class="input-group-append">
-                            <button type="button" class="input-group-text" onclick="searchData()"><i
-                                    class="flaticon-381-search-2"></i></button>
+                            <button type="button" class="input-group-text" onclick="searchData()"><i class="flaticon-381-search-2"></i></button>
                         </div>
                     </div>
 
@@ -52,14 +51,12 @@
                             <div class="row">
                                 <div class="col form-group">
                                     <label for="inputMulaiTanggal" class="font-weight-bold">Mulai Tanggal :</label>
-                                    <input type="date" id="inputMulaiTanggal" name="mulai_tanggal" class="form-control"
-                                        required>
+                                    <input type="date" id="inputMulaiTanggal" name="mulai_tanggal" class="form-control" required>
                                 </div>
                                 <div class="col form-group">
                                     <label for="inputSampaiTanggal" class="font-weight-bold">Sampai Tanggal
                                         :</label>
-                                    <input type="date" id="inputSampaiTanggal" name="sampai_tanggal"
-                                        class="form-control" required>
+                                    <input type="date" id="inputSampaiTanggal" name="sampai_tanggal" class="form-control" required>
                                 </div>
                                 <div class="col-auto form-group">
                                     <button type="submit" name="filter" class="btn btn-success mt-3">Tampilkan</button>
@@ -115,29 +112,27 @@
                             while ($hasil = mysqli_fetch_array($tampil)) {
 
                         ?>
-                        <tr align="center">
-                            <td><?php echo $no++ ?></td>
-                            <td><?php echo $hasil['id_cust'] ?></td>
-                            <td><?php echo $hasil['nama_cust'] ?></td>
-                            <td><?php echo $hasil['no_telpon'] ?></td>
-                            <td><?php echo $hasil['alamat_cust'] ?> </td>
-                            <td><?php echo $hasil['kecamatan'] ?> </td>
-                            <td><?php echo $hasil['rute'] ?> </td>
-                            <td>
+                                <tr align="center">
+                                    <td><?php echo $no++ ?></td>
+                                    <td><?php echo $hasil['id_cust'] ?></td>
+                                    <td><?php echo $hasil['nama_cust'] ?></td>
+                                    <td><?php echo $hasil['no_telpon'] ?></td>
+                                    <td><?php echo $hasil['alamat_cust'] ?> </td>
+                                    <td><?php echo $hasil['kecamatan'] ?> </td>
+                                    <td><?php echo $hasil['rute'] ?> </td>
+                                    <td>
 
-                                <div class="d-flex">
-                                    <a href="edit.php?id_cust=<?php echo $hasil['id_cust']; ?>"
-                                        class="btn btn-primary shadow btn-xs sharp mr-1"><i
-                                            class="fa fa-pencil"></i></a>
-                                    <a href="hapus.php?id_cust=<?php echo $hasil['id_cust']; ?>"
-                                        class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
-                                </div>
-                            </td>
-                        </tr>
-                        <?php }} else{ ?>
-                        <tr>
-                            <td colspan="7" align="center">Data kosong</td>
-                        </tr>
+                                        <div class="d-flex">
+                                            <a href="edit.php?id_cust=<?php echo $hasil['id_cust']; ?>" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-pencil"></i></a>
+                                            <a href="hapus.php?id_cust=<?php echo $hasil['id_cust']; ?>" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            <?php }
+                        } else { ?>
+                            <tr>
+                                <td colspan="7" align="center">Data kosong</td>
+                            </tr>
                         <?php } ?>
                     </table>
                     <br>
@@ -145,9 +140,9 @@
                 </div>
             </div>
         </div>
-        </div>
-        </div>
-        </div>
+    </div>
+    </div>
+    </div>
 
     <?php include "../theme-footer.php" ?>
 

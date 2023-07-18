@@ -140,7 +140,7 @@
 
                             if (mysqli_num_rows($result) > 0) {
                                 while ($hasil = mysqli_fetch_array($result)) {
-                                    ?>
+                            ?>
 
 
                                     <tr align="center">
@@ -206,10 +206,10 @@
                                         <td><?php echo $hasil['keterangan'] ?></td>
                                         <td><?php echo $hasil['foto'] ?></td>
                                     </tr>
-                            <?php
+                                <?php
                                 }
                             } else {
-                            ?>
+                                ?>
                                 <tr>
                                     <td colspan="23" align="center">Data kosong</td>
                                 </tr>

@@ -1,8 +1,8 @@
 <?php
-    include "../koneksi.php";
-    $id = $_GET['no_plat'];
-    $ambilData = mysqli_query($conn, "SELECT * FROM tb_armada WHERE no_plat='$id'");
-    $hasil = mysqli_fetch_array($ambilData);
+include "../koneksi.php";
+$id = $_GET['no_plat'];
+$ambilData = mysqli_query($conn, "SELECT * FROM tb_armada WHERE no_plat='$id'");
+$hasil = mysqli_fetch_array($ambilData);
 ?>
 
 <!DOCTYPE html>
@@ -100,14 +100,14 @@
 </html>
 
 <?php
-    include "../koneksi.php";
-    if (isset($_POST['simpan'])) {
-        $no_plat = $_POST['no_plat'];
-        $type_armada = $_POST['type_armada'];
-        $tahun = $_POST['tahun'];
-        mysqli_query($conn, "UPDATE tb_armada SET no_plat='$no_plat', type_armada='$type_armada', tahun='$tahun' WHERE no_plat='$id'") or die(mysqli_error($conn));
+include "../koneksi.php";
+if (isset($_POST['simpan'])) {
+    $no_plat = $_POST['no_plat'];
+    $type_armada = $_POST['type_armada'];
+    $tahun = $_POST['tahun'];
+    mysqli_query($conn, "UPDATE tb_armada SET no_plat='$no_plat', type_armada='$type_armada', tahun='$tahun' WHERE no_plat='$id'") or die(mysqli_error($conn));
 
-        echo "<div align='center'><h5> Silahkan Tunggu, Data Sedang Diupdate....</h5></div>";
-        echo "<meta http-equiv='refresh' content='1;url=http://localhost/RDO/armada/index.php'>";
-    }
+    echo "<div align='center'><h5> Silahkan Tunggu, Data Sedang Diupdate....</h5></div>";
+    echo "<meta http-equiv='refresh' content='1;url=http://localhost/RDO/armada/index.php'>";
+}
 ?>

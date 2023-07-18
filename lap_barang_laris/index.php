@@ -58,29 +58,29 @@
                         </tr>
 
                         <?php
-include '../koneksi.php';
-$no = 1;
-$tampil = mysqli_query($conn, "SELECT tb_pembelian.kode_brg, tb_barang.nama_brg, tb_barang.departemen, SUM(tb_pembelian.qty) AS jumlah_transaksi
+                        include '../koneksi.php';
+                        $no = 1;
+                        $tampil = mysqli_query($conn, "SELECT tb_pembelian.kode_brg, tb_barang.nama_brg, tb_barang.departemen, SUM(tb_pembelian.qty) AS jumlah_transaksi
                 FROM tb_pembelian
                 JOIN tb_barang ON tb_pembelian.kode_brg = tb_barang.kode_brg
                 GROUP BY tb_pembelian.kode_brg, tb_barang.nama_brg, tb_barang.departemen
                 ORDER BY jumlah_transaksi DESC");
-if (mysqli_num_rows($tampil) > 0) {
-    while ($row = mysqli_fetch_array($tampil)) {
-        echo "<tr align='center'>";
-        echo "<td>" . $no++ . "</td>";
-        echo "<td>" . $row['kode_brg'] . "</td>";
-        echo "<td>" . $row['nama_brg'] . "</td>";
-        echo "<td>" . $row['departemen'] . "</td>";
-        echo "<td>" . $row['jumlah_transaksi'] . "</td>";
-        echo "</tr>";
-    }
-} else {
-    echo "<tr>";
-    echo "<td colspan='5' align='center'>Data kosong</td>";
-    echo "</tr>";
-}
-?>
+                        if (mysqli_num_rows($tampil) > 0) {
+                            while ($row = mysqli_fetch_array($tampil)) {
+                                echo "<tr align='center'>";
+                                echo "<td>" . $no++ . "</td>";
+                                echo "<td>" . $row['kode_brg'] . "</td>";
+                                echo "<td>" . $row['nama_brg'] . "</td>";
+                                echo "<td>" . $row['departemen'] . "</td>";
+                                echo "<td>" . $row['jumlah_transaksi'] . "</td>";
+                                echo "</tr>";
+                            }
+                        } else {
+                            echo "<tr>";
+                            echo "<td colspan='5' align='center'>Data kosong</td>";
+                            echo "</tr>";
+                        }
+                        ?>
 
 
 
@@ -90,13 +90,13 @@ if (mysqli_num_rows($tampil) > 0) {
                 </div>
             </div>
         </div>
-        </div>
-        </div>
-        <!--**********************************
+    </div>
+    </div>
+    <!--**********************************
             Content body end
         ***********************************-->
 
-        <?php include "../theme-footer.php" ?>
+    <?php include "../theme-footer.php" ?>
 
     </div>
 

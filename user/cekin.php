@@ -1,7 +1,7 @@
 <?php
 include "../koneksi.php";
 $id_pengiriman = $_GET['id_pengiriman'];
-$ambilData = mysqli_query($conn, "SELECT * FROM tb_pengirim WHERE id_pengiriman='$id_pengiriman'");
+$ambilData = mysqli_query($conn, "SELECT tb_pengirim.*, tb_customer.* FROM tb_pengirim INNER JOIN tb_customer ON tb_pengirim.id_cust = tb_customer.id_cust WHERE id_pengiriman = '$id_pengiriman'");
 $hasil = mysqli_fetch_array($ambilData);
 
 if (isset($_POST['submit'])) {
@@ -12,11 +12,17 @@ if (isset($_POST['submit'])) {
     $jam_berangkat = $_POST['jam_berangkat'];
     $input = "INSERT INTO tb_cekin (id_pengiriman, dari, tujuan, km_berangkat, jam_berangkat) VALUES ('$id_pengiriman', '$dari', '$tujuan', '$km_berangkat','$jam_berangkat')";
 
-    mysqli_query($conn, $input);
+    if (mysqli_query($conn, $input)) {
+        $no_telpon = $hasil['no_telpon'];
+        $nama_cust = $hasil['nama_cust'];
+        $param = 'http://localhost/RDO/zenziva/kirim_wa.php?no_telpon=' . $no_telpon . '&nama_cust=' . $nama_cust . '&flag=antar';
 
-    echo "<div align='center'><h5> Silahkan Tunggu, Data Sedang Diproses....</h5></div>";
-    echo "<meta http-equiv='refresh' content='1;url=http://localhost/RDO/user/index.php'>";
-    exit();
+        echo "<div align='center'><h5> Silahkan Tunggu, Data Sedang Diproses....</h5></div>";
+        echo "<meta http-equiv='refresh' content='1;url=$param'>";
+        exit();
+    } else {
+        echo "<div align='center'><h5>Gagal menambahkan data.</h5></div>";
+    }
 }
 ?>
 
@@ -101,7 +107,7 @@ if (isset($_POST['submit'])) {
                                             <h4> <label for="km_berangkat"> KM BERANGKAT </label></h4>
                                             <input type="text" class="form-control input-default" name="km_berangkat" placeholder="Masukkan KM Berangkat">
                                         </div>
-                                        
+
                                         <div class="form-group">
                                             <h4><label for="jam_berangkat">JAM BERANGKAT</label></h4>
                                             <input type="time" class="form-control input-default" name="jam_berangkat" id="jam_berangkat" placeholder="Masukkan Jam Berangkat">

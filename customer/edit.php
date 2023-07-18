@@ -1,25 +1,25 @@
 <?php
-    include "../koneksi.php";
+include "../koneksi.php";
 
-    if (isset($_GET['id_cust'])) {
-        $id = $_GET['id_cust'];
-        $ambilData = mysqli_query($conn, "SELECT * FROM tb_customer WHERE id_cust='$id'");
-        $hasil = mysqli_fetch_array($ambilData);
-    }
+if (isset($_GET['id_cust'])) {
+    $id = $_GET['id_cust'];
+    $ambilData = mysqli_query($conn, "SELECT * FROM tb_customer WHERE id_cust='$id'");
+    $hasil = mysqli_fetch_array($ambilData);
+}
 
-    if (isset($_POST['simpan'])) {
-        $id_cust = $_POST['id_cust'];
-        $nama_cust = $_POST['nama_cust'];
-        $no_telpon = $_POST['no_telpon'];
-        $alamat_cust = $_POST['alamat_cust'];
-        $kecamatan = $_POST['kecamatan'];
-        $rute = $_POST['rute'];
+if (isset($_POST['simpan'])) {
+    $id_cust = $_POST['id_cust'];
+    $nama_cust = $_POST['nama_cust'];
+    $no_telpon = $_POST['no_telpon'];
+    $alamat_cust = $_POST['alamat_cust'];
+    $kecamatan = $_POST['kecamatan'];
+    $rute = $_POST['rute'];
 
-        mysqli_query($conn, "UPDATE tb_customer SET id_cust='$id_cust', nama_cust='$nama_cust', no_telpon='$no_telpon', alamat_cust='$alamat_cust', kecamatan='$kecamatan', rute='$rute' WHERE id_cust='$id'") or die(mysqli_error($conn));
+    mysqli_query($conn, "UPDATE tb_customer SET id_cust='$id_cust', nama_cust='$nama_cust', no_telpon='$no_telpon', alamat_cust='$alamat_cust', kecamatan='$kecamatan', rute='$rute' WHERE id_cust='$id'") or die(mysqli_error($conn));
 
-        echo "<div align='center'><h5> Silahkan Tunggu, Data Sedang Diupdate....</h5></div>";
-        echo "<meta http-equiv='refresh' content='1;url=http://localhost/RDO/customer/index.php'>";
-    }
+    echo "<div align='center'><h5> Silahkan Tunggu, Data Sedang Diupdate....</h5></div>";
+    echo "<meta http-equiv='refresh' content='1;url=http://localhost/RDO/customer/index.php'>";
+}
 ?>
 
 <!DOCTYPE html>
@@ -131,4 +131,5 @@
     <script src="../js/deznav-init.js"></script>
 
 </body>
+
 </html>

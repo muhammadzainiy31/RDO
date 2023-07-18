@@ -76,14 +76,12 @@ $hasil = mysqli_fetch_array($ambilData);
 
                                         <div class="form-group">
                                             <h4><label for="id_surat">ID SURAT</label></h4>
-                                            <input type="text" class="form-control input-default" name="id_surat"
-                                                id="id_surat" value="<?php echo $hasil['id_surat']; ?>" readonly>
+                                            <input type="text" class="form-control input-default" name="id_surat" id="id_surat" value="<?php echo $hasil['id_surat']; ?>" readonly>
                                         </div>
 
                                         <div class="form-group">
                                             <h4><label for="id_cust">ID CUSTOMER</label></h4>
-                                            <input type="text" class="form-control input-default" name="id_cust"
-                                                id="id_cust" value="<?php echo $hasil['id_cust']; ?>" readonly>
+                                            <input type="text" class="form-control input-default" name="id_cust" id="id_cust" value="<?php echo $hasil['id_cust']; ?>" readonly>
                                         </div>
 
 
@@ -120,8 +118,7 @@ $hasil = mysqli_fetch_array($ambilData);
 
                                         <div class="form-group">
                                             <h4><label for="qty">Qty</label></h4>
-                                            <input type="number" class="form-control input-default" name="qty"
-                                                id="qty" min="1" required>
+                                            <input type="number" class="form-control input-default" name="qty" id="qty" min="1" required>
                                         </div>
                                         <div class="mt-4"></div>
                                         <button class="btn btn-primary mr-2" name="simpan_kedua">Simpan</button>

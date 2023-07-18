@@ -48,7 +48,7 @@
                             <button type="button" class="input-group-text" onclick="searchData()"><i class="flaticon-381-search-2"></i></button>
                         </div>
                     </div>
-                    
+
 
                     <!-- Bagian form filter -->
                     <div class="container align-items-center">
@@ -143,7 +143,7 @@
                             JOIN 
                                 tb_driver ON tb_pengirim.nik_driver = tb_driver.nik_driver
                             
-                                 ORDER BY id_pengiriman DESC";
+                                ORDER BY id_pengiriman DESC";
                                 $result = mysqli_query($conn, $query);
                             }
 
@@ -162,44 +162,44 @@
                                         <td><?php echo $hasil['kecamatan'] ?></td>
                                         <td><?php echo $hasil['rute'] ?></td>
 
-                                          <td>
-    <a href="#" data-toggle="modal" data-target="#detailModal<?php echo $hasil['id_surat']; ?>">Lihat Detail</a>
-    <!-- Modal -->
-    <div class="modal fade" id="detailModal<?php echo $hasil['id_surat']; ?>" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel<?php echo $hasil['id_surat']; ?>" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="detailModalLabel<?php echo $hasil['id_surat']; ?>">Detail Pembelian</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <?php
-                    $query_pembelian = "SELECT * FROM tb_pembelian WHERE id_surat = " . $hasil['id_surat'];
-                    $result_pembelian = mysqli_query($conn, $query_pembelian);
+                                        <td>
+                                            <a href="#" data-toggle="modal" data-target="#detailModal<?php echo $hasil['id_surat']; ?>">Lihat Detail</a>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="detailModal<?php echo $hasil['id_surat']; ?>" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel<?php echo $hasil['id_surat']; ?>" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="detailModalLabel<?php echo $hasil['id_surat']; ?>">Detail Pembelian</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <?php
+                                                            $query_pembelian = "SELECT * FROM tb_pembelian WHERE id_surat = " . $hasil['id_surat'];
+                                                            $result_pembelian = mysqli_query($conn, $query_pembelian);
 
-                    if (mysqli_num_rows($result_pembelian) > 0) {
-                        while ($pembelian = mysqli_fetch_assoc($result_pembelian)) {
-                            echo "<p>ID Pembelian: " . $pembelian['id_pembelian'] . "</p>";
-                            echo "<p>ID Surat: " . $pembelian['id_surat'] . "</p>";
-                            echo "<p>ID Customer: " . $pembelian['id_cust'] . "</p>";
-                            echo "<p>ID Barang: " . $pembelian['kode_brg'] . "</p>";
-                            echo "<p>Jumlah: " . $pembelian['qty'] . "</p>";
-                            echo "<br>";
-                        }
-                    } else {
-                        echo "Data pembelian tidak tersedia.";
-                    }
-                    ?>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</td>
+                                                            if (mysqli_num_rows($result_pembelian) > 0) {
+                                                                while ($pembelian = mysqli_fetch_assoc($result_pembelian)) {
+                                                                    echo "<p>ID Pembelian: " . $pembelian['id_pembelian'] . "</p>";
+                                                                    echo "<p>ID Surat: " . $pembelian['id_surat'] . "</p>";
+                                                                    echo "<p>ID Customer: " . $pembelian['id_cust'] . "</p>";
+                                                                    echo "<p>ID Barang: " . $pembelian['kode_brg'] . "</p>";
+                                                                    echo "<p>Jumlah: " . $pembelian['qty'] . "</p>";
+                                                                    echo "<br>";
+                                                                }
+                                                            } else {
+                                                                echo "Data pembelian tidak tersedia.";
+                                                            }
+                                                            ?>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
 
                                         <td><?php echo $hasil['tanggal_kirim'] ?></td>
                                         <td><?php echo $hasil['no_plat'] ?></td>
@@ -213,7 +213,7 @@
                                             </div>
                                         </td>
                                     </tr>
-                            <?php }
+                                <?php }
                             } else { ?>
                                 <tr>
                                     <td colspan="7" align="center">Data kosong</td>

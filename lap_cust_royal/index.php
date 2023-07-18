@@ -58,47 +58,42 @@
                         </tr>
 
                         <?php
-include '../koneksi.php';
-$no = 1;
-$tampil = mysqli_query($conn, "SELECT tb_surat.id_cust, tb_customer.nama_cust, tb_customer.alamat_cust, COUNT(tb_surat.id_cust) AS jumlah_transaksi
+                        include '../koneksi.php';
+                        $no = 1;
+                        $tampil = mysqli_query($conn, "SELECT tb_surat.id_cust, tb_customer.nama_cust, tb_customer.alamat_cust, COUNT(tb_surat.id_cust) AS jumlah_transaksi
 FROM tb_surat
 JOIN tb_customer ON tb_surat.id_cust = tb_customer.id_cust
 GROUP BY tb_surat.id_cust, tb_customer.nama_cust, tb_customer.alamat_cust
 ORDER BY jumlah_transaksi DESC
 ");
-if (mysqli_num_rows($tampil) > 0) {
-    while ($row = mysqli_fetch_array($tampil)) {
-        echo "<tr align='center'>";
-        echo "<td>" . $no++ . "</td>";
-        echo "<td>" . $row['id_cust'] . "</td>";
-        echo "<td>" . $row['nama_cust'] . "</td>";
-        echo "<td>" . $row['alamat_cust'] . "</td>";
-        echo "<td>" . $row['jumlah_transaksi'] . "</td>";
-        echo "</tr>";
-    }
-} else {
-    echo "<tr>";
-    echo "<td colspan='5' align='center'>Data kosong</td>";
-    echo "</tr>";
-}
-?>
-
-
-
-
+                        if (mysqli_num_rows($tampil) > 0) {
+                            while ($row = mysqli_fetch_array($tampil)) {
+                                echo "<tr align='center'>";
+                                echo "<td>" . $no++ . "</td>";
+                                echo "<td>" . $row['id_cust'] . "</td>";
+                                echo "<td>" . $row['nama_cust'] . "</td>";
+                                echo "<td>" . $row['alamat_cust'] . "</td>";
+                                echo "<td>" . $row['jumlah_transaksi'] . "</td>";
+                                echo "</tr>";
+                            }
+                        } else {
+                            echo "<tr>";
+                            echo "<td colspan='5' align='center'>Data kosong</td>";
+                            echo "</tr>";
+                        }
+                        ?>
                     </table>
                     <br>
-
                 </div>
             </div>
         </div>
-        </div>
-        </div>
-        <!--**********************************
+    </div>
+    </div>
+    <!--**********************************
             Content body end
         ***********************************-->
 
-        <?php include "../theme-footer.php" ?>
+    <?php include "../theme-footer.php" ?>
 
     </div>
 
@@ -108,7 +103,7 @@ if (mysqli_num_rows($tampil) > 0) {
     <script src="../js/custom.min.js"></script>
     <script src="../js/deznav-init.js"></script>
     <script src="../vendor/highlightjs/highlight.pack.min.js"></script>
-    
+
     <script>
         function searchData() {
             var input, filter, table, tr, td, i, txtValue;

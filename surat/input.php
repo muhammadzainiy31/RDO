@@ -103,10 +103,10 @@
                                             <input type="text" class="form-control input-default" name="rute" id="rute" readonly>
                                         </div>
 
-<div class="form-group">
-    <h4><label for="tanggal_kirim">Tanggal Kirim</label></h4>
-    <input type="date" class="form-control input-default" name="tanggal_kirim" placeholder="Masukkan Tanggal Kirim">
-</div>
+                                        <div class="form-group">
+                                            <h4><label for="tanggal_kirim">Tanggal Kirim</label></h4>
+                                            <input type="date" class="form-control input-default" name="tanggal_kirim" placeholder="Masukkan Tanggal Kirim">
+                                        </div>
 
 
                                         <div class="mt-4"></div>

@@ -78,7 +78,7 @@ LEFT JOIN (
 ") or die(mysqli_error($conn));
 ?>
 <table class="table table-bordered">
-    <tr align="center" bgcolor="#E9967A">
+    <tr align="center" bgcolor="#32c8ed">
         <th>No</th>
         <th>Nomor Polisi/Plat</th>
         <th>Type Armada</th>

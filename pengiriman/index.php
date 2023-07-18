@@ -55,7 +55,7 @@
                     <br>
                     
                     <div class="scroll-horizontal">
-                        <table class="table table-bordered"><tr align="center" bgcolor="#E9967A">
+                        <table class="table table-bordered"><tr align="center" bgcolor="#32c8ed">
     <th>Buat Surat Jalan</th>
     <th>No</th>
     <th>ID Surat</th>
@@ -63,7 +63,7 @@
     <th>Nama Customer</th>
     <th>Telpon</th>
     <th>Alamat</th>
-    <th>Kelurahan</th>
+    <th>Kecamatan</th>
     <th>Rute</th>
     <th>Pembelian</th>
     <th>Tanggal Pengiriman</th>
@@ -91,7 +91,7 @@ if (mysqli_num_rows($tampil) > 0) {
             <td><?php echo $hasil['nama_cust'] ?></td>
             <td><?php echo $hasil['no_telpon'] ?></td>
             <td><?php echo $hasil['alamat_cust'] ?></td>
-            <td><?php echo $hasil['kelurahan'] ?></td>
+            <td><?php echo $hasil['kecamatan'] ?></td>
             <td><?php echo $hasil['rute'] ?></td>
 
               <td>

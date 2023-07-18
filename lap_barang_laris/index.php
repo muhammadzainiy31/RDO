@@ -49,7 +49,7 @@
                     <a href="cetak.php" class="btn btn-primary">Cetak Report</a>
                     <br> <br>
                     <table class="table table-bordered">
-                        <tr align="center" bgcolor="#E9967A">
+                        <tr align="center" bgcolor="#32c8ed">
                             <th>No</th>
                             <th>Kode Barang</th>
                             <th>Nama Barang</th>

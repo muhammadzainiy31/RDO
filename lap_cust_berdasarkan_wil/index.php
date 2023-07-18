@@ -51,12 +51,12 @@
                 <a href="cetak.php" class="btn btn-primary">Cetak Report</a>
                 <br> <br>
                 <table class="table table-bordered">
-            <tr align="center"  bgcolor="#E9967A">
+            <tr align="center"  bgcolor="#32c8ed">
                 <th>No</th>
                 <th>Kode Customer</th>
                 <th>Nama Customer</th>
                 <th>Alamat</th>
-                <th>Kelurahan</th>
+                <th>Kecamatan</th>
             </tr>
             <?php
             include'../koneksi.php';
@@ -71,7 +71,7 @@
                   <td><?php echo $hasil ['id_cust']?></td>
                   <td><?php echo $hasil ['nama_cust']?></td>
                   <td><?php echo $hasil ['alamat_cust']?> </td>
-                  <td><?php echo $hasil ['kelurahan']?> </td>
+                  <td><?php echo $hasil ['kecamatan']?> </td>
                 </tr>
                 <?php }} else{ ?>
                 <tr>

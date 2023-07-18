@@ -42,7 +42,7 @@
                 <th>Kode Customer</th>
                 <th>Nama Customer</th>
                 <th>Alamat</th>
-                <th>Kelurahan</th>
+                <th>Kecamatan</th>
 		</tr>
 		<?php 
 		$no = 1;
@@ -54,7 +54,7 @@
                   <td><?php echo $hasil ['id_cust']?></td>
                   <td><?php echo $hasil ['nama_cust']?></td>
                   <td><?php echo $hasil ['alamat_cust']?></td>
-                  <td><?php echo $hasil ['kelurahan']?> </td>
+                  <td><?php echo $hasil ['kecamatan']?> </td>
 		</tr>
 		<?php 
 		}

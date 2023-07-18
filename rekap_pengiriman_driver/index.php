@@ -58,7 +58,7 @@
                     <br> <br>
                     <div class="scroll-horizontal">
                         <table class="table table-bordered">
-                            <tr align="center" bgcolor="#E9967A">
+                            <tr align="center" bgcolor="#32c8ed">
                                 <th>No</th>
                                 <th>NIK Driver</th>
                                 <th>Nama Driver</th>

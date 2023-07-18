@@ -77,7 +77,7 @@
                                                     echo "if (id_cust === '" . $hasil['id_cust'] . "') {";
                                                     echo "document.getElementById('no_telpon').value = '" . $hasil['no_telpon'] . "';";
                                                     echo "document.getElementById('alamat_cust').value = '" . $hasil['alamat_cust'] . "';";
-                                                    echo "document.getElementById('kelurahan').value = '" . $hasil['kelurahan'] . "';";
+                                                    echo "document.getElementById('kecamatan').value = '" . $hasil['kecamatan'] . "';";
                                                     echo "document.getElementById('rute').value = '" . $hasil['rute'] . "';";
                                                     echo "}";
                                                 }
@@ -94,8 +94,8 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <h4><label for="kelurahan">Kelurahan</label></h4>
-                                            <input type="text" class="form-control input-default" name="kelurahan" id="kelurahan" readonly>
+                                            <h4><label for="kecamatan">Kecamatan</label></h4>
+                                            <input type="text" class="form-control input-default" name="kecamatan" id="kecamatan" readonly>
                                         </div>
 
                                         <div class="form-group">

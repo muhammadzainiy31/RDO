@@ -85,14 +85,14 @@ if (!isset($_SESSION["login"])) {
                     <br>
                     <div class="scroll-horizontal">
                         <table class="table table-bordered">
-                            <tr align="center" bgcolor="#E9967A">
+                            <tr align="center" bgcolor="#32c8ed">
                                 <th>No</th>
                                 <th>ID Surat</th>
                                 <th>ID Customer</th>
                                 <th>Nama Customer</th>
                                 <th>Telpon</th>
                                 <th>Alamat</th>
-                                <th>Kelurahan</th>
+                                <th>Kecamatan</th>
                                 <th>Rute</th>
                                 <th>Tanggal Kirim</th>
                                 <th>Detail Pembelian</th>
@@ -135,7 +135,7 @@ if (!isset($_SESSION["login"])) {
                                         <td><?php echo $hasil['nama_cust'] ?></td>
                                         <td><?php echo $hasil['no_telpon'] ?></td>
                                         <td><?php echo $hasil['alamat_cust'] ?></td>
-                                        <td><?php echo $hasil['kelurahan'] ?></td>
+                                        <td><?php echo $hasil['kecamatan'] ?></td>
                                         <td><?php echo $hasil['rute'] ?></td>
                                         <td><?php echo $hasil['tanggal_kirim'] ?></td>
 

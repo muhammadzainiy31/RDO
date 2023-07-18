@@ -11,7 +11,8 @@
     <!-- Custom Stylesheet -->
     <link href="../vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
-
+    <!-- Select2 Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -23,7 +24,6 @@
         </div>
     </div>
     <div id="main-wrapper">
-
         <?php include "../theme-header.php"; ?>
         <?php include "../theme-sidebar.php"; ?>
 
@@ -61,10 +61,37 @@
                                             <input type="text" class="form-control input-default" name="alamat_cust" placeholder="Masukkan Alamat">
                                         </div>
 
-                                        <div class="form-group">
-                                            <label for="kelurahan">KELURAHAN</label>
-                                            <input type="text" class="form-control input-default" name="kelurahan" placeholder="Masukkan Kelurahan">
-                                        </div>
+                                       <div class="form-group">
+    <label for="kecamatan">KECAMATAN</label>
+    <select class="form-control select2" name="kecamatan" id="kecamatan" style="width: 100%;">
+        <option value="">Pilih Kecamatan</option>
+        <?php
+        include "../koneksi.php";
+        
+        // Query untuk mendapatkan daftar kecamatan
+        $query = "SELECT kecamatan.nama
+        FROM kecamatan
+        JOIN kota_kabupaten ON kecamatan.id_kota_kabupaten = kota_kabupaten.id
+        JOIN provinsi ON kota_kabupaten.id_provinsi = provinsi.id
+        WHERE provinsi.kode = '63'";
+        
+        // Eksekusi query
+        $result = mysqli_query($conn, $query);
+        
+        if ($result) {
+            // Loop untuk menampilkan hasil query sebagai pilihan dropdown
+            while ($hasil = mysqli_fetch_assoc($result)) {
+                echo '<option value="' . $hasil['nama'] . '">' . $hasil['nama'] . '</option>';
+            }
+        } else {
+            echo '<option value="">Error retrieving data</option>';
+        }
+        
+        mysqli_close($conn);
+        ?>
+    </select>
+</div>
+
 
                                         <div class="form-group">
                                             <label for="rute">Rute</label>
@@ -87,9 +114,7 @@
             </div>
         </div>
         <!-- Content body end -->
-
         <?php include "../theme-footer.php"; ?>
-
     </div>
     <!-- Main wrapper end -->
 
@@ -99,19 +124,21 @@
     <script src="../vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
     <script src="../js/custom.min.js"></script>
     <script src="../js/deznav-init.js"></script>
-
+    <!-- Select2 Script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 </body>
 
-</html><?php
+</html>
+<?php
     include "../koneksi.php";
 
     if (isset($_POST['simpan'])) {
         $nama_cust = $_POST['nama_cust'];
         $no_telpon = $_POST['no_telpon'];
         $alamat_cust = $_POST['alamat_cust'];
-        $kelurahan = $_POST['kelurahan'];
+        $kecamatan = $_POST['kecamatan'];
         $rute = $_POST['rute'];
-        $input = "INSERT INTO tb_customer (nama_cust, no_telpon, alamat_cust, kelurahan, rute) VALUES ('$nama_cust', '$no_telpon', '$alamat_cust', '$kelurahan', '$rute')";
+        $input = "INSERT INTO tb_customer (nama_cust, no_telpon, alamat_cust, kecamatan, rute) VALUES ('$nama_cust', '$no_telpon', '$alamat_cust', '$kecamatan', '$rute')";
         
         mysqli_query($conn, $input) or die(mysqli_error($conn));
 

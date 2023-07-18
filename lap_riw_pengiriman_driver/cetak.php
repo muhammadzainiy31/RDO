@@ -46,7 +46,7 @@
                                 <th>Nama Customer</th>
                                 <th>Nomor Telepon</th>
                                 <th>Alamat Customer</th>
-                                <th>Kelurahan</th>
+                                <th>Kecamatan</th>
                                 <th>Rute</th>
                                 <th>Tanggal Kirim</th>
                                 <th>NO Plat</th>
@@ -75,7 +75,7 @@ JOIN
                   <td><?php echo $hasil ['nama_cust']?></td>
                   <td><?php echo $hasil ['no_telpon']?></td>
                   <td><?php echo $hasil ['alamat_cust']?></td>
-                  <td><?php echo $hasil ['kelurahan']?></td>
+                  <td><?php echo $hasil ['kecamatan']?></td>
                   <td><?php echo $hasil ['rute']?></td>
                   <td><?php echo $hasil ['tanggal_kirim']?></td>
                   <td><?php echo $hasil ['no_plat']?></td>

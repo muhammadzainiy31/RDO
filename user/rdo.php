@@ -53,7 +53,7 @@
                     <br> <br>
                     <div class="scroll-horizontal">
                         <table class="table table-bordered">
-                            <tr align="center" bgcolor="#E9967A">
+                            <tr align="center" bgcolor="#32c8ed">
                                 <th>No</th>
                                 <th>Id Pengiriman</th>
                                 <th>Id Surat</th>
@@ -63,7 +63,7 @@
             <th>Nama Customer</th>
             <th>Nomor Telepon</th>
             <th>Alamat Customer</th>
-            <th>Kelurahan</th>
+            <th>Kecamatan</th>
             <th>Rute</th>
             <th>Pembelian</th>
             <th>Tanggal Kirim</th>
@@ -108,7 +108,7 @@
                                         <td><?php echo $hasil['nama_cust'] ?></td>
                                         <td><?php echo $hasil['no_telpon'] ?></td>
                                         <td><?php echo $hasil['alamat_cust'] ?></td>
-                                        <td><?php echo $hasil['kelurahan'] ?></td>
+                                        <td><?php echo $hasil['kecamatan'] ?></td>
                                         <td><?php echo $hasil['rute'] ?></td>
 
                                         <td>

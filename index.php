@@ -25,7 +25,7 @@ if (isset($_POST["login"])) {
             $_SESSION["kode"] = $kode;
 
             if ($hasil["level"] == 1) {
-                header("Location:surat/index.php");
+                header("Location:dashboard/index.php");
             } else if ($hasil["level"] == 2) {
                 header("Location:user/index.php");
             }

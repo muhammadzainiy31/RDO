@@ -9,10 +9,9 @@ if (isset($_POST['submit'])) {
     $id_cust = $_POST['id_cust'];
     $no_plat = $_POST['no_plat'];
     $nik_driver = $_POST['nik_driver'];
-    
+
     // Simpan data ke tabel pengirim
-    $query = "INSERT INTO tb_pengirim (id_surat, id_cust, no_plat,nik_driver) 
-              VALUES ('$id_surat', '$id_cust', '$no_plat', '$nik_driver')";
+    $query = "INSERT INTO tb_pengirim (id_surat, id_cust, no_plat,nik_driver) VALUES ('$id_surat', '$id_cust', '$no_plat', '$nik_driver')";
     mysqli_query($conn, $query) or die(mysqli_error($conn));
 
     echo "<div align='center'><h5> Silahkan Tunggu, Data Sedang Diproses....</h5></div>";
@@ -82,12 +81,12 @@ if (isset($_POST['submit'])) {
                             <div class="card-body">
                                 <div class="basic-form">
                                     <form action="" method="POST" enctype="multipart/form-data">
-                                        
+
                                         <div class="form-group">
                                             <h4><label for="id_surat">ID SURAT</label></h4>
                                             <input type="number" class="form-control input-default" name="id_surat" id="id_surat" value="<?php echo $hasil['id_surat']; ?>" readonly>
                                         </div>
-                                        
+
                                         <div class="form-group">
                                             <h4><label for="id_cust">ID CUSTOMER </label></h4>
                                             <input type="number" class="form-control input-default" name="id_cust" id="id_cust" value="<?php echo $hasil['id_cust']; ?>" readonly>
@@ -103,7 +102,7 @@ if (isset($_POST['submit'])) {
                                                     $ambilData = mysqli_query($conn, "SELECT * FROM tb_armada") or die(mysqli_error($conn));
                                                     while ($hasil = mysqli_fetch_array($ambilData)) {
                                                         echo '<option value="' . $hasil['no_plat'] .  '">' .
-                                                            $hasil['no_plat'] . '-'.  $hasil['type_armada'] . '</option>';
+                                                            $hasil['no_plat'] . '-' .  $hasil['type_armada'] . '</option>';
                                                     }
                                                     ?>
                                                 </select>
@@ -127,7 +126,7 @@ if (isset($_POST['submit'])) {
                                             document.getElementById("no_plat").addEventListener("change", autofillBrg);
                                         </script>
 
-                                          <div class="form-group">
+                                        <div class="form-group">
                                             <h4>
                                                 <label for="nik_driver">NIK Driver</label>
                                                 <select name="nik_driver" id="nik_driver" class="form-control" required>
@@ -137,7 +136,7 @@ if (isset($_POST['submit'])) {
                                                     $ambilData = mysqli_query($conn, "SELECT * FROM tb_driver") or die(mysqli_error($conn));
                                                     while ($hasil = mysqli_fetch_array($ambilData)) {
                                                         echo '<option value="' . $hasil['nik_driver'] . '">' .
-                                                            $hasil['nik_driver'] . '-'.   $hasil['nama_driver'] .'</option>';
+                                                            $hasil['nik_driver'] . '-' .   $hasil['nama_driver'] . '</option>';
                                                     }
                                                     ?>
                                                 </select>

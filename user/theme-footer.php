@@ -3,7 +3,7 @@
         ***********************************-->
         <div class="footer">
             <div class="copyright">
-                <p>Copyright &copy; Muhammad Zaini 2023 SKIRPSI</a></p>
+                <p>Copyright &copy; Muhammad Zaini 2023 SKRIPSI</a></p>
             </div>
         </div>
         <!--**********************************

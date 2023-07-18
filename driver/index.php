@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -46,7 +44,7 @@
                             <button type="button" class="input-group-text" onclick="searchTable()"><i class="flaticon-381-search-2"></i></button>
                         </div>
                     </div>
-                    
+
 
                     <!-- Bagian form filter -->
                     <div class="container align-items-center">
@@ -132,7 +130,8 @@
                                         </div>
                                     </td>
                                 </tr>
-                            <?php }} else { ?>
+                            <?php }
+                        } else { ?>
                             <tr>
                                 <td colspan="7" align="center">Data kosong</td>
                             </tr>

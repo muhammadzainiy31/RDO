@@ -8,7 +8,7 @@
     <title>APLIKASI REPORT DELIVERY ORDER | DATA</title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../images/2.png">
-    	<link href="../vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
+    <link href="../vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
 
 </head>
@@ -24,19 +24,19 @@
 
     <div id="main-wrapper">
 
-    <?php include "../theme-header.php" ?>
-    <?php include "../theme-sidebar.php" ?>
+        <?php include "../theme-header.php" ?>
+        <?php include "../theme-sidebar.php" ?>
 
         <!--**********************************
             Content body start
         ***********************************-->
         <div class="content-body">
             <div class="container-fluid">
-            <div class="card-body">
-                <div class="card-header">
-                    <h4 class="card-title">DATA BARANG MINIMAL STOK</h4>
-                      <br> <br>
-              </div>
+                <div class="card-body">
+                    <div class="card-header">
+                        <h4 class="card-title">DATA BARANG MINIMAL STOK</h4>
+                        <br> <br>
+                    </div>
                     <br>
                     <div class="input-group search-area ml-auto d-inline-flex">
                         <input type="text" class="form-control" placeholder="Masukkan Nama Barang" id="searchInput">
@@ -45,69 +45,69 @@
                         </div>
                     </div>
                     <br>
-<br>
-<a href="cetak.php" class="btn btn-primary">Cetak Report</a>
-<br> <br>
-<table class="table table-bordered">
-    <tr align="center" bgcolor="#32c8ed">
-        <th>No</th>
-        <th>Kode Barang</th>
-        <th>Nama Barang</th>
-        <th>Kategori</th>
-        <th>Minim Stok</th>
-        <th>Stok Sisa</th>
-    </tr>
-    <?php
-    include '../koneksi.php';
-    $no = 1;
-    $tampil = mysqli_query($conn, "SELECT * FROM tb_barang WHERE jumlah_brg < restok");
-    if (mysqli_num_rows($tampil) > 0) {
-        while ($hasil = mysqli_fetch_array($tampil)) {
-    ?>
-            <tr align="center">
-                <td><?php echo $no++ ?></td>
-                <td><?php echo $hasil['kode_brg'] ?></td>
-                <td><?php echo $hasil['nama_brg'] ?></td>
-                <td><?php echo $hasil['departemen'] ?></td>
-                <td><?php echo $hasil['restok'] ?></td>
-                <td><?php echo $hasil['jumlah_brg'] ?></td>
-            </tr>
-    <?php
-        }
-    } else {
-    ?>
-        <tr>
-            <td colspan="7" align="center">Data kosong</td>
-        </tr>
-    <?php
-    }
-    ?>
-</table>
-<br>
+                    <br>
+                    <a href="cetak.php" class="btn btn-primary">Cetak Report</a>
+                    <br> <br>
+                    <table class="table table-bordered">
+                        <tr align="center" bgcolor="#32c8ed">
+                            <th>No</th>
+                            <th>Kode Barang</th>
+                            <th>Nama Barang</th>
+                            <th>Kategori</th>
+                            <th>Minim Stok</th>
+                            <th>Stok Sisa</th>
+                        </tr>
+                        <?php
+                        include '../koneksi.php';
+                        $no = 1;
+                        $tampil = mysqli_query($conn, "SELECT * FROM tb_barang WHERE jumlah_brg < restok");
+                        if (mysqli_num_rows($tampil) > 0) {
+                            while ($hasil = mysqli_fetch_array($tampil)) {
+                        ?>
+                                <tr align="center">
+                                    <td><?php echo $no++ ?></td>
+                                    <td><?php echo $hasil['kode_brg'] ?></td>
+                                    <td><?php echo $hasil['nama_brg'] ?></td>
+                                    <td><?php echo $hasil['departemen'] ?></td>
+                                    <td><?php echo $hasil['restok'] ?></td>
+                                    <td><?php echo $hasil['jumlah_brg'] ?></td>
+                                </tr>
+                            <?php
+                            }
+                        } else {
+                            ?>
+                            <tr>
+                                <td colspan="7" align="center">Data kosong</td>
+                            </tr>
+                        <?php
+                        }
+                        ?>
+                    </table>
+                    <br>
 
 
-         </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                     
                 </div>
             </div>
         </div>
-        <!--**********************************
+    </div>
+    </div>
+
+    </div>
+    </div>
+    </div>
+    <!--**********************************
             Content body end
         ***********************************-->
 
-				<?php include "../theme-footer.php" ?>
+    <?php include "../theme-footer.php" ?>
 
-        </div>
+    </div>
 
     <!-- Required vendors -->
     <script src="../vendor/global/global.min.js"></script>
-	<script src="../vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+    <script src="../vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
     <script src="../js/custom.min.js"></script>
-	<script src="../js/deznav-init.js"></script>
+    <script src="../js/deznav-init.js"></script>
     <script src="../vendor/highlightjs/highlight.pack.min.js"></script>
 
     <script>

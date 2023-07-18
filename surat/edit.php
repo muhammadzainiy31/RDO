@@ -1,20 +1,20 @@
 <?php
-    include "../koneksi.php";
-    $id_surat = $_GET['id_surat'];
-    $ambilData = mysqli_query($conn, "SELECT * FROM tb_surat WHERE id_surat='$id_surat'");
-    $hasil = mysqli_fetch_array($ambilData);
+include "../koneksi.php";
+$id_surat = $_GET['id_surat'];
+$ambilData = mysqli_query($conn, "SELECT * FROM tb_surat WHERE id_surat='$id_surat'");
+$hasil = mysqli_fetch_array($ambilData);
 
-    include "../theme-header.php";
-    include "../theme-sidebar.php";
+include "../theme-header.php";
+include "../theme-sidebar.php";
 
-    if (isset($_POST['simpan'])) {
-        $tanggal_kirim = $_POST['tanggal_kirim'];
+if (isset($_POST['simpan'])) {
+    $tanggal_kirim = $_POST['tanggal_kirim'];
 
-        mysqli_query($conn, "UPDATE tb_surat SET tanggal_kirim='$tanggal_kirim' WHERE id_surat='$id_surat'") or die(mysqli_error($conn));
+    mysqli_query($conn, "UPDATE tb_surat SET tanggal_kirim='$tanggal_kirim' WHERE id_surat='$id_surat'") or die(mysqli_error($conn));
 
-        echo "<div align='center'><h5> Silahkan Tunggu, Data Sedang Disimpan....</h5></div>";
-        echo "<meta http-equiv='refresh' content='1;url=http://localhost/RDO/surat/index.php'>";
-    }
+    echo "<div align='center'><h5> Silahkan Tunggu, Data Sedang Disimpan....</h5></div>";
+    echo "<meta http-equiv='refresh' content='1;url=http://localhost/RDO/surat/index.php'>";
+}
 ?>
 
 <!DOCTYPE html>

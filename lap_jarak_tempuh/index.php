@@ -67,7 +67,7 @@
                         ");
                         if (mysqli_num_rows($tampil) > 0) {
                             while ($hasil = mysqli_fetch_array($tampil)) {
-                                ?>
+                        ?>
                                 <tr align="center">
                                     <td><?php echo $no++ ?></td>
                                     <td><?php echo $hasil['no_plat'] ?></td>

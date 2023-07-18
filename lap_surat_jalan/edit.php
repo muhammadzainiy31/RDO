@@ -1,23 +1,23 @@
 <?php
-    include "../koneksi.php";
-    $id_pengiriman = $_GET['id_pengiriman'];
-    $ambilData = mysqli_query($conn, "SELECT * FROM tb_pengirim WHERE id_pengiriman='$id_pengiriman'");
-    $hasil = mysqli_fetch_array($ambilData);
+include "../koneksi.php";
+$id_pengiriman = $_GET['id_pengiriman'];
+$ambilData = mysqli_query($conn, "SELECT * FROM tb_pengirim WHERE id_pengiriman='$id_pengiriman'");
+$hasil = mysqli_fetch_array($ambilData);
 
-    include "../theme-header.php";
-    include "../theme-sidebar.php";
+include "../theme-header.php";
+include "../theme-sidebar.php";
 
-    if (isset($_POST['simpan'])) {
-        $id_pengiriman = $_POST['id_pengiriman'];
-        $id_surat = $_POST['id_surat'];
-        $no_plat = $_POST['no_plat'];
-        $nik_driver = $_POST['nik_driver'];
+if (isset($_POST['simpan'])) {
+    $id_pengiriman = $_POST['id_pengiriman'];
+    $id_surat = $_POST['id_surat'];
+    $no_plat = $_POST['no_plat'];
+    $nik_driver = $_POST['nik_driver'];
 
-        mysqli_query($conn, "UPDATE tb_pengirim SET id_surat='$id_surat', no_plat='$no_plat', nik_driver='$nik_driver' WHERE id_pengiriman='$id_pengiriman'") or die(mysqli_error($conn));
+    mysqli_query($conn, "UPDATE tb_pengirim SET id_surat='$id_surat', no_plat='$no_plat', nik_driver='$nik_driver' WHERE id_pengiriman='$id_pengiriman'") or die(mysqli_error($conn));
 
-        echo "<div align='center'><h5> Silahkan Tunggu, Data Sedang Disimpan....</h5></div>";
-        echo "<meta http-equiv='refresh' content='1;url=http://localhost/RDO/lap_surat_jalan/index.php'>";
-    }
+    echo "<div align='center'><h5> Silahkan Tunggu, Data Sedang Disimpan....</h5></div>";
+    echo "<meta http-equiv='refresh' content='1;url=http://localhost/RDO/lap_surat_jalan/index.php'>";
+}
 ?>
 
 <!DOCTYPE html>

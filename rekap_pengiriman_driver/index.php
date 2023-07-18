@@ -112,10 +112,10 @@
                                         <td><?php echo $hasil['type_armada'] ?></td>
                                         <td><?php echo $hasil['rute'] ?></td>
                                     </tr>
-                            <?php
+                                <?php
                                 }
                             } else {
-                            ?>
+                                ?>
                                 <tr>
                                     <td colspan="8" align="center">Data kosong</td>
                                 </tr>

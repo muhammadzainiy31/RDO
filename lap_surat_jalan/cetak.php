@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -29,7 +30,8 @@
             width: 100%;
         }
 
-        th, td {
+        th,
+        td {
             border: 1px solid #000;
             padding: 8px;
             text-align: center;
@@ -60,20 +62,21 @@
         }
     </style>
 </head>
+
 <body>
     <div class="rangkasurat">
-		<table width="100%">
-			<tr>
-				<td><img src="../images/informa.png" width="100px"></td>
-				<td class="tengah">
-					<h2>PT. HOME CENTER INDONESIA </h2>
-					<h2>INFORMA BANJARMASIN</h2>
-					<h2>SDC BANJARMASIN</h2>
-					<h1>APLIKASI REPORT DELIVERY ORDER</h1>
-					<b>KM.15 GAMBUT Komplek Pergudangan Cipta Jaya NO.12F Banjarmasin</b>
-</td>
-</td>
-</table> 
+        <table width="100%">
+            <tr>
+                <td><img src="../images/informa.png" width="100px"></td>
+                <td class="tengah">
+                    <h2>PT. HOME CENTER INDONESIA </h2>
+                    <h2>INFORMA BANJARMASIN</h2>
+                    <h2>SDC BANJARMASIN</h2>
+                    <h1>APLIKASI REPORT DELIVERY ORDER</h1>
+                    <b>KM.15 GAMBUT Komplek Pergudangan Cipta Jaya NO.12F Banjarmasin</b>
+                </td>
+                </td>
+        </table>
         <div class="title">
             <h2>LAPORAN SURAT JALAN</h2>
         </div>
@@ -123,7 +126,7 @@
                 tb_pembelian ON tb_pengirim.id_surat = tb_pembelian.id_surat
                 ORDER BY tb_pengirim.id_pengiriman DESC");
             while ($hasil = mysqli_fetch_array($ambilData)) {
-                ?>
+            ?>
                 <tr>
                     <td><?php echo $no++ ?></td>
                     <td><?php echo $hasil['id_pengiriman'] ?></td>
@@ -158,4 +161,5 @@
         </script>
     </div>
 </body>
+
 </html>

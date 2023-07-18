@@ -61,36 +61,36 @@
                                             <input type="text" class="form-control input-default" name="alamat_cust" placeholder="Masukkan Alamat">
                                         </div>
 
-                                       <div class="form-group">
-    <label for="kecamatan">KECAMATAN</label>
-    <select class="form-control select2" name="kecamatan" id="kecamatan" style="width: 100%;">
-        <option value="">Pilih Kecamatan</option>
-        <?php
-        include "../koneksi.php";
-        
-        // Query untuk mendapatkan daftar kecamatan
-        $query = "SELECT kecamatan.nama
+                                        <div class="form-group">
+                                            <label for="kecamatan">KECAMATAN</label>
+                                            <select class="form-control select2" name="kecamatan" id="kecamatan" style="width: 100%;">
+                                                <option value="">Pilih Kecamatan</option>
+                                                <?php
+                                                include "../koneksi.php";
+
+                                                // Query untuk mendapatkan daftar kecamatan
+                                                $query = "SELECT kecamatan.nama
         FROM kecamatan
         JOIN kota_kabupaten ON kecamatan.id_kota_kabupaten = kota_kabupaten.id
         JOIN provinsi ON kota_kabupaten.id_provinsi = provinsi.id
         WHERE provinsi.kode = '63'";
-        
-        // Eksekusi query
-        $result = mysqli_query($conn, $query);
-        
-        if ($result) {
-            // Loop untuk menampilkan hasil query sebagai pilihan dropdown
-            while ($hasil = mysqli_fetch_assoc($result)) {
-                echo '<option value="' . $hasil['nama'] . '">' . $hasil['nama'] . '</option>';
-            }
-        } else {
-            echo '<option value="">Error retrieving data</option>';
-        }
-        
-        mysqli_close($conn);
-        ?>
-    </select>
-</div>
+
+                                                // Eksekusi query
+                                                $result = mysqli_query($conn, $query);
+
+                                                if ($result) {
+                                                    // Loop untuk menampilkan hasil query sebagai pilihan dropdown
+                                                    while ($hasil = mysqli_fetch_assoc($result)) {
+                                                        echo '<option value="' . $hasil['nama'] . '">' . $hasil['nama'] . '</option>';
+                                                    }
+                                                } else {
+                                                    echo '<option value="">Error retrieving data</option>';
+                                                }
+
+                                                mysqli_close($conn);
+                                                ?>
+                                            </select>
+                                        </div>
 
 
                                         <div class="form-group">
@@ -130,19 +130,19 @@
 
 </html>
 <?php
-    include "../koneksi.php";
+include "../koneksi.php";
 
-    if (isset($_POST['simpan'])) {
-        $nama_cust = $_POST['nama_cust'];
-        $no_telpon = $_POST['no_telpon'];
-        $alamat_cust = $_POST['alamat_cust'];
-        $kecamatan = $_POST['kecamatan'];
-        $rute = $_POST['rute'];
-        $input = "INSERT INTO tb_customer (nama_cust, no_telpon, alamat_cust, kecamatan, rute) VALUES ('$nama_cust', '$no_telpon', '$alamat_cust', '$kecamatan', '$rute')";
-        
-        mysqli_query($conn, $input) or die(mysqli_error($conn));
+if (isset($_POST['simpan'])) {
+    $nama_cust = $_POST['nama_cust'];
+    $no_telpon = $_POST['no_telpon'];
+    $alamat_cust = $_POST['alamat_cust'];
+    $kecamatan = $_POST['kecamatan'];
+    $rute = $_POST['rute'];
+    $input = "INSERT INTO tb_customer (nama_cust, no_telpon, alamat_cust, kecamatan, rute) VALUES ('$nama_cust', '$no_telpon', '$alamat_cust', '$kecamatan', '$rute')";
 
-        echo "<div align='center'><h5> Silahkan Tunggu, Data Sedang Disimpan....</h5></div>";
-        echo "<meta http-equiv='refresh' content='1;url=http://localhost/RDO/customer/index.php'>";
-    }
+    mysqli_query($conn, $input) or die(mysqli_error($conn));
+
+    echo "<div align='center'><h5> Silahkan Tunggu, Data Sedang Disimpan....</h5></div>";
+    echo "<meta http-equiv='refresh' content='1;url=http://localhost/RDO/customer/index.php'>";
+}
 ?>

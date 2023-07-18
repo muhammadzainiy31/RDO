@@ -1,7 +1,7 @@
 <?php
 include "../koneksi.php";
-$id = $_GET['id_pengiriman'];
-$ambilData = mysqli_query($conn, "SELECT * FROM tb_pengirim WHERE id_pengiriman='$id'");
+$id_pengiriman = $_GET['id_pengiriman'];
+$ambilData = mysqli_query($conn, "SELECT tb_pengirim.*, tb_customer.* FROM tb_pengirim INNER JOIN tb_customer ON tb_pengirim.id_cust = tb_customer.id_cust WHERE id_pengiriman = '$id_pengiriman'");
 $hasil = mysqli_fetch_array($ambilData);
 
 if (isset($_POST['submit'])) {
@@ -12,14 +12,23 @@ if (isset($_POST['submit'])) {
     $keterangan = $_POST['keterangan'];
     $foto = $_FILES['foto']['name'];
 
-    
-    move_uploaded_file($_FILES['foto']['tmp_name'], '../images/barang/'.$foto);
+
+    move_uploaded_file($_FILES['foto']['tmp_name'], '../images/barang/' . $foto);
 
     $input = "INSERT INTO tb_cekout (id_pengiriman, km_tiba, jam_tiba, status, keterangan, foto) VALUES ('$id_pengiriman', '$km_tiba','$jam_tiba', '$status', '$keterangan', '$foto')";
 
     if (mysqli_query($conn, $input)) {
-        echo "<div align='center'><h5>Data berhasil ditambahkan.</h5></div>";
-        echo "<meta http-equiv='refresh' content='1;url=http://localhost/RDO/user/index.php'>";
+        $no_telpon = $hasil['no_telpon'];
+        $nama_cust = $hasil['nama_cust'];
+
+        if ($status = 'TERKIRIM') {
+            $param = 'http://localhost/RDO/zenziva/kirim_wa.php?no_telpon=' . $no_telpon . '&nama_cust=' . $nama_cust . '&flag=kirim';
+        } else {
+            $param = 'http://localhost/RDO/zenziva/kirim_wa.php?no_telpon=' . $no_telpon . '&nama_cust=' . $nama_cust . '&flag=pending';
+        }
+
+        echo "<div align='center'><h5> Silahkan Tunggu, Data Sedang Diproses....</h5></div>";
+        echo "<meta http-equiv='refresh' content='1;url=$param'>";
         exit();
     } else {
         echo "<div align='center'><h5>Gagal menambahkan data.</h5></div>";
@@ -133,7 +142,7 @@ if (isset($_POST['submit'])) {
                                             <h4><label for="keterangan">KETERANGAN</label></h4>
                                             <input type="text" class="form-control input-default" name="keterangan" placeholder="Masukkan Keterangan">
                                         </div>
-                                        
+
                                         <div class="form-group">
                                             <h4><label for="foto">Foto</label></h4>
                                             <input type="file" class="form-control-file" name="foto" id="foto" accept="image/*">

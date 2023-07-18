@@ -57,7 +57,7 @@
                                                 include "../koneksi.php";
                                                 $ambilData = mysqli_query($conn, "SELECT * FROM tb_armada") or die(mysqli_error($conn));
                                                 while ($hasil = mysqli_fetch_array($ambilData)) {
-                                                    echo '<option value="' . $hasil['no_plat'] . '">' . $hasil['no_plat'] . '-'.$hasil['type_armada'] .  '</option>';
+                                                    echo '<option value="' . $hasil['no_plat'] . '">' . $hasil['no_plat'] . '-' . $hasil['type_armada'] .  '</option>';
                                                 }
                                                 ?>
                                             </select>
@@ -124,20 +124,20 @@
             ?>
         });
     </script>
-<?php
-include "../koneksi.php";
-if (isset($_POST['simpan'])) {
-    $plat = $_POST['no_plat'];
-    $tanggal_servis = $_POST['tanggal_servis'];
-    $keterangan = $_POST['keterangan'];
-    $estimasi = $_POST['estimasi'];
-    $biaya = $_POST['biaya'];
-    $input = "INSERT INTO riwayat_servis (no_plat, tanggal_servis, keterangan, estimasi, biaya) VALUES ('$plat', '$tanggal_servis', '$keterangan', '$estimasi', '$biaya')";
-    mysqli_query($conn, $input);
-    echo "<div align='center'><h5>Silahkan Tunggu, Data Sedang Disimpan....</h5></div>";
-    echo "<meta http-equiv='refresh' content='1;url=http://localhost/RDO/lap_riw_servis_mobil/index.php'>";
-}
-?>
+    <?php
+    include "../koneksi.php";
+    if (isset($_POST['simpan'])) {
+        $plat = $_POST['no_plat'];
+        $tanggal_servis = $_POST['tanggal_servis'];
+        $keterangan = $_POST['keterangan'];
+        $estimasi = $_POST['estimasi'];
+        $biaya = $_POST['biaya'];
+        $input = "INSERT INTO riwayat_servis (no_plat, tanggal_servis, keterangan, estimasi, biaya) VALUES ('$plat', '$tanggal_servis', '$keterangan', '$estimasi', '$biaya')";
+        mysqli_query($conn, $input);
+        echo "<div align='center'><h5>Silahkan Tunggu, Data Sedang Disimpan....</h5></div>";
+        echo "<meta http-equiv='refresh' content='1;url=http://localhost/RDO/lap_riw_servis_mobil/index.php'>";
+    }
+    ?>
 
 </body>
 

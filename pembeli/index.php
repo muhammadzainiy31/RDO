@@ -48,10 +48,10 @@ if (!isset($_SESSION["login"])) {
         <div class="content-body">
             <div class="container-fluid">
                 <div class="page-titles">
-					<ol class="breadcrumb">
-						<li class="breadcrumb-item"><a href="javascript:void(0)">Layout</a></li>
-						<li class="breadcrumb-item active"><a href="javascript:void(0)">Blank</a></li>
-					</ol>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">Layout</a></li>
+                        <li class="breadcrumb-item active"><a href="javascript:void(0)">Blank</a></li>
+                    </ol>
                 </div>
                 <div class="row">
                     <div class="col-lg-12">
@@ -156,7 +156,8 @@ if (!isset($_SESSION["login"])) {
                                                 <tr>
                                                     <td class="left"><strong>Total</strong></td>
                                                     <td class="right"><strong>$7.477,36</strong><br>
-                                                        <strong>0.15050000 BTC</strong></td>
+                                                        <strong>0.15050000 BTC</strong>
+                                                    </td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -168,40 +169,40 @@ if (!isset($_SESSION["login"])) {
                 </div>
             </div>
 
-        <?php include "../theme-footer.php" ?>
+            <?php include "../theme-footer.php" ?>
 
-    </div>
+        </div>
 
-    <!-- Required vendors -->
-    <script src="../vendor/global/global.min.js"></script>
-    <script src="../vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
-    <script src="../js/custom.min.js"></script>
-    <script src="../js/deznav-init.js"></script>
-    <script src="../vendor/highlightjs/highlight.pack.min.js"></script>
+        <!-- Required vendors -->
+        <script src="../vendor/global/global.min.js"></script>
+        <script src="../vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+        <script src="../js/custom.min.js"></script>
+        <script src="../js/deznav-init.js"></script>
+        <script src="../vendor/highlightjs/highlight.pack.min.js"></script>
 
-    <script>
-        function searchData() {
-            var input, filter, table, tr, td, i, txtValue;
-            input = document.getElementById("searchInput");
-            filter = input.value.toUpperCase();
-            table = document.getElementsByClassName("table")[0];
-            tr = table.getElementsByTagName("tr");
+        <script>
+            function searchData() {
+                var input, filter, table, tr, td, i, txtValue;
+                input = document.getElementById("searchInput");
+                filter = input.value.toUpperCase();
+                table = document.getElementsByClassName("table")[0];
+                tr = table.getElementsByTagName("tr");
 
-            for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[2]; // Ganti angka 2 dengan indeks kolom nama
+                for (i = 0; i < tr.length; i++) {
+                    td = tr[i].getElementsByTagName("td")[2]; // Ganti angka 2 dengan indeks kolom nama
 
-                if (td) {
-                    txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                        tr[i].style.display = "";
-                    } else {
-                        tr[i].style.display = "none";
+                    if (td) {
+                        txtValue = td.textContent || td.innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
                     }
                 }
             }
-        }
-    </script>
-    <!-- Circle progress -->
+        </script>
+        <!-- Circle progress -->
 </body>
 
 </html>

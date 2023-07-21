@@ -60,7 +60,8 @@
                         <?php
                         include '../koneksi.php';
                         $no = 1;
-                        $tampil = mysqli_query($conn, "SELECT * FROM tb_driver ORDER BY ABS(DATEDIFF(CURRENT_DATE, berlaku_sim)) ASC;");
+                        $tampil = mysqli_query($conn, "SELECT * FROM tb_driver ORDER BY ABS(DATEDIFF(CURRENT_DATE, berlaku_sim)) ASC;
+                        ;");
                         if (mysqli_num_rows($tampil) > 0) {
                             while ($hasil = mysqli_fetch_array($tampil)) {
 

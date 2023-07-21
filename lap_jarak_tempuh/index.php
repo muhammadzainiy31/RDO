@@ -56,14 +56,11 @@
                         <?php
                         include '../koneksi.php';
                         $no = 1;
-                        $tampil = mysqli_query($conn, "SELECT tb_armada.no_plat, tb_armada.type_armada, tb_pengirim.id_pengiriman, tb_cekout.km_tiba
+                        $tampil = mysqli_query($conn, "SELECT tb_armada.no_plat, tb_armada.type_armada, tb_pengirim.id_pengiriman, MAX(tb_cekout.km_tiba) AS km_tiba
                         FROM tb_armada
                         JOIN tb_pengirim ON tb_armada.no_plat = tb_pengirim.no_plat
-                        JOIN (
-                            SELECT id_pengiriman, MAX(km_tiba) AS km_tiba
-                            FROM tb_cekout
-                            GROUP BY id_pengiriman
-                        ) AS tb_cekout ON tb_pengirim.id_pengiriman = tb_cekout.id_pengiriman
+                        JOIN tb_cekout ON tb_pengirim.id_pengiriman = tb_cekout.id_pengiriman
+                        GROUP BY tb_armada.no_plat
                         ");
                         if (mysqli_num_rows($tampil) > 0) {
                             while ($hasil = mysqli_fetch_array($tampil)) {

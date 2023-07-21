@@ -61,7 +61,8 @@
                         <?php
                         include '../koneksi.php';
                         $no = 1;
-                        $tampil = mysqli_query($conn, "SELECT * FROM tb_customer ORDER BY id_cust DESC");
+                        $tampil = mysqli_query($conn, "SELECT * FROM tb_customer ORDER BY kecamatan DESC, id_cust DESC;
+                        ");
                         if (mysqli_num_rows($tampil) > 0) {
                             while ($hasil = mysqli_fetch_array($tampil)) {
 

@@ -93,9 +93,34 @@ if (isset($_POST['simpan'])) {
                                         </div>
 
                                         <div class="form-group">
-                                            <h4><label for="kecamatan">KECAMATAN</label></h4>
-                                            <input type="text" class="form-control input-default" name="kecamatan" id="kecamatan" value="<?php echo isset($hasil['kecamatan']) ? $hasil['kecamatan'] : ''; ?>">
-                                        </div>
+    <label for="kecamatan">KECAMATAN</label>
+    <select class="form-control select2" name="kecamatan" id="kecamatan" style="width: 100%;">
+        <option value="">Pilih Kecamatan</option>
+        <?php
+        include "../koneksi.php";
+
+        // Prepare the query for kecamatan data
+        $stmt = mysqli_prepare($conn, "SELECT kecamatan.nama FROM kecamatan
+                                       JOIN kota_kabupaten ON kecamatan.id_kota_kabupaten = kota_kabupaten.id
+                                       JOIN provinsi ON kota_kabupaten.id_provinsi = provinsi.id
+                                       WHERE provinsi.kode = ?");
+        $provinsi_kode = '63'; // Replace this with the appropriate province code
+        mysqli_stmt_bind_param($stmt, "s", $provinsi_kode);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+
+        while ($row = mysqli_fetch_assoc($result)) {
+            // Check if the option is selected based on the current data
+            $selected = ($row['nama'] === $hasil['kecamatan']) ? 'selected' : '';
+
+            echo '<option value="' . htmlspecialchars($row['nama']) . '" ' . $selected . '>' . htmlspecialchars($row['nama']) . '</option>';
+        }
+
+        mysqli_stmt_close($stmt);
+        mysqli_close($conn);
+        ?>
+    </select>
+</div>
 
                                         <div class="form-group">
                                             <label for="rute">Rute</label>

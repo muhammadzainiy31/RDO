@@ -90,6 +90,15 @@
 		</table>
 
 		<center>
+			<br>
+			
+			
+			<br>
+			<br>
+			<br>
+			
+			
+			
 			<p align="right">Banjarmasin..................20..</p>
 
 			<p align="right">MANAGER

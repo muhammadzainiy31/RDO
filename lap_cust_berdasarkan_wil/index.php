@@ -39,7 +39,7 @@
                     </div>
                     <br>
                     <div class="input-group search-area ml-auto d-inline-flex">
-                        <input type="text" class="form-control" placeholder="Masukkan Nama Customer" id="searchInput">
+                        <input type="text" class="form-control" placeholder="Masukkan Kecamatan " id="searchInput">
                         <div class="input-group-append">
                             <button type="button" class="input-group-text" onclick="searchData()"><i class="flaticon-381-search-2"></i></button>
                         </div>
@@ -116,7 +116,7 @@
             tr = table.getElementsByTagName("tr");
 
             for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[2]; // Ganti angka 2 dengan indeks kolom nama
+                td = tr[i].getElementsByTagName("td")[4]; // Ganti angka 2 dengan indeks kolom nama
 
                 if (td) {
                     txtValue = td.textContent || td.innerText;

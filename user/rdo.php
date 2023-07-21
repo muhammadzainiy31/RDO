@@ -1,3 +1,14 @@
+<?php
+session_start();
+
+// Periksa apakah pengguna sudah login
+if (!isset($_SESSION["login"])) {
+    header("Location: login.php"); // Mengarahkan pengguna ke halaman login jika belum login
+    exit; // Menghentikan eksekusi skrip
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -43,9 +54,9 @@
                     </div>
                     <br>
                     <div class="input-group search-area ml-auto d-inline-flex">
-                        <input type="text" class="form-control" placeholder="Search here">
+                        <input type="text" class="form-control" placeholder="Masukkan Nama Customer" id="searchInput">
                         <div class="input-group-append">
-                            <button type="button" class="input-group-text"><i class="flaticon-381-search-2"></i></button>
+                            <button type="button" class="input-group-text" onclick="searchData()"><i class="flaticon-381-search-2"></i></button>
                         </div>
                     </div>
                     <br> <br>
@@ -81,6 +92,7 @@
                             </tr>
                             <?php
                             include '../koneksi.php';
+                            $nik = $_SESSION["nik"];
                             $no = 1;
                             $tampil = mysqli_query($conn, "SELECT tb_pengirim.*, tb_surat.*, 
                             tb_customer.*, tb_cekin.*, tb_cekout.*, tb_armada.type_armada, tb_driver.nama_driver
@@ -91,7 +103,7 @@
                             JOIN tb_armada ON tb_pengirim.no_plat = tb_armada.no_plat
                             JOIN tb_driver ON tb_pengirim.nik_driver = tb_driver.nik_driver
                             JOIN tb_cekin ON tb_pengirim.id_pengiriman = tb_cekin.id_pengiriman
-                            JOIN tb_cekout ON tb_pengirim.id_pengiriman = tb_cekout.id_pengiriman
+                            JOIN tb_cekout ON tb_pengirim.id_pengiriman = tb_cekout.id_pengiriman WHERE tb_pengirim.nik_driver='$nik'
                             ORDER BY tb_pengirim.id_pengiriman DESC");
 
 
@@ -191,6 +203,29 @@
 
 
     <script src="../vendor/highlightjs/highlight.pack.min.js"></script>
+    
+    <script>
+        function searchData() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("searchInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementsByClassName("table")[0];
+            tr = table.getElementsByTagName("tr");
+
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[6]; // Ganti angka 2 dengan indeks kolom nama
+
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
     <!-- Circle progress -->
 
 </body>

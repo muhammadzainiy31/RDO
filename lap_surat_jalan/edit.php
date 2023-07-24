@@ -11,9 +11,9 @@ if (isset($_POST['simpan'])) {
     $id_pengiriman = $_POST['id_pengiriman'];
     $id_surat = $_POST['id_surat'];
     $no_plat = $_POST['no_plat'];
-    $nik_driver = $_POST['nik_driver'];
+    $nik = $_POST['nik'];
 
-    mysqli_query($conn, "UPDATE tb_pengirim SET id_surat='$id_surat', no_plat='$no_plat', nik_driver='$nik_driver' WHERE id_pengiriman='$id_pengiriman'") or die(mysqli_error($conn));
+    mysqli_query($conn, "UPDATE tb_pengirim SET id_surat='$id_surat', no_plat='$no_plat', nik='$nik' WHERE id_pengiriman='$id_pengiriman'") or die(mysqli_error($conn));
 
     echo "<div align='center'><h5> Silahkan Tunggu, Data Sedang Disimpan....</h5></div>";
     echo "<meta http-equiv='refresh' content='1;url=http://localhost/RDO/lap_surat_jalan/index.php'>";
@@ -131,14 +131,14 @@ if (isset($_POST['simpan'])) {
                                             }
                                         </script>
                                         <div class="form-group">
-                                            <h4><label for="nik_driver">NIK Driver</label></h4>
-                                            <select name="nik_driver" id="nik_driver" class="form-control" required>
+                                            <h4><label for="nik">NIK Driver</label></h4>
+                                            <select name="nik" id="nik" class="form-control" required>
                                                 <option value="">-PILIH-</option>
                                                 <?php
                                                 $ambilDataDriver = mysqli_query($conn, "SELECT * FROM tb_driver") or die(mysqli_error($conn));
                                                 while ($hasilDriver = mysqli_fetch_array($ambilDataDriver)) {
-                                                    $selected = ($hasilDriver['nik_driver'] == $hasil['nik_driver']) ? 'selected' : '';
-                                                    echo '<option value="' . $hasilDriver['nik_driver'] . '" ' . $selected . '>' . $hasilDriver['nik_driver'] . ' - ' . $hasilDriver['nama_driver'] . '</option>';
+                                                    $selected = ($hasilDriver['nik'] == $hasil['nik']) ? 'selected' : '';
+                                                    echo '<option value="' . $hasilDriver['nik'] . '" ' . $selected . '>' . $hasilDriver['nik'] . ' - ' . $hasilDriver['nama_driver'] . '</option>';
                                                 }
                                                 ?>
                                             </select>

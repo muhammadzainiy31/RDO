@@ -11,6 +11,12 @@
     <link href="../vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
 
+    <style>
+        /* Add this style for horizontal scrolling */
+        .table-wrapper {
+            overflow-x: auto;
+        }
+    </style>
 </head>
 
 <body>
@@ -49,52 +55,58 @@
                     <br>
                     <br>
                     <a href="../driver/input.php" class="btn btn-primary">Tambah Data</a>
-                    <a href="cetak.php" class="btn btn-primary">Cetak Report</a>
+                    <a href="cetak.php" class="btn btn-primary">Cetak Laporan</a>
                     <br> <br>
-                    <table class="table table-bordered" id="dataTable">
-                        <tr align="center" bgcolor="#32c8ed">
-                            <th>No</th>
-                            <th>NIK Driver</th>
-                            <th>Nama</th>
-                            <th>Tanggal Lahir</th>
-                            <th>Jabatan</th>
-                            <th>Tingkat SIM</th>
-                            <th>Berlaku SIM</th>
-                            <th>Alamat</th>
-                            <th>Aksi</th>
-                        </tr>
-                        <?php
-                        include '../koneksi.php';
-                        $no = 1;
-                        $tampil = mysqli_query($conn, "SELECT * FROM tb_driver ORDER BY nik_driver DESC");
-                        if (mysqli_num_rows($tampil) > 0) {
-                            while ($hasil = mysqli_fetch_array($tampil)) {
 
-                        ?>
-                                <tr align="center">
-                                    <td><?php echo $no++ ?> </td>
-                                    <td><?php echo $hasil['nik_driver'] ?></td>
-                                    <td><?php echo $hasil['nama_driver'] ?></td>
-                                    <td><?php echo $hasil['tanggal_lahir'] ?></td>
-                                    <td><?php echo $hasil['jabatan'] ?> </td>
-                                    <td><?php echo $hasil['sim'] ?></td>
-                                    <td><?php echo $hasil['berlaku_sim'] ?></td>
-                                    <td><?php echo $hasil['alamat_driver'] ?></td>
-                                    <td>
-
-                                        <div class="d-flex">
-                                            <a href="edit.php?nik_driver=<?php echo $hasil['nik_driver']; ?>" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-pencil"></i></a>
-                                            <a href="hapus.php?nik_driver=<?php echo $hasil['nik_driver']; ?>" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
-                                        </div>
-                                    </td>
-                                </tr>
-                            <?php }
-                        } else { ?>
-                            <tr>
-                                <td colspan="7" align="center">Data kosong</td>
+                    <!-- Add the wrapping div for horizontal scroll -->
+                    <div class="table-wrapper">
+                        <table class="table table-bordered" id="dataTable">
+                            <tr align="center" bgcolor="#32c8ed">
+                                <th>No</th>
+                                <th>NIK Driver</th>
+                                <th>Nama</th>
+                                <th>Tanggal Lahir</th>
+                                <th>Jabatan</th>
+                                <th>Tingkat SIM</th>
+                                <th>Berlaku SIM</th>
+                                <th>Alamat</th>
+                                <th>password</th>
+                                <th>level</th>
+                                <th>Aksi</th>
                             </tr>
-                        <?php } ?>
-                    </table>
+                            <?php
+                            include '../koneksi.php';
+                            $no = 1;
+                            $tampil = mysqli_query($conn, "SELECT * FROM tb_driver ORDER BY nik DESC");
+                            if (mysqli_num_rows($tampil) > 0) {
+                                while ($hasil = mysqli_fetch_array($tampil)) {
+                            ?>
+                                    <tr align="center">
+                                        <td><?php echo $no++ ?> </td>
+                                        <td><?php echo $hasil['nik'] ?></td>
+                                        <td><?php echo $hasil['nama_driver'] ?></td>
+                                        <td><?php echo $hasil['tanggal_lahir'] ?></td>
+                                        <td><?php echo $hasil['jabatan'] ?> </td>
+                                        <td><?php echo $hasil['sim'] ?></td>
+                                        <td><?php echo $hasil['berlaku_sim'] ?></td>
+                                        <td><?php echo $hasil['alamat_driver'] ?></td>
+                                        <td><?php echo $hasil['password'] ?></td>
+                                        <td><?php echo $hasil['level'] ?></td>
+                                        <td>
+                                            <div class="d-flex">
+                                                <a href="edit.php?nik=<?php echo $hasil['nik']; ?>" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-pencil"></i></a>
+                                                <a href="hapus.php?nik=<?php echo $hasil['nik']; ?>" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                            <?php }
+                            } else { ?>
+                                <tr>
+                                    <td colspan="7" align="center">Data kosong</td>
+                                </tr>
+                            <?php } ?>
+                        </table>
+                    </div>
                     <br>
 
                 </div>
@@ -113,7 +125,6 @@
     <script src="../vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
     <script src="../js/custom.min.js"></script>
     <script src="../js/deznav-init.js"></script>
-
 
     <script src="../vendor/highlightjs/highlight.pack.min.js"></script>
     <!-- Circle progress -->

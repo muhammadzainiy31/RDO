@@ -47,7 +47,7 @@
 				</td>
 		</table>
 		<center>
-			<h2>REPORT DATA CUSTOMER PALING ROYAL</h2>
+			<h2>LAPORAN DATA CUSTOMER PALING ROYAL</h2>
 		</center>
 
 		<?php

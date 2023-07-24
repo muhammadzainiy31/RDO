@@ -80,7 +80,7 @@ if (!isset($_SESSION["login"])) {
                     <br>
                     <br>
                     <a href="../surat/input.php" class="btn btn-primary">Buat Surat</a>
-                    <a href="cetak.php" class="btn btn-primary">Cetak Report</a>
+                    <a href="cetak.php" class="btn btn-primary">Cetak Laporan</a>
                     <br>
                     <br>
                     <div class="scroll-horizontal">

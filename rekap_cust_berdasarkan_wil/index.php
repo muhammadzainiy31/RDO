@@ -30,62 +30,62 @@
         <!--**********************************
             Content body start
         ***********************************-->
-        <div class="content-body">
-            <div class="container-fluid">
-                <div class="card-body">
-                    <div class="card-header">
-                        <h4 class="card-title">DATA CUSTOMER BERDASARKAN WILAYAH</h4>
-                        <br> <br>
-                    </div>
-                    <br>
-                    <div class="input-group search-area ml-auto d-inline-flex">
-                        <input type="text" class="form-control" placeholder="Masukkan Kecamatan " id="searchInput">
-                        <div class="input-group-append">
-                            <button type="button" class="input-group-text" onclick="searchData()"><i class="flaticon-381-search-2"></i></button>
-                        </div>
-                    </div>
+        <<?php
+include '../koneksi.php';
 
+// Perform a query to get the total number of customers per kecamatan
+$query = "SELECT kecamatan, COUNT(id_cust) AS jumlah_customer FROM tb_customer GROUP BY kecamatan";
+$result = mysqli_query($conn, $query);
+?>
 
-                    <br>
-                    <br>
-                    <a href="cetak.php" class="btn btn-primary">Cetak Laporan</a>
-                    <br> <br>
-                    <table class="table table-bordered">
-                        <tr align="center" bgcolor="#32c8ed">
-                            <th>No</th>
-                            <th>Kode Customer</th>
-                            <th>Nama Customer</th>
-                            <th>Alamat</th>
-                            <th>Kecamatan</th>
-                        </tr>
-                        <?php
-                        include '../koneksi.php';
-                        $no = 1;
-                        $tampil = mysqli_query($conn, "SELECT * FROM tb_customer ORDER BY kecamatan DESC, id_cust DESC;
-                        ");
-                        if (mysqli_num_rows($tampil) > 0) {
-                            while ($hasil = mysqli_fetch_array($tampil)) {
-
-                        ?>
-                                <tr align="center">
-                                    <td><?php echo $no++ ?> </td>
-                                    <td><?php echo $hasil['id_cust'] ?></td>
-                                    <td><?php echo $hasil['nama_cust'] ?></td>
-                                    <td><?php echo $hasil['alamat_cust'] ?> </td>
-                                    <td><?php echo $hasil['kecamatan'] ?> </td>
-                                </tr>
-                            <?php }
-                        } else { ?>
-                            <tr>
-                                <td colspan="7" align="center">Data kosong</td>
-                            </tr>
-                        <?php } ?>
-                    </table>
-                    <br>
-
+<div class="content-body">
+    <div class="container-fluid">
+        <div class="card-body">
+            <div class="card-header">
+                <h4 class="card-title">REKAP CUSTOMER BERDASARKAN WILAYAH</h4>
+                <br> <br>
+            </div>
+            <br>
+            <div class="input-group search-area ml-auto d-inline-flex">
+                <input type="text" class="form-control" placeholder="Masukkan Kecamatan " id="searchInput">
+                <div class="input-group-append">
+                    <button type="button" class="input-group-text" onclick="searchData()"><i class="flaticon-381-search-2"></i></button>
                 </div>
             </div>
+
+            <br>
+            <br>
+            <a href="cetak.php" class="btn btn-primary">Cetak Laporan</a>
+            <br> <br>
+            <table class="table table-bordered">
+                <tr align="center" bgcolor="#32c8ed">
+                    <th>No</th>
+                    <th>Kecamatan</th>
+                    <th>Jumlah Customer</th>
+                </tr>
+                <?php
+                $no = 1;
+                if (mysqli_num_rows($result) > 0) {
+                    while ($hasil = mysqli_fetch_array($result)) {
+                ?>
+                        <tr align="center">
+                            <td><?php echo $no++ ?> </td>
+                            <td><?php echo $hasil['kecamatan'] ?></td>
+                            <td><?php echo $hasil['jumlah_customer'] ?></td>
+                        </tr>
+                <?php }
+                } else { ?>
+                    <tr>
+                        <td colspan="3" align="center">Data kosong</td>
+                    </tr>
+                <?php } ?>
+            </table>
+            <br>
+
         </div>
+    </div>
+</div>
+
     </div>
     </div>
 

@@ -59,7 +59,7 @@
                     <br>
                     <br>
                     <a href="input.php" class="btn btn-primary">Tambah Data</a>
-                    <a href="cetak.php" class="btn btn-primary">Cetak Report</a>
+                    <a href="cetak.php" class="btn btn-primary">Cetak Laporan</a>
                     <br> <br>
                     <?php
                     $no = 1;

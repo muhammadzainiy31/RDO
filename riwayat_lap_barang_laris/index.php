@@ -10,12 +10,6 @@
     <link rel="icon" type="image/png" sizes="16x16" href="../images/2.png">
     <link href="../vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
-
-    <style>
-        .scroll-horizontal {
-            overflow-x: auto;
-        }
-    </style>
 </head>
 
 <body>
@@ -28,8 +22,8 @@
     </div>
 
     <div id="main-wrapper">
-        <?php include "../theme-header.php"; ?>
-        <?php include "../theme-sidebar.php"; ?>
+        <?php include "../theme-header.php" ?>
+        <?php include "../theme-sidebar.php" ?>
 
         <!--**********************************
             Content body start
@@ -38,18 +32,14 @@
             <div class="container-fluid">
                 <div class="card-body">
                     <div class="card-header">
-                        <h4 class="card-title">REKAP PENGIRIMAN DRIVER</h4>
-                        <br> <br>
+                        <h4 class="card-title">RIWAYAT BARANG TERLARIS</h4>
                     </div>
-                    <br>
                     <div class="input-group search-area ml-auto d-inline-flex">
-                        <input type="text" class="form-control" placeholder="Masukkan Nama Driver" id="searchInput">
+                        <input type="text" class="form-control" placeholder="Masukkan Nama Barang" id="searchInput">
                         <div class="input-group-append">
                             <button type="button" class="input-group-text" onclick="searchData()"><i class="flaticon-381-search-2"></i></button>
                         </div>
                     </div>
-
-                    
 
                     <div class="container align-items-center">
                         <form action="" method="post">
@@ -69,25 +59,23 @@
                         </form>
                     </div>
 
-
-
                     <br>
-                    <br> <br>
+                    <br>
                     <a href="cetak.php" class="btn btn-primary">Cetak Laporan</a>
-                    <br> <br>
-                    <div class="scroll-horizontal">
-                        <table class="table table-bordered">
-                            <tr align="center" bgcolor="#32c8ed">
+                    <br><br>
+                    <table class="table table-bordered">
+                        <thead align="center" bgcolor="#32c8ed">
+                            <tr>
                                 <th>No</th>
-                                <th>NIK Driver</th>
-                                <th>Nama Driver</th>
-                                <th>Tanggal Kirim</th>
-                                <th>Jumlah Pengiriman</th>
-                                <th>NO Plat</th>
-                                <th>Type Armada</th>
-                                <th>Rute</th>
+                                <th>Kode Barang</th>
+                                <th>Nama Barang</th>
+                                <th>ID Departemen</th>
+                                <th>Nama Departemen</th>
+                                <th>Tanggal kirim</th>
+                                <th>Jumlah Terjual</th>
                             </tr>
-
+                        </thead>
+                        <tbody>
                             <?php
                             include '../koneksi.php';
                             $no = 1;
@@ -98,64 +86,56 @@
                                 $sampai_tanggal = $_POST['sampai_tanggal'];
 
                                 // Buat query dengan kondisi filter tanggal
-                                $query = "SELECT tb_armada.no_plat, tb_armada.type_armada, tb_surat.tanggal_kirim, tb_customer.rute, tb_driver.nama_driver,tb_driver.nik, COUNT(tb_driver.nama_driver) AS jumlah_pengiriman
-                                FROM tb_armada
-                                JOIN tb_pengirim ON tb_armada.no_plat = tb_pengirim.no_plat
-                                JOIN tb_surat ON tb_pengirim.id_surat = tb_surat.id_surat
-                                JOIN tb_customer ON tb_pengirim.id_cust = tb_customer.id_cust
-                                JOIN tb_driver ON tb_pengirim.nik = tb_driver.nik
-                                        WHERE tanggal_kirim BETWEEN '$mulai_tanggal' AND '$sampai_tanggal'
-                                        ORDER BY tb_surat.tanggal_kirim";
-                                $result = mysqli_query($conn, $query);
+                                $query = "SELECT tb_pembelian.kode_brg, tb_barang.nama_brg, tb_departemen.id_dep, tb_departemen.nama, tb_surat.tanggal_kirim, SUM(tb_pembelian.qty) AS jumlah_transaksi
+                                FROM tb_pembelian
+                                JOIN tb_barang ON tb_pembelian.kode_brg = tb_barang.kode_brg
+                                JOIN tb_departemen ON tb_barang.id_dep = tb_departemen.id_dep
+                                JOIN tb_surat ON tb_pembelian.id_surat = tb_surat.id_surat
+                                WHERE tb_surat.tanggal_kirim BETWEEN '$mulai_tanggal' AND '$sampai_tanggal'
+                                GROUP BY tb_pembelian.kode_brg, tb_barang.nama_brg, tb_departemen.id_dep, tb_departemen.nama, tb_surat.tanggal_kirim
+                                ORDER BY jumlah_transaksi DESC";
                             } else {
-                                $query = "SELECT tb_armada.no_plat, tb_armada.type_armada, tb_surat.tanggal_kirim, tb_customer.rute, tb_driver.nama_driver,tb_driver.nik, COUNT(tb_driver.nama_driver) AS jumlah_pengiriman
-                                FROM tb_armada
-                                JOIN tb_pengirim ON tb_armada.no_plat = tb_pengirim.no_plat
-                                JOIN tb_surat ON tb_pengirim.id_surat = tb_surat.id_surat
-                                JOIN tb_customer ON tb_pengirim.id_cust = tb_customer.id_cust
-                                JOIN tb_driver ON tb_pengirim.nik = tb_driver.nik
-                                GROUP BY tb_armada.no_plat, tb_driver.nama_driver";
-                                $result = mysqli_query($conn, $query);
+                                $query = "SELECT tb_pembelian.kode_brg, tb_barang.nama_brg, tb_departemen.id_dep, tb_departemen.nama, tb_surat.tanggal_kirim, SUM(tb_pembelian.qty) AS jumlah_transaksi
+                                FROM tb_pembelian
+                                JOIN tb_barang ON tb_pembelian.kode_brg = tb_barang.kode_brg
+                                JOIN tb_departemen ON tb_barang.id_dep = tb_departemen.id_dep
+                                JOIN tb_surat ON tb_pembelian.id_surat = tb_surat.id_surat
+                                GROUP BY tb_pembelian.kode_brg, tb_barang.nama_brg, tb_departemen.id_dep, tb_departemen.nama, tb_surat.tanggal_kirim
+                                ORDER BY jumlah_transaksi DESC";
                             }
+
+                            $result = mysqli_query($conn, $query);
 
                             if (mysqli_num_rows($result) > 0) {
-                                while ($hasil = mysqli_fetch_assoc($result)) {
+                                while ($row = mysqli_fetch_assoc($result)) {
                                     // Kode HTML untuk menampilkan data
-                            ?>
-
-                                    <tr align="center">
-                                        <td><?php echo $no++ ?></td>
-                                        <td><?php echo $hasil['nik'] ?></td>
-                                        <td><?php echo $hasil['nama_driver'] ?></td>
-                                        <td><?php echo $hasil['tanggal_kirim'] ?></td>
-                                        <td><?php echo $hasil['jumlah_pengiriman'] ?></td>
-                                        <td><?php echo $hasil['no_plat'] ?></td>
-                                        <td><?php echo $hasil['type_armada'] ?></td>
-                                        <td><?php echo $hasil['rute'] ?></td>
-                                    </tr>
-                                <?php
+                                    echo "<tr align='center'>";
+                                    echo "<td>" . $no++ . "</td>";
+                                    echo "<td>" . $row['kode_brg'] . "</td>";
+                                    echo "<td>" . $row['nama_brg'] . "</td>";
+                                    echo "<td>" . $row['id_dep'] . "</td>";
+                                    echo "<td>" . $row['nama'] . "</td>";
+                                    echo "<td>" . $row['tanggal_kirim'] . "</td>";
+                                    echo "<td>" . $row['jumlah_transaksi'] . "</td>";
+                                    echo "</tr>";
                                 }
                             } else {
-                                ?>
-                                <tr>
-                                    <td colspan="8" align="center">Data kosong</td>
-                                </tr>
-                            <?php
+                                echo "<tr>";
+                                echo "<td colspan='7' align='center'>Data kosong</td>";
+                                echo "</tr>";
                             }
                             ?>
-                        </table>
-                    </div>
-                    <br>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-        <!--**********************************
-            Content body end
-        ***********************************-->
-
-        <?php include "../theme-footer.php"; ?>
-
     </div>
+    <!--**********************************
+        Content body end
+    ***********************************-->
+
+    <?php include "../theme-footer.php" ?>
 
     <!-- Required vendors -->
     <script src="../vendor/global/global.min.js"></script>
@@ -163,6 +143,7 @@
     <script src="../js/custom.min.js"></script>
     <script src="../js/deznav-init.js"></script>
     <script src="../vendor/highlightjs/highlight.pack.min.js"></script>
+
     <script>
         function searchData() {
             var input, filter, table, tr, td, i, txtValue;
@@ -185,7 +166,6 @@
             }
         }
     </script>
-
     <!-- Circle progress -->
 </body>
 

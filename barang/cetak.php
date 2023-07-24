@@ -59,17 +59,23 @@
 				<th width="1%">No</th>
 				<th>Kode Barang</th>
 				<th>Nama Barang</th>
+				<th>Id Departemen</th>
+				<th>Departemen</th>
 				<th>Jumlah</th>
 			</tr>
 			<?php
 			$no = 1;
-			$ambilData = mysqli_query($conn, "select * from tb_barang");
+			$ambilData = mysqli_query($conn, "SELECT tb_barang.*, tb_departemen.*
+			FROM tb_barang
+			JOIN tb_departemen ON tb_barang.id_dep = tb_departemen.id_dep;");
 			while ($hasil = mysqli_fetch_array($ambilData)) {
 			?>
 				<tr align="center">
 					<td><?php echo $no++ ?> </td>
 					<td><?php echo $hasil['kode_brg'] ?></td>
 					<td><?php echo $hasil['nama_brg'] ?></td>
+					<td><?php echo $hasil['id_dep'] ?> </td>
+					<td><?php echo $hasil['nama'] ?> </td>
 					<td><?php echo $hasil['jumlah_brg'] ?> </td>
 				</tr>
 			<?php

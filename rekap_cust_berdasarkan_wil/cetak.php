@@ -47,7 +47,7 @@
 				</td>
 		</table>
 		<center>
-			<h2>LAPORAN DATA BERLAKU SIM DRIVER</h2>
+			<h2>LAPORAN REKAP DATA CUSTOMER BERDASARKAN WILAYAH</h2>
 		</center>
 
 		<?php
@@ -57,26 +57,18 @@
 		<table border="1" style="width: 100%">
 			<tr>
 				<th width="1%">No</th>
-				<th>NIK Driver</th>
-				<th>Nama</th>
-				<th>Tanggal Lahir</th>
-				<th>Jabatan</th>
-				<th>Tingkat SIM</th>
-				<th>Alamat</th>
+                    <th>Kecamatan</th>
+                    <th>Jumlah Customer</th>
 			</tr>
 			<?php
 			$no = 1;
-			$ambilData = mysqli_query($conn, "select * from tb_driver");
+			$ambilData = mysqli_query($conn, "SELECT kecamatan, COUNT(id_cust) AS jumlah_customer FROM tb_customer GROUP BY kecamatan");
 			while ($hasil = mysqli_fetch_array($ambilData)) {
 			?>
 				<tr align="center">
 					<td><?php echo $no++ ?> </td>
-					<td><?php echo $hasil['nik'] ?></td>
-					<td><?php echo $hasil['nama_driver'] ?></td>
-					<td><?php echo $hasil['tanggal_lahir'] ?></td>
-					<td><?php echo $hasil['jabatan'] ?> </td>
-					<td><?php echo $hasil['sim'] ?></td>
-					<td><?php echo $hasil['alamat_driver'] ?></td>
+                            <td><?php echo $hasil['kecamatan'] ?></td>
+                            <td><?php echo $hasil['jumlah_customer'] ?></td>
 				</tr>
 			<?php
 			}

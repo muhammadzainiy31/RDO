@@ -66,13 +66,14 @@ if (!isset($_SESSION["login"])) {
                                     </h1>
 
                                     <div class="btn-group-vertical" role="group" aria-label="Data Master Buttons">
-                                        <button type="button" class="btn btn-primary" onclick="window.location.href='../rdo/index.php'">RDO</button>
                                         <button type="button" class="btn btn-primary" onclick="window.location.href='../surat/index.php'">Surat Penjualan</button>
                                         <button type="button" class="btn btn-primary" onclick="window.location.href='../pengiriman/index.php'">Pengiriman</button>
                                         <button type="button" class="btn btn-primary" onclick="window.location.href='../customer/index.php'">Customer</button>
                                         <button type="button" class="btn btn-primary" onclick="window.location.href='../barang/index.php'">Barang</button>
                                         <button type="button" class="btn btn-primary" onclick="window.location.href='../driver/index.php'">Driver</button>
                                         <button type="button" class="btn btn-primary" onclick="window.location.href='../armada/index.php'">Armada</button>
+                                        <button type="button" class="btn btn-primary" onclick="window.location.href='../departemen/index.php'">Departemen</button>
+                                        <button type="button" class="btn btn-primary" onclick="window.location.href='../admin/index.php'">Admin</button>
                                     </div>
                                 </div>
                             </div>
@@ -97,6 +98,8 @@ if (!isset($_SESSION["login"])) {
                                         <button type="button" class="btn btn-warning" onclick="window.location.href='../driver/input.php'">Driver</button>
                                         <button type="button" class="btn btn-warning" onclick="window.location.href='../armada/input.php'">Armada</button>
                                         <button type="button" class="btn btn-warning" onclick="window.location.href='../lap_riw_servis_mobil/input.php'">Servis Armada</button>
+                                        <button type="button" class="btn btn-warning" onclick="window.location.href='../departemen/input.php'">Departemen</button>
+                                        <button type="button" class="btn btn-warning" onclick="window.location.href='../admin/input.php'">Admin</button>
                                     </div>
                                 </div>
                             </div>
@@ -123,12 +126,14 @@ if (!isset($_SESSION["login"])) {
                                         <button type="button" class="btn btn-secondary" onclick="window.location.href='../lap_barang_laris/index.php'">Barang Terlaris</button>
                                         <button type="button" class="btn btn-secondary" onclick="window.location.href='../lap_minim_barang_stok/index.php'">Barang Minim Stok</button>
                                         <button type="button" class="btn btn-secondary" onclick="window.location.href='../lap_berlaku_sim/index.php'">Berlaku SIM Driver</button>
-                                        <button type="button" class="btn btn-secondary" onclick="window.location.href='../lap_cust_berdasarkan_wil/index.php'">Customer Berdasarkan Wilayah</button>
+                                        <button type="button" class="btn btn-secondary" onclick="window.location.href='../lap_cust_berdasarkan_wil/index.php'">Customer Berdasarkan Kecapatan</button>
                                         <button type="button" class="btn btn-secondary" onclick="window.location.href='../lap_cust_royal/index.php'">Customer Paling Royal</button>
                                         <button type="button" class="btn btn-secondary" onclick="window.location.href='../lap_jarak_tempuh/index.php'">Jarak Tempuh Armada</button>
                                         <button type="button" class="btn btn-secondary" onclick="window.location.href='../lap_riw_pengiriman_driver/index.php'">Riwayat Pengiriman Driver</button>
                                         <button type="button" class="btn btn-secondary" onclick="window.location.href='../lap_riw_servis_mobil/index.php'">Riwayat Servis Armada</button>
                                         <button type="button" class="btn btn-secondary" onclick="window.location.href='../rekap_pengiriman_driver/index.php'">Rekap Pengiriman Driver</button>
+                                        <button type="button" class="btn btn-secondary" onclick="window.location.href='../rdo/index.php'">RDO</button>
+                                        <button type="button" class="btn btn-secondary" onclick="window.location.href='../rekap_cust_berdasarkan_wil/index.php'">Rekap Customer Berdasarkan Kecamatan</button>
                                     </div>
                                 </div>
                             </div>

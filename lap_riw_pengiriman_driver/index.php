@@ -117,7 +117,7 @@
                             JOIN 
                                 tb_customer ON tb_pengirim.id_cust = tb_customer.id_cust
                                 JOIN tb_armada ON tb_pengirim.no_plat = tb_armada.no_plat
-                                JOIN tb_driver ON tb_pengirim.nik_driver = tb_driver.nik_driver
+                                JOIN tb_driver ON tb_pengirim.nik = tb_driver.nik
                                 JOIN tb_cekin ON tb_pengirim.id_pengiriman = tb_cekin.id_pengiriman
                                 JOIN tb_cekout ON tb_pengirim.id_pengiriman = tb_cekout.id_pengiriman
                                         WHERE tanggal_kirim BETWEEN '$mulai_tanggal' AND '$sampai_tanggal'
@@ -130,7 +130,7 @@
                             JOIN 
                                 tb_customer ON tb_pengirim.id_cust = tb_customer.id_cust
                                 JOIN tb_armada ON tb_pengirim.no_plat = tb_armada.no_plat
-                                JOIN tb_driver ON tb_pengirim.nik_driver = tb_driver.nik_driver
+                                JOIN tb_driver ON tb_pengirim.nik = tb_driver.nik
                                 JOIN tb_cekin ON tb_pengirim.id_pengiriman = tb_cekin.id_pengiriman
                                 JOIN tb_cekout ON tb_pengirim.id_pengiriman = tb_cekout.id_pengiriman
                                 ORDER BY tb_pengirim.id_pengiriman DESC";
@@ -147,7 +147,7 @@
                                         <td><?php echo $no++ ?></td>
                                         <td><?php echo $hasil['id_pengiriman'] ?></td>
                                         <td><?php echo $hasil['id_surat'] ?></td>
-                                        <td><?php echo $hasil['nik_driver'] ?></td>
+                                        <td><?php echo $hasil['nik'] ?></td>
                                         <td><?php echo $hasil['nama_driver'] ?></td>
                                         <td><?php echo $hasil['nama_cust'] ?></td>
                                         <td><?php echo $hasil['no_telpon'] ?></td>

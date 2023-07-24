@@ -46,7 +46,7 @@
                     </div>
                     <br>
                     <br>
-                    <a href="cetak.php" class="btn btn-primary">Cetak Report</a>
+                    <a href="cetak.php" class="btn btn-primary">Cetak Laporan</a>
                     <br> <br>
                     <table class="table table-bordered">
                         <tr align="center" bgcolor="#32c8ed">
@@ -68,15 +68,15 @@
                         ?>
                                 <tr align="center">
                                     <td><?php echo $no++ ?> </td>
-                                    <td><?php echo $hasil['nik_driver'] ?></td>
+                                    <td><?php echo $hasil['nik'] ?></td>
                                     <td><?php echo $hasil['nama_driver'] ?></td>
                                     <td><?php echo $hasil['sim'] ?></td>
                                     <td><?php echo $hasil['berlaku_sim'] ?></td>
                                     <td>
 
                                         <div class="d-flex">
-                                            <a href="edit.php?nik_driver=<?php echo $hasil['nik_driver']; ?>" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-pencil"></i></a>
-                                            <a href="hapus.php?nik_driver=<?php echo $hasil['nik_driver']; ?>" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
+                                            <a href="edit.php?nik=<?php echo $hasil['nik']; ?>" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-pencil"></i></a>
+                                            <a href="hapus.php?nik=<?php echo $hasil['nik']; ?>" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
                                         </div>
                                     </td>
                                 </tr>

@@ -46,7 +46,7 @@
 				</td>
 		</table>
 		<center>
-			<h2>REPORT DATA ARMADA</h2>
+			<h2>LAPORAN DAFTAR ARMADA</h2>
 		</center><?php
 					include '../koneksi.php';
 					?><table border="1" style="width: 100%">

@@ -24,8 +24,8 @@
 
     <div id="main-wrapper">
 
-        <?php include "theme-header.php" ?>
-        <?php include "theme-sidebar.php" ?>
+        <?php include "../theme-header.php" ?>
+        <?php include "../theme-sidebar.php" ?>
 
         <!--**********************************
             Content body start
@@ -34,61 +34,42 @@
             <div class="container-fluid">
                 <div class="card-body">
                     <div class="card-header">
-                        <h4 class="card-title">DATA REPORT OERDER DELIVERY</h4>
+                        <h4 class="card-title">DATA ADMIN</h4>
                         <br> <br>
                     </div>
+                  
                     <br>
-                    <div class="input-group search-area ml-auto d-inline-flex">
-                        <input type="text" class="form-control" placeholder="Search here">
-                        <div class="input-group-append">
-                            <button type="button" class="input-group-text"><i class="flaticon-381-search-2"></i></button>
-                        </div>
-                    </div>
-                    <br>
-                    <br>
-                    <a href="../user/input.php" class="btn btn-primary">Tambah Data</a>
-                    <a href="cetak.php" class="btn btn-primary">Cetak Report</a>
+                    <a href="input.php" class="btn btn-primary">Tambah Data</a>
+                    <a href="cetak.php" class="btn btn-primary">Cetak Laporan</a>
                     <br> <br>
                     <table class="table table-bordered">
                         <tr align="center" bgcolor="#32c8ed">
                             <th>No</th>
-                            <th>Id Surat</th>
-                            <th>Dari</th>
-                            <th>Tujuan</th>
-                            <th>Jam Berangkat</th>
-                            <th>KM Berangkat</th>
-                            <th>Jam Tiba</th>
-                            <th>KM Tiba</th>
-                            <th>Jumlah KM</th>
-                            <th>Status</th>
-                            <th>Keterangan</th>
+                            <th>Nama</th>
+                            <th>NIK </th>
+                            <th>Password</th>
+                            <th>level</th>
                             <th>Aksi</th>
                         </tr>
                         <?php
-                        include 'koneksi.php';
+                        include '../koneksi.php';
                         $no = 1;
-                        $tampil = mysqli_query($conn, "SELECT * FROM tb_report");
+                        $tampil = mysqli_query($conn, "SELECT * FROM tb_admin");
                         if (mysqli_num_rows($tampil) > 0) {
                             while ($hasil = mysqli_fetch_array($tampil)) {
 
                         ?>
                                 <tr align="center">
                                     <td><?php echo $no++ ?> </td>
-                                    <td><?php echo $hasil['surat_id'] ?></td>
-                                    <td><?php echo $hasil['dari'] ?></td>
-                                    <td><?php echo $hasil['tujuan'] ?> </td>
-                                    <td><?php echo $hasil['jam_berangkat'] ?></td>
-                                    <td><?php echo $hasil['km_berangkat'] ?></td>
-                                    <td><?php echo $hasil['jam_tiba'] ?></td>
-                                    <td><?php echo $hasil['km_tiba'] ?></td>
-                                    <td><?php echo $hasil['jumlah_km'] ?></td>
-                                    <td><?php echo $hasil['status'] ?></td>
-                                    <td><?php echo $hasil['keterangan'] ?></td>
+                                    <td><?php echo $hasil['nama'] ?></td>
+                                    <td><?php echo $hasil['nik'] ?></td>
+                                    <td><?php echo $hasil['password'] ?> </td>
+                                    <td><?php echo $hasil['level'] ?></td>
                                     <td>
-
+                                        <!-- Tambahkan aksi sesuai kebutuhan -->
                                         <div class="d-flex">
-                                            <a href="edit.php" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-pencil"></i></a>
-                                            <a href="hapus.php" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
+                                            <a href="edit.php?id=<?php echo $hasil['id']; ?>" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-pencil"></i></a>
+                                            <a href="hapus.php?id=<?php echo $hasil['id']; ?>" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
                                         </div>
                                     </td>
                                 </tr>
@@ -114,7 +95,7 @@
             Content body end
         ***********************************-->
 
-    <?php include "theme-footer.php" ?>
+    <?php include "../theme-footer.php" ?>
 
     </div>
 

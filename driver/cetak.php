@@ -47,7 +47,7 @@
 				</td>
 		</table>
 		<center>
-			<h2>REPORT DATA DRIVER</h2>
+			<h2>LAPORAN DAFTAR DRIVER</h2>
 		</center>
 
 		<?php
@@ -71,7 +71,7 @@
 			?>
 				<tr align="center">
 					<td><?php echo $no++ ?> </td>
-					<td><?php echo $hasil['nik_driver'] ?></td>
+					<td><?php echo $hasil['nik'] ?></td>
 					<td><?php echo $hasil['nama_driver'] ?></td>
 					<td><?php echo $hasil['tanggal_lahir'] ?></td>
 					<td><?php echo $hasil['jabatan'] ?> </td>

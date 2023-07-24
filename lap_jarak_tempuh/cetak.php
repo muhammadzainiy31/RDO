@@ -47,7 +47,7 @@
 				</td>
 		</table>
 		<center>
-			<h2>REPORT DATA JARAK TEMPUH ARMADA</h2>
+			<h2>LAPORAN DATA JARAK TEMPUH ARMADA</h2>
 		</center>
 
 		<?php

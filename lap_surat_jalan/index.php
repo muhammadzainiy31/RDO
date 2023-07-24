@@ -121,7 +121,7 @@
                             JOIN 
                                 tb_armada ON tb_pengirim.no_plat = tb_armada.no_plat
                             JOIN 
-                                tb_driver ON tb_pengirim.nik_driver = tb_driver.nik_driver
+                                tb_driver ON tb_pengirim.nik = tb_driver.nik
                                         WHERE tanggal_kirim BETWEEN '$mulai_tanggal' AND '$sampai_tanggal'
                                         ORDER BY tb_surat.tanggal_kirim";
                                 $result = mysqli_query($conn, $query);
@@ -141,7 +141,7 @@
                             JOIN 
                                 tb_armada ON tb_pengirim.no_plat = tb_armada.no_plat
                             JOIN 
-                                tb_driver ON tb_pengirim.nik_driver = tb_driver.nik_driver
+                                tb_driver ON tb_pengirim.nik = tb_driver.nik
                             
                                 ORDER BY id_pengiriman DESC";
                                 $result = mysqli_query($conn, $query);
@@ -204,7 +204,7 @@
                                         <td><?php echo $hasil['tanggal_kirim'] ?></td>
                                         <td><?php echo $hasil['no_plat'] ?></td>
                                         <td><?php echo $hasil['type_armada'] ?></td>
-                                        <td><?php echo $hasil['nik_driver'] ?></td>
+                                        <td><?php echo $hasil['nik'] ?></td>
                                         <td><?php echo $hasil['nama_driver'] ?></td>
                                         <td>
                                             <div class="d-flex">

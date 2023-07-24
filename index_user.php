@@ -6,23 +6,25 @@ if (isset($_POST["login"])) {
     $nik = mysqli_real_escape_string($conn, $_POST["nik"]);
     $password = mysqli_real_escape_string($conn, $_POST["password"]);
 
-    $ambilData = mysqli_query($conn, "SELECT * FROM tb_admin WHERE nik ='$nik'");
+    $ambilData = mysqli_query($conn, "SELECT * FROM tb_driver WHERE nik ='$nik'");
 
     if (mysqli_num_rows($ambilData) == 1) {
         $hasil = mysqli_fetch_assoc($ambilData);
 
         if (password_verify($password, $hasil["password"])) {
             $_SESSION["login"] = true;
-            $_SESSION["nama"] = $hasil["nama"];
+            $_SESSION["id_driver"] = $hasil["id_driver"];
+            $_SESSION["nama_driver"] = $hasil["nama_driver"];
             $_SESSION["nik"] = $hasil["nik"];
             $_SESSION["level"] = $hasil["level"];
+
             if ($hasil["level"] == 1) {
                 header("Location: dashboard/index.php");
+                exit;
             } else if ($hasil["level"] == 2) {
                 header("Location: user/index.php");
+                exit;
             }
-
-            exit;
         } else {
             $error = true; // Password salah
         }
@@ -75,17 +77,10 @@ if (isset($_POST["login"])) {
                                                     <input type="checkbox" class="custom-control-input" id="basic_checkbox_1">
                                                     <label class="custom-control-label" for="basic_checkbox_1">Remember my preference</label>
                                                 </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <a href="page-forgot-password.html">Forgot Password?</a>
-                                            </div><div class="text-center">
-    <button type="submit" name="login" value="login" class="btn btn-primary btn-block">Masuk</button>
-</div>
-<br>
-<div class="text-center">
-    <a href="index_user.php" class="btn btn-info">Login Driver</a>
-</div>
-
+                                        </div>
+                                        <div class="text-center">
+                                            <button type="submit" name="login" value="login" class="btn btn-primary btn-block">Login</button>
+                                        </div>
                                     </form>
                                 </div>
                             </div>

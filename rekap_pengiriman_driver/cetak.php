@@ -71,18 +71,18 @@
 			</tr>
 			<?php
 			$no = 1;
-			$ambilData = mysqli_query($conn, "SELECT tb_armada.no_plat, tb_armada.type_armada, tb_surat.tanggal_kirim, tb_customer.rute, tb_driver.nama_driver,tb_driver.nik_driver, COUNT(tb_driver.nama_driver) AS jumlah_pengiriman
+			$ambilData = mysqli_query($conn, "SELECT tb_armada.no_plat, tb_armada.type_armada, tb_surat.tanggal_kirim, tb_customer.rute, tb_driver.nama_driver,tb_driver.nik, COUNT(tb_driver.nama_driver) AS jumlah_pengiriman
 			FROM tb_armada
 			JOIN tb_pengirim ON tb_armada.no_plat = tb_pengirim.no_plat
 			JOIN tb_surat ON tb_pengirim.id_surat = tb_surat.id_surat
 			JOIN tb_customer ON tb_pengirim.id_cust = tb_customer.id_cust
-			JOIN tb_driver ON tb_pengirim.nik_driver = tb_driver.nik_driver
+			JOIN tb_driver ON tb_pengirim.nik = tb_driver.nik
 			GROUP BY tb_armada.no_plat, tb_driver.nama_driver");
 			while ($hasil = mysqli_fetch_array($ambilData)) {
 			?>
 				<tr align="center">
 					<td><?php echo $no++ ?></td>
-					<td><?php echo $hasil['nik_driver'] ?></td>
+					<td><?php echo $hasil['nik'] ?></td>
 					<td><?php echo $hasil['nama_driver'] ?></td>
 					<td><?php echo $hasil['tanggal_kirim'] ?></td>
 					<td><?php echo $hasil['jumlah_pengiriman'] ?></td>

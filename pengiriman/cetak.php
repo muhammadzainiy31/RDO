@@ -47,7 +47,7 @@
 				</td>
 		</table>
 		<center>
-			<h2>LAPORAN DATA SURAT</h2>
+			<h2>LAPORAN DATA PENGIRIMAN</h2>
 		</center>
 
 		<?php

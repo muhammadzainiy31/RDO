@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>APLIKASI REPORT ORDER DELIVERY | INPUT DATA</title>
+    <title>APLIKASI REPORT DELIVERY ORDER | INPUT DATA</title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../images/2.png">
     <!-- Custom Stylesheet -->
@@ -39,8 +39,8 @@
         <?php include "../theme-sidebar.php" ?>
 
         <!--**********************************
-         Content body start
-     ***********************************-->
+        Content body start
+        ***********************************-->
         <div class="content-body">
             <div class="container-fluid">
                 <div class="page-titles">
@@ -54,48 +54,34 @@
                     <div class="col-xl-12 col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Input Data Admin</h4>
+                                <h4 class="card-title">Input Data Departemen</h4>
                             </div>
                             <div class="card-body">
                                 <div class="basic-form">
                                     <form action="" method="POST" enctype="multipart/form-data">
-                                        <div class="form-group">
-                                            <h4 <label for="nama"> Nama </label></h4>
-                                            <input type="text" class="form-control input-default " name="nama" class="form-control col-md-9" placeholder="Masukkan Id Surat" autofocus required>
-                                        </div>
 
                                         <div class="form-group">
-                                            <h4 <label for="nik"> nik </label>
-                                                <input type="text" class="form-control input-default " name="nik" class="form-control col-md-9" placeholder="Masukkan nik">
+                                            <label for="nama">Nama Departemen</label>
+                                            <input type="text" class="form-control input-default" name="nama" placeholder="Masukkan Nama Departemen" required>
                                         </div>
 
-                                        <div class="form-group">
-                                            <h4 <label for="password"> Password </label>
-                                                <input type="text" class="form-control input-default " name="password" class="form-control col-md-9" placeholder="Masukkan password">
-                                        </div>
-
-                                        <div class="form-group">
-                                            <h4 <label for="level"> level </label>
-                                                <input type="text" class="form-control input-default " name="level" class="form-control col-md-9" placeholder="Masukkan Jam">
-                                        </div>
-
-                                      
-                                <button class="btn btn-primary mr-2" name="simpan">Simpan</button>
-                                <a href="transaksi.php" class="btn btn-danger">Batal</a>
-                                </form>
+                                        <div class="mt-4"></div>
+                                        <button class="btn btn-primary mr-2" name="simpan">Simpan</button>
+                                        <a href="./index.php" class="btn btn-danger">Batal</a>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!--**********************************
+        <!--**********************************
             Content body end
         ***********************************-->
 
 
-    <?php include "../theme-footer.php" ?>
+        <?php include "../theme-footer.php" ?>
 
     </div>
     <!--**********************************
@@ -113,18 +99,15 @@
 
 </body>
 
-</html>
+</html><?php
+        include "../koneksi.php";
 
-<?php
-include "../koneksi.php";
-if (isset($_POST['simpan'])) {
-    $nama = $_POST['nama'];
-    $nik = $_POST['nik'];
-    $password = $_POST['password'];
-    $level = $_POST['level'];
-    $input = "INSERT INTO tb_admin VALUES (' ', '$nama', '$nik', '$password', '$level')";
-    mysqli_query($conn, $input);
+        if (isset($_POST['simpan'])) {
+            $nama = $_POST['nama']; // Menggunakan nilai 0 jika tidak ada nilai yang diberikan
+            $input = "INSERT INTO tb_departemen (nama) VALUES ('$nama')";
 
-    echo "<div align='center'><h5> Silahkan Tunggu, Data Sedang Disimpan....</h5></div>";
-    echo "<meta http-equiv='refresh' content='1;url=http://localhost/RDO/admin/index.php'>";
-}
+            mysqli_query($conn, $input);
+            echo "<div align='center'><h5> Silahkan Tunggu, Data Sedang Disimpan....</h5></div>";
+            echo "<meta http-equiv='refresh' content='1;url=http://localhost/RDO/departemen/index.php'>";
+        }
+        ?>

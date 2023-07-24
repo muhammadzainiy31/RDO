@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<title>APLIKASI REPORT DELIVERY ORDER | CETAK DATA DRIVER</title>
+	<title>APLIKASI REPORT DELIVERY ORDER | CETAK DATA ARMADA</title>
 	<style Type="text/css">
 		body {
 			font-family: arial;
@@ -47,7 +47,7 @@
 				</td>
 		</table>
 		<center>
-			<h2>LAPORAN DATA BERLAKU SIM DRIVER</h2>
+			<h2>LAPORAN DAFTAR DEPARTEMEN</h2>
 		</center>
 
 		<?php
@@ -57,35 +57,23 @@
 		<table border="1" style="width: 100%">
 			<tr>
 				<th width="1%">No</th>
-				<th>NIK Driver</th>
-				<th>Nama</th>
-				<th>Tanggal Lahir</th>
-				<th>Jabatan</th>
-				<th>Tingkat SIM</th>
-				<th>Alamat</th>
+				<th>Kode Departemen</th>
+				<th>Nama Departemen</th>
 			</tr>
 			<?php
 			$no = 1;
-			$ambilData = mysqli_query($conn, "select * from tb_driver");
+			$ambilData = mysqli_query($conn, "select * from tb_departemen");
 			while ($hasil = mysqli_fetch_array($ambilData)) {
 			?>
 				<tr align="center">
 					<td><?php echo $no++ ?> </td>
-					<td><?php echo $hasil['nik'] ?></td>
-					<td><?php echo $hasil['nama_driver'] ?></td>
-					<td><?php echo $hasil['tanggal_lahir'] ?></td>
-					<td><?php echo $hasil['jabatan'] ?> </td>
-					<td><?php echo $hasil['sim'] ?></td>
-					<td><?php echo $hasil['alamat_driver'] ?></td>
+					<td><?php echo $hasil['id_dep'] ?></td>
+					<td><?php echo $hasil['nama'] ?></td>
 				</tr>
 			<?php
 			}
 			?>
-
-
-
 		</table>
-
 		<center>
 			<p align="right">Banjarmasin..................20..</p>
 			<p align="right">MANAGER

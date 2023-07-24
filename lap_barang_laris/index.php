@@ -46,32 +46,35 @@
                     </div>
                     <br>
                     <br>
-                    <a href="cetak.php" class="btn btn-primary">Cetak Report</a>
+                    <a href="cetak.php" class="btn btn-primary">Cetak Laporan</a>
                     <br> <br>
                     <table class="table table-bordered">
                         <tr align="center" bgcolor="#32c8ed">
                             <th>No</th>
                             <th>Kode Barang</th>
                             <th>Nama Barang</th>
-                            <th>Departemen</th>
+                            <th>ID Departemen</th>
+                            <th>Nama Departemen</th>
                             <th>Jumlah Terjual</th>
                         </tr>
 
                         <?php
                         include '../koneksi.php';
                         $no = 1;
-                        $tampil = mysqli_query($conn, "SELECT tb_pembelian.kode_brg, tb_barang.nama_brg, tb_barang.departemen, SUM(tb_pembelian.qty) AS jumlah_transaksi
-                FROM tb_pembelian
-                JOIN tb_barang ON tb_pembelian.kode_brg = tb_barang.kode_brg
-                GROUP BY tb_pembelian.kode_brg, tb_barang.nama_brg, tb_barang.departemen
-                ORDER BY jumlah_transaksi DESC");
+                        $tampil = mysqli_query($conn, "SELECT tb_pembelian.kode_brg, tb_barang.nama_brg, tb_departemen.id_dep, tb_departemen.nama,SUM(tb_pembelian.qty) AS jumlah_transaksi
+                        FROM tb_pembelian
+                        JOIN tb_barang ON tb_pembelian.kode_brg = tb_barang.kode_brg
+                        JOIN tb_departemen ON tb_barang.id_dep = tb_departemen.id_dep
+                        GROUP BY tb_pembelian.kode_brg, tb_barang.nama_brg, tb_departemen.id_dep, tb_departemen.nama
+                        ORDER BY jumlah_transaksi DESC;");
                         if (mysqli_num_rows($tampil) > 0) {
                             while ($row = mysqli_fetch_array($tampil)) {
                                 echo "<tr align='center'>";
                                 echo "<td>" . $no++ . "</td>";
                                 echo "<td>" . $row['kode_brg'] . "</td>";
                                 echo "<td>" . $row['nama_brg'] . "</td>";
-                                echo "<td>" . $row['departemen'] . "</td>";
+                                echo "<td>" . $row['id_dep'] . "</td>";
+                                echo "<td>" . $row['nama'] . "</td>";
                                 echo "<td>" . $row['jumlah_transaksi'] . "</td>";
                                 echo "</tr>";
                             }

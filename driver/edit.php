@@ -1,7 +1,7 @@
 <?php
 include "../koneksi.php";
-$id = $_GET['nik_driver'];
-$ambilData = mysqli_query($conn, "SELECT * FROM tb_driver WHERE nik_driver='$id'");
+$id = $_GET['nik'];
+$ambilData = mysqli_query($conn, "SELECT * FROM tb_driver WHERE nik='$id'");
 $hasil = mysqli_fetch_array($ambilData);
 ?>
 
@@ -68,8 +68,8 @@ $hasil = mysqli_fetch_array($ambilData);
                                     <form action="" method="POST" enctype="multipart/form-data">
 
                                         <div class="form-group">
-                                            <h4><label for="nik_driver">NIK DRIVER</label></h4>
-                                            <input type="number" class="form-control input-default" name="nik_driver" id="nik_driver" value="<?php echo $hasil['nik_driver']; ?>">
+                                            <h4><label for="nik">NIK DRIVER</label></h4>
+                                            <input type="number" class="form-control input-default" name="nik" id="nik" value="<?php echo $hasil['nik']; ?>">
                                         </div>
 
                                         <div class="form-group">
@@ -141,15 +141,15 @@ $hasil = mysqli_fetch_array($ambilData);
 <?php
 include "../koneksi.php";
 if (isset($_POST['simpan'])) {
-    $nik_driver = $_POST['nik_driver'];
+    $nik = $_POST['nik'];
     $nama_driver = $_POST['nama_driver'];
     $tanggal_lahir = $_POST['tanggal_lahir'];
     $jabatan = $_POST['jabatan'];
     $sim = $_POST['sim'];
     $berlaku_sim = $_POST['berlaku_sim'];
     $alamat_driver = $_POST['alamat_driver'];
-    mysqli_query($conn, "UPDATE tb_driver SET nik_driver='$nik_driver', nama_driver='$nama_driver', tanggal_lahir='$tanggal_lahir', jabatan='$jabatan', sim='$sim',berlaku_sim='$berlaku_sim', alamat_driver='$alamat_driver' 
-        WHERE nik_driver='$id'") or die(mysqli_error($conn));
+    mysqli_query($conn, "UPDATE tb_driver SET nik='$nik', nama_driver='$nama_driver', tanggal_lahir='$tanggal_lahir', jabatan='$jabatan', sim='$sim',berlaku_sim='$berlaku_sim', alamat_driver='$alamat_driver' 
+        WHERE nik='$id'") or die(mysqli_error($conn));
 
     echo "<div align='center'><h5> Silahkan Tunggu, Data Sedang Diupdate....</h5></div>";
     echo "<meta http-equiv='refresh' content='1;url=http://localhost/RDO/driver/index.php'>";

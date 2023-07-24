@@ -8,10 +8,10 @@ if (isset($_POST['submit'])) {
     $id_surat = $_POST['id_surat'];
     $id_cust = $_POST['id_cust'];
     $no_plat = $_POST['no_plat'];
-    $nik_driver = $_POST['nik_driver'];
+    $nik = $_POST['nik'];
 
     // Simpan data ke tabel pengirim
-    $query = "INSERT INTO tb_pengirim (id_surat, id_cust, no_plat,nik_driver) VALUES ('$id_surat', '$id_cust', '$no_plat', '$nik_driver')";
+    $query = "INSERT INTO tb_pengirim (id_surat, id_cust, no_plat,nik) VALUES ('$id_surat', '$id_cust', '$no_plat', '$nik')";
     mysqli_query($conn, $query) or die(mysqli_error($conn));
 
     echo "<div align='center'><h5> Silahkan Tunggu, Data Sedang Diproses....</h5></div>";
@@ -128,15 +128,15 @@ if (isset($_POST['submit'])) {
 
                                         <div class="form-group">
                                             <h4>
-                                                <label for="nik_driver">NIK Driver</label>
-                                                <select name="nik_driver" id="nik_driver" class="form-control" required>
+                                                <label for="nik">NIK Driver</label>
+                                                <select name="nik" id="nik" class="form-control" required>
                                                     <option value="">-PILIH-</option>
                                                     <?php
                                                     include "../koneksi.php";
                                                     $ambilData = mysqli_query($conn, "SELECT * FROM tb_driver") or die(mysqli_error($conn));
                                                     while ($hasil = mysqli_fetch_array($ambilData)) {
-                                                        echo '<option value="' . $hasil['nik_driver'] . '">' .
-                                                            $hasil['nik_driver'] . '-' .   $hasil['nama_driver'] . '</option>';
+                                                        echo '<option value="' . $hasil['nik'] . '">' .
+                                                            $hasil['nik'] . '-' .   $hasil['nama_driver'] . '</option>';
                                                     }
                                                     ?>
                                                 </select>
@@ -145,18 +145,18 @@ if (isset($_POST['submit'])) {
                                         <script>
                                             // Fungsi untuk melakukan autofill pada nama_driver
                                             function autofillBrg() {
-                                                var nik_driver = document.getElementById("nik_driver").value;
+                                                var nik = document.getElementById("nik").value;
                                                 <?php
                                                 $ambilData = mysqli_query($conn, "SELECT * FROM tb_driver") or die(mysqli_error($conn));
                                                 while ($hasil = mysqli_fetch_array($ambilData)) {
-                                                    echo "if (nik_driver === '" . $hasil['nik_driver'] . "') {";
+                                                    echo "if (nik === '" . $hasil['nik'] . "') {";
                                                     echo "}";
                                                 }
                                                 ?>
                                             }
 
                                             // Panggil fungsi autofill saat combo box berubah
-                                            document.getElementById("nik_driver").addEventListener("change", autofillBrg);
+                                            document.getElementById("nik").addEventListener("change", autofillBrg);
                                         </script>
 
                                         <div class="mt-4"></div>

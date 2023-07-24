@@ -46,7 +46,7 @@
                     </div>
                     <br>
                     <br>
-                    <a href="cetak.php" class="btn btn-primary">Cetak Report</a>
+                    <a href="cetak.php" class="btn btn-primary">Cetak Laporan</a>
                     <br> <br>
                     <table class="table table-bordered">
                         <tr align="center" bgcolor="#32c8ed">

@@ -47,7 +47,7 @@
 				</td>
 		</table>
 		<center>
-			<h2>REPORT DATA CUSTOMER</h2>
+			<h2>LAPORAN DAFTAR CUSTOMER</h2>
 		</center>
 
 		<?php

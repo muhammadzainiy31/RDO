@@ -11,6 +11,17 @@
     <link href="../vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
 
+    <style>
+        .search-form {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .search-input {
+            flex: 1;
+            margin-right: 10px;
+        }
+    </style>
 </head>
 
 <body>
@@ -34,56 +45,37 @@
             <div class="container-fluid">
                 <div class="card-body">
                     <div class="card-header">
-                        <h4 class="card-title">DATA CUSTOMER</h4>
+                        <h4 class="card-title">DATA DEPARTEMEN</h4>
                         <br> <br>
                     </div>
                     <br>
-                    <div class="input-group search-area ml-auto d-inline-flex">
-                        <input type="text" class="form-control" placeholder="Masukan Nama Customer" id="searchInput">
-                        <div class="input-group-append">
-                            <button type="button" class="input-group-text" onclick="searchData()"><i class="flaticon-381-search-2"></i></button>
-                        </div>
-                    </div>
 
-                 
+
+                  
                     <br>
                     <br>
-                    <a href="../customer/input.php" class="btn btn-primary">Tambah Data</a>
-                    <a href="cetak.php" class="btn btn-primary">Cetak Laporan</a>
+                    <a href="../departemen/input.php" class="btn btn-primary">Tambah Data</a>
+                    <a href="cetak.php" class="btn btn-primary">Cetak laporan</a>
                     <br> <br>
-                    <table class="table table-bordered">
+                    <table class="table table-bordered" id="dataTable">
                         <tr align="center" bgcolor="#32c8ed">
                             <th>No</th>
-                            <th>Kode Customer</th>
-                            <th>Nama Customer</th>
-                            <th>No Telpon</th>
-                            <th>Alamat</th>
-                            <th>Kecamatan</th>
-                            <th>Rute</th>
-                            <th>Aksi</th>
+                            <th>Kode Departemen</th>
+                            <th>Nama </th>
                         </tr>
                         <?php
                         include '../koneksi.php';
                         $no = 1;
-                        $tampil = mysqli_query($conn, "SELECT * FROM tb_customer ORDER BY id_cust DESC");
+                        $tampil = mysqli_query($conn, "SELECT * FROM tb_departemen ORDER BY id_dep DESC");
                         if (mysqli_num_rows($tampil) > 0) {
                             while ($hasil = mysqli_fetch_array($tampil)) {
 
                         ?>
                                 <tr align="center">
-                                    <td><?php echo $no++ ?></td>
-                                    <td><?php echo $hasil['id_cust'] ?></td>
-                                    <td><?php echo $hasil['nama_cust'] ?></td>
-                                    <td><?php echo $hasil['no_telpon'] ?></td>
-                                    <td><?php echo $hasil['alamat_cust'] ?> </td>
-                                    <td><?php echo $hasil['kecamatan'] ?> </td>
-                                    <td><?php echo $hasil['rute'] ?> </td>
-                                    <td>
-
+                                    <td><?php echo $no++ ?> </td>
+                                    <td><?php echo $hasil['id_dep'] ?></td>
+                                    <td><?php echo $hasil['nama'] ?></td>
                                         <div class="d-flex">
-                                            <a href="edit.php?id_cust=<?php echo $hasil['id_cust']; ?>" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-pencil"></i></a>
-                                            <a href="hapus.php?id_cust=<?php echo $hasil['id_cust']; ?>" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
-                                        </div>
                                     </td>
                                 </tr>
                             <?php }
@@ -100,7 +92,13 @@
         </div>
     </div>
     </div>
+
     </div>
+    </div>
+    </div>
+    <!--**********************************
+            Content body end
+        ***********************************-->
 
     <?php include "../theme-footer.php" ?>
 
@@ -117,16 +115,15 @@
     <!-- Circle progress -->
 
     <script>
-        function searchData() {
+        function searchTable() {
             var input, filter, table, tr, td, i, txtValue;
             input = document.getElementById("searchInput");
             filter = input.value.toUpperCase();
-            table = document.getElementsByClassName("table")[0];
+            table = document.getElementById("dataTable");
             tr = table.getElementsByTagName("tr");
 
             for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[2]; // Ganti angka 2 dengan indeks kolom nama
-
+                td = tr[i].getElementsByTagName("td")[2]; // Adjust the column index for the desired search
                 if (td) {
                     txtValue = td.textContent || td.innerText;
                     if (txtValue.toUpperCase().indexOf(filter) > -1) {

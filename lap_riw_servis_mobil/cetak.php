@@ -47,7 +47,7 @@
 				</td>
 		</table>
 		<center>
-			<h2>REPORT DATA RIWAYAT SERVIS ARMADA</h2>
+			<h2>LAPORAN DATA RIWAYAT SERVIS ARMADA</h2>
 		</center>
 
 		<?php

@@ -70,10 +70,12 @@
 
                                                 // Query untuk mendapatkan daftar kecamatan
                                                 $query = "SELECT kecamatan.nama
-        FROM kecamatan
-        JOIN kota_kabupaten ON kecamatan.id_kota_kabupaten = kota_kabupaten.id
-        JOIN provinsi ON kota_kabupaten.id_provinsi = provinsi.id
-        WHERE provinsi.kode = '63'";
+                                                FROM kecamatan
+                                                JOIN kota_kabupaten ON kecamatan.id_kota_kabupaten = kota_kabupaten.id
+                                                JOIN provinsi ON kota_kabupaten.id_provinsi = provinsi.id
+                                                WHERE provinsi.kode = '63'
+                                                ORDER BY kecamatan.nama ASC;
+                                                ";
 
                                                 // Eksekusi query
                                                 $result = mysqli_query($conn, $query);

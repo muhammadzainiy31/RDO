@@ -74,11 +74,6 @@
                                                 <input type="text" class="form-control input-default " name="password" class="form-control col-md-9" placeholder="Masukkan password">
                                         </div>
 
-                                        <div class="form-group">
-                                            <h4 <label for="level"> level </label>
-                                                <input type="text" class="form-control input-default " name="level" class="form-control col-md-9" placeholder="Masukkan Jam">
-                                        </div>
-
                                       
                                 <button class="btn btn-primary mr-2" name="simpan">Simpan</button>
                                 <a href="transaksi.php" class="btn btn-danger">Batal</a>
@@ -121,8 +116,7 @@ if (isset($_POST['simpan'])) {
     $nama = $_POST['nama'];
     $nik = $_POST['nik'];
     $password = $_POST['password'];
-    $level = $_POST['level'];
-    $input = "INSERT INTO tb_admin VALUES (' ', '$nama', '$nik', '$password', '$level')";
+    $input = "INSERT INTO tb_admin VALUES (' ', '$nama', '$nik', '$password')";
     mysqli_query($conn, $input);
 
     echo "<div align='center'><h5> Silahkan Tunggu, Data Sedang Disimpan....</h5></div>";

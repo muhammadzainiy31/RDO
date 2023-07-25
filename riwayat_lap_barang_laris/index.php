@@ -107,16 +107,16 @@
                             $result = mysqli_query($conn, $query);
 
                             if (mysqli_num_rows($result) > 0) {
-                                while ($row = mysqli_fetch_assoc($result)) {
+                                while ($hasil = mysqli_fetch_assoc($result)) {
                                     // Kode HTML untuk menampilkan data
                                     echo "<tr align='center'>";
                                     echo "<td>" . $no++ . "</td>";
-                                    echo "<td>" . $row['kode_brg'] . "</td>";
-                                    echo "<td>" . $row['nama_brg'] . "</td>";
-                                    echo "<td>" . $row['id_dep'] . "</td>";
-                                    echo "<td>" . $row['nama'] . "</td>";
-                                    echo "<td>" . $row['tanggal_kirim'] . "</td>";
-                                    echo "<td>" . $row['jumlah_transaksi'] . "</td>";
+                                    echo "<td>" . $hasil['kode_brg'] . "</td>";
+                                    echo "<td>" . $hasil['nama_brg'] . "</td>";
+                                    echo "<td>" . $hasil['id_dep'] . "</td>";
+                                    echo "<td>" . $hasil['nama'] . "</td>";
+                                    echo "<td>" . $hasil['tanggal_kirim'] . "</td>";
+                                    echo "<td>" . $hasil['jumlah_transaksi'] . "</td>";
                                     echo "</tr>";
                                 }
                             } else {

@@ -15,7 +15,7 @@ if (!isset($_SESSION["login"])) {
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>APLIKASI REPORT DELIVERY ORDER | DATA</title>
+    <title>APLIKASI REPORT DELIVERY ORDER | DASHBOARD</title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../images/2.png">
     <link href="../vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
@@ -62,7 +62,7 @@ if (!isset($_SESSION["login"])) {
                                             <line x1="16" y1="3" x2="16" y2="11"></line>
                                             <line x1="16" y1="15" x2="16" y2="15"></line>
                                         </svg>
-                                        Laporan
+                                        Data
                                     </h1>
 
                                     <div class="btn-group-vertical" role="group" aria-label="Data Master Buttons">
@@ -121,19 +121,20 @@ if (!isset($_SESSION["login"])) {
                                     </h1>
 
                                     <div class="btn-group-vertical" role="group" aria-label="Data Master Buttons">
-                                        <button type="button" class="btn btn-secondary" onclick="window.location.href='../pengiriman/index.php'">Surat Jalan</button>
                                         <button type="button" class="btn btn-secondary" onclick="window.location.href='../lap_surat_jalan/index.php'">Pengiriman</button>
-                                        <button type="button" class="btn btn-secondary" onclick="window.location.href='../lap_barang_laris/index.php'">Barang Terlaris</button>
+                                        <button type="button" class="btn btn-secondary" onclick="window.location.href='../pengiriman/index.php'">Surat Jalan</button>
                                         <button type="button" class="btn btn-secondary" onclick="window.location.href='../lap_minim_barang_stok/index.php'">Barang Minim Stok</button>
+                                        <button type="button" class="btn btn-secondary" onclick="window.location.href='../riwayat_lap_barang_laris/index.php'">Barang Terlaris</button>
+                                        <button type="button" class="btn btn-secondary" onclick="window.location.href='../lap_barang_laris/index.php'">Riwayat Barang Terlaris</button>
                                         <button type="button" class="btn btn-secondary" onclick="window.location.href='../lap_berlaku_sim/index.php'">Berlaku SIM Driver</button>
-                                        <button type="button" class="btn btn-secondary" onclick="window.location.href='../lap_cust_berdasarkan_wil/index.php'">Customer Berdasarkan Kecapatan</button>
-                                        <button type="button" class="btn btn-secondary" onclick="window.location.href='../lap_cust_royal/index.php'">Customer Paling Royal</button>
-                                        <button type="button" class="btn btn-secondary" onclick="window.location.href='../lap_jarak_tempuh/index.php'">Jarak Tempuh Armada</button>
-                                        <button type="button" class="btn btn-secondary" onclick="window.location.href='../lap_riw_pengiriman_driver/index.php'">Riwayat Pengiriman Driver</button>
-                                        <button type="button" class="btn btn-secondary" onclick="window.location.href='../lap_riw_servis_mobil/index.php'">Riwayat Servis Armada</button>
-                                        <button type="button" class="btn btn-secondary" onclick="window.location.href='../rekap_pengiriman_driver/index.php'">Rekap Pengiriman Driver</button>
-                                        <button type="button" class="btn btn-secondary" onclick="window.location.href='../rdo/index.php'">RDO</button>
+                                        <button type="button" class="btn btn-secondary" onclick="window.location.href='../lap_cust_berdasarkan_wil/index.php'">Customer Berdasarkan Kecamatan</button>
                                         <button type="button" class="btn btn-secondary" onclick="window.location.href='../rekap_cust_berdasarkan_wil/index.php'">Rekap Customer Berdasarkan Kecamatan</button>
+                                        <button type="button" class="btn btn-secondary" onclick="window.location.href='../lap_cust_royal/index.php'">Customer Paling Royal</button>
+                                        <button type="button" class="btn btn-secondary" onclick="window.location.href='../lap_riw_pengiriman_driver/index.php'">Riwayat Pengiriman Driver</button>
+                                        <button type="button" class="btn btn-secondary" onclick="window.location.href='../rekap_pengiriman_driver/index.php'">Rekap Pengiriman Driver</button>
+                                        <button type="button" class="btn btn-secondary" onclick="window.location.href='../lap_riw_servis_mobil/index.php'">Riwayat Servis Armada</button>
+                                        <button type="button" class="btn btn-secondary" onclick="window.location.href='../lap_jarak_tempuh/index.php'">Jarak Tempuh Armada</button>
+                                        <button type="button" class="btn btn-secondary" onclick="window.location.href='../rdo/index.php'">RDO</button>
                                     </div>
                                 </div>
                             </div>

@@ -140,26 +140,33 @@ if (!isset($_SESSION["login"])) {
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <?php
-                                                            $query_pembelian = "SELECT * FROM tb_pembelian WHERE id_surat = " . $hasil['id_surat'];
-                                                            $result_pembelian = mysqli_query($conn, $query_pembelian);
+                                                        </div> <div class="modal-body">
+    <?php
+    $query_pembelian = "SELECT tb_pembelian.*, tb_customer.id_cust, tb_customer.nama_cust, tb_customer.alamat_cust, tb_customer.no_telpon, tb_pembelian.kode_brg, tb_pembelian.qty
+                        FROM tb_pembelian
+                        JOIN tb_surat ON tb_pembelian.id_surat = tb_surat.id_surat
+                        JOIN tb_customer ON tb_surat.id_cust = tb_customer.id_cust
+                        WHERE tb_pembelian.id_surat = " . $hasil['id_surat'];
 
-                                                            if (mysqli_num_rows($result_pembelian) > 0) {
-                                                                while ($pembelian = mysqli_fetch_assoc($result_pembelian)) {
-                                                                    echo "<p>ID Pembelian: " . $pembelian['id_pembelian'] . "</p>";
-                                                                    echo "<p>ID Surat: " . $pembelian['id_surat'] . "</p>";
-                                                                    echo "<p>ID Customer: " . $pembelian['id_cust'] . "</p>";
-                                                                    echo "<p>ID Barang: " . $pembelian['kode_brg'] . "</p>";
-                                                                    echo "<p>Jumlah: " . $pembelian['qty'] . "</p>";
-                                                                    echo "<br>";
-                                                                }
-                                                            } else {
-                                                                echo "Data pembelian tidak tersedia.";
-                                                            }
-                                                            ?>
-                                                        </div>
+    $result_pembelian = mysqli_query($conn, $query_pembelian);
+
+    if (mysqli_num_rows($result_pembelian) > 0) {
+        while ($pembelian = mysqli_fetch_assoc($result_pembelian)) {
+            echo "<p>ID Pembelian: " . $pembelian['id_pembelian'] . "</p>";
+            echo "<p>ID Surat: " . $pembelian['id_surat'] . "</p>";
+            echo "<p>ID Customer: " . $pembelian['id_cust'] . "</p>";
+            echo "<p>Nama Customer: " . $pembelian['nama_cust'] . "</p>";
+            echo "<p>Alamat: " . $pembelian['alamat_cust'] . "</p>";
+            echo "<p>NO Telpon: " . $pembelian['no_telpon'] . "</p>";
+            echo "<p>ID Barang: " . $pembelian['kode_brg'] . "</p>";
+            echo "<p>Jumlah: " . $pembelian['qty'] . "</p>";
+            echo "<br>";
+        }
+    } else {
+        echo "Data pembelian tidak tersedia.";
+    }
+    ?>
+</div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                                                         </div>

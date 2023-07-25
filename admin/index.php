@@ -48,7 +48,6 @@
                             <th>Nama</th>
                             <th>NIK </th>
                             <th>Password</th>
-                            <th>level</th>
                             <th>Aksi</th>
                         </tr>
                         <?php
@@ -64,7 +63,6 @@
                                     <td><?php echo $hasil['nama'] ?></td>
                                     <td><?php echo $hasil['nik'] ?></td>
                                     <td><?php echo $hasil['password'] ?> </td>
-                                    <td><?php echo $hasil['level'] ?></td>
                                     <td>
                                         <!-- Tambahkan aksi sesuai kebutuhan -->
                                         <div class="d-flex">

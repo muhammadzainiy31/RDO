@@ -63,18 +63,19 @@
 				<th>Jumlah Penjualan</th>
 				<?php
 				$no = 1;
-				$ambilData = mysqli_query($conn, "SELECT tb_pembelian.kode_brg, tb_barang.nama_brg, tb_barang.departemen, SUM(tb_pembelian.qty) AS jumlah_transaksi
-		FROM tb_pembelian
-		JOIN tb_barang ON tb_pembelian.kode_brg = tb_barang.kode_brg
-		GROUP BY tb_pembelian.kode_brg, tb_barang.nama_brg, tb_barang.departemen
-		ORDER BY jumlah_transaksi DESC");
+				$ambilData = mysqli_query($conn, "SELECT tb_pembelian.kode_brg, tb_barang.nama_brg, tb_departemen.id_dep, tb_departemen.nama,SUM(tb_pembelian.qty) AS jumlah_transaksi
+				FROM tb_pembelian
+				JOIN tb_barang ON tb_pembelian.kode_brg = tb_barang.kode_brg
+				JOIN tb_departemen ON tb_barang.id_dep = tb_departemen.id_dep
+				GROUP BY tb_pembelian.kode_brg, tb_barang.nama_brg, tb_departemen.id_dep, tb_departemen.nama
+				ORDER BY jumlah_transaksi DESC");
 				while ($hasil = mysqli_fetch_array($ambilData)) {
 				?>
 			<tr align="center">
 				<td><?php echo $no++ ?> </td>
 				<td><?php echo $hasil['kode_brg'] ?></td>
 				<td><?php echo $hasil['nama_brg'] ?></td>
-				<td><?php echo $hasil['departemen'] ?></td>
+				<td><?php echo $hasil['nama'] ?></td>
 				<td><?php echo $hasil['jumlah_transaksi'] ?> </td>
 			</tr>
 		<?php

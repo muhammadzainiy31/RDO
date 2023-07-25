@@ -63,8 +63,7 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <h4>
-                                                <label for="id_dep">Armada/Mobil</label>
+                                                <label for="id_dep">DEPARTEMEN</label>
                                                 <select name="id_dep" id="id_dep" class="form-control" required>
                                                     <option value="">-PILIH-</option>
                                                     <?php
@@ -76,7 +75,6 @@
                                                     }
                                                     ?>
                                                 </select>
-                                            </h4>
                                         </div>
 
                                         <script>

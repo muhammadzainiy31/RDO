@@ -15,13 +15,9 @@ if (isset($_POST["login"])) {
             $_SESSION["login"] = true;
             $_SESSION["nama"] = $hasil["nama"];
             $_SESSION["nik"] = $hasil["nik"];
-            $_SESSION["level"] = $hasil["level"];
-            if ($hasil["level"] == 1) {
-                header("Location: dashboard/index.php");
-            } else if ($hasil["level"] == 2) {
-                header("Location: user/index.php");
-            }
 
+            // Pengalihan halaman setelah login berhasil
+            header("Location: dashboard/index.php");
             exit;
         } else {
             $error = true; // Password salah
@@ -29,8 +25,13 @@ if (isset($_POST["login"])) {
     } else {
         $error = true; // NIK tidak ditemukan
     }
+
+    // Pengalihan halaman jika NIK tidak ditemukan atau password salah
+    header("Location: default/index.php");
+    exit;
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en" class="h-100">
@@ -54,7 +55,7 @@ if (isset($_POST["login"])) {
                         <div class="row no-gutters">
                             <div class="col-xl-12">
                                 <div class="auth-form">
-                                    <h4 class="text-center mb-4">Sign in your account</h4>
+                                    <h4 class="text-center mb-4">Sign in your account Admin</h4>
                                     <?php
                                     if (isset($error)) {
                                         echo '<div class="alert alert-danger" role="alert">Invalid NIK or Password!</div>';

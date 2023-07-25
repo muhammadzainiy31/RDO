@@ -75,13 +75,21 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <h4 <label for="jabatan"> JABATAN</label>
-                                                <input type="text" class="form-control input-default " name="jabatan" class="form-control col-md-9" placeholder="Masukkan jabatan">
+                                            <h4 <label for="jabatan"> JABATAN </label>
+                                            
+                                            <br>
+                                            <br>
+                                            <label><input type="radio" name="jabatan" value="DRIVER"> DRIVER</label>
                                         </div>
 
                                         <div class="form-group">
                                             <h4 <label for="sim"> TINGKAT SIM </label>
-                                                <input type="text" class="form-control input-default " name="sim" class="form-control col-md-9" placeholder="Masukkan Tingkat SIM">
+                                            
+                                            <br>
+                                            <br>
+                                            <label><input type="radio" name="sim" value="SIM A"> SIM A</label>
+                                            <label><input type="radio" name="sim" value="SIM B1"> SIM B1</label>
+                                            <label><input type="radio" name="sim" value="SIM B2"> SIM B2</label>
                                         </div>
 
                                         <div class="form-group">

@@ -53,14 +53,19 @@
                             <th>No</th>
                             <th>Kode Barang</th>
                             <th>Nama Barang</th>
-                            <th>Kategori</th>
+                            <th>Departemen</th>
                             <th>Minim Stok</th>
                             <th>Stok Sisa</th>
                         </tr>
                         <?php
                         include '../koneksi.php';
                         $no = 1;
-                        $tampil = mysqli_query($conn, "SELECT * FROM tb_barang WHERE jumlah_brg < restok");
+                        $tampil = mysqli_query($conn, "SELECT tb_barang.*, tb_departemen.*
+                        FROM tb_barang
+                        JOIN tb_departemen ON tb_barang.id_dep = tb_departemen.id_dep
+                        WHERE tb_barang.jumlah_brg < tb_barang.restok
+                        
+                        ");
                         if (mysqli_num_rows($tampil) > 0) {
                             while ($hasil = mysqli_fetch_array($tampil)) {
                         ?>
@@ -68,7 +73,7 @@
                                     <td><?php echo $no++ ?></td>
                                     <td><?php echo $hasil['kode_brg'] ?></td>
                                     <td><?php echo $hasil['nama_brg'] ?></td>
-                                    <td><?php echo $hasil['departemen'] ?></td>
+                                    <td><?php echo $hasil['nama'] ?></td>
                                     <td><?php echo $hasil['restok'] ?></td>
                                     <td><?php echo $hasil['jumlah_brg'] ?></td>
                                 </tr>

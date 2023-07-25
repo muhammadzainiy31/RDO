@@ -66,7 +66,7 @@
                         JOIN tb_barang ON tb_pembelian.kode_brg = tb_barang.kode_brg
                         JOIN tb_departemen ON tb_barang.id_dep = tb_departemen.id_dep
                         GROUP BY tb_pembelian.kode_brg, tb_barang.nama_brg, tb_departemen.id_dep, tb_departemen.nama
-                        ORDER BY jumlah_transaksi DESC;");
+                        ORDER BY jumlah_transaksi DESC");
                         if (mysqli_num_rows($tampil) > 0) {
                             while ($row = mysqli_fetch_array($tampil)) {
                                 echo "<tr align='center'>";

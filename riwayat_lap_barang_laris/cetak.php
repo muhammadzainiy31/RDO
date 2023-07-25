@@ -47,7 +47,7 @@
 				</td>
 		</table>
 		<center>
-			<h2>LAPORAN DATA BARANG LARIS</h2>
+			<h2>RIWAYAT LAPORAN DATA BARANG LARIS</h2>
 		</center>
 
 		<?php
@@ -57,24 +57,28 @@
 		<table border="1" style="width: 100%">
 			<tr>
 				<th width="1%">No</th>
-				<th>Kode Barang</th>
-				<th>Nama Barang</th>
-				<th>Departemen</th>
-				<th>Jumlah Penjualan</th>
+                                <th>Kode Barang</th>
+                                <th>Nama Barang</th>
+                                <th>Nama Departemen</th>
+                                <th>Tanggal kirim</th>
+                                <th>Jumlah Terjual</th>
 				<?php
 				$no = 1;
-				$ambilData = mysqli_query($conn, "SELECT tb_pembelian.kode_brg, tb_barang.nama_brg, tb_barang.departemen, SUM(tb_pembelian.qty) AS jumlah_transaksi
-		FROM tb_pembelian
-		JOIN tb_barang ON tb_pembelian.kode_brg = tb_barang.kode_brg
-		GROUP BY tb_pembelian.kode_brg, tb_barang.nama_brg, tb_barang.departemen
-		ORDER BY jumlah_transaksi DESC");
+				$ambilData = mysqli_query($conn, "SELECT tb_pembelian.kode_brg, tb_barang.nama_brg, tb_departemen.id_dep, tb_departemen.nama, tb_surat.tanggal_kirim, SUM(tb_pembelian.qty) AS jumlah_transaksi
+				FROM tb_pembelian
+				JOIN tb_barang ON tb_pembelian.kode_brg = tb_barang.kode_brg
+				JOIN tb_departemen ON tb_barang.id_dep = tb_departemen.id_dep
+				JOIN tb_surat ON tb_pembelian.id_surat = tb_surat.id_surat
+				GROUP BY tb_pembelian.kode_brg, tb_barang.nama_brg, tb_departemen.id_dep, tb_departemen.nama, tb_surat.tanggal_kirim
+				ORDER BY jumlah_transaksi DESC");
 				while ($hasil = mysqli_fetch_array($ambilData)) {
 				?>
 			<tr align="center">
 				<td><?php echo $no++ ?> </td>
 				<td><?php echo $hasil['kode_brg'] ?></td>
 				<td><?php echo $hasil['nama_brg'] ?></td>
-				<td><?php echo $hasil['departemen'] ?></td>
+				<td><?php echo $hasil['nama'] ?></td>
+				<td><?php echo $hasil['tanggal_kirim'] ?></td>
 				<td><?php echo $hasil['jumlah_transaksi'] ?> </td>
 			</tr>
 		<?php

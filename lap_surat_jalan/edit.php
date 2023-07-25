@@ -27,7 +27,7 @@ if (isset($_POST['simpan'])) {
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>APLIKASI REPORT DELIVERY ORDER | INPUT DATA</title>
+    <title>APLIKASI REPORT DELIVERY ORDER | EDIT DATA</title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../images/2.png">
     <!-- Custom Stylesheet -->

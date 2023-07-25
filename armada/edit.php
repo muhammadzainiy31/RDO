@@ -12,7 +12,7 @@ $hasil = mysqli_fetch_array($ambilData);
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>APLIKASI REPORT DELIVERY ORDER | INPUT DATA</title>
+    <title>APLIKASI REPORT DELIVERY ORDER | EDIT DATA</title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../images/2.png">
     <!-- Custom Stylesheet -->
@@ -42,7 +42,7 @@ $hasil = mysqli_fetch_array($ambilData);
                 <div class="page-titles">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="index.php">Input</a></li>
-                        <li class="breadcrumb-item active"><a href="javascript:void(0)">Tambah Data</a></li>
+                        <li class="breadcrumb-item active"><a href="javascript:void(0)">Edit Data</a></li>
                     </ol>
                 </div>
                 <!-- row -->

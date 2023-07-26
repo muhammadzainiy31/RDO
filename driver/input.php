@@ -107,12 +107,6 @@
                                                 <input type="text" class="form-control input-default " name="password" class="form-control col-md-9" placeholder="Masukkan Alamat">
                                         </div>
 
-                                        <div class="form-group">
-                                            <h4><label for="level">LEVEL </label></h4>
-                                            <div>
-                                                <label><input type="radio" name="level" value="2"> Driver</label>
-                                            </div>
-
                                 </div>
                                 <div class="mt-4"></div>
                                 <button class="btn btn-primary mr-2" name="simpan">Simpan</button>
@@ -161,8 +155,7 @@ if (isset($_POST['simpan'])) {
     $berlaku_sim = $_POST['berlaku_sim'];
     $alamat_driver = $_POST['alamat_driver'];
     $password = $_POST['password'];
-    $level = $_POST['level'];
-    $input = "INSERT INTO tb_driver VALUES ('','$nik', '$nama_driver', '$tanggal_lahir',  '$jabatan', '$sim','$berlaku_sim', '$alamat_driver', '$password', '$level'
+    $input = "INSERT INTO tb_driver VALUES ('','$nik', '$nama_driver', '$tanggal_lahir',  '$jabatan', '$sim','$berlaku_sim', '$alamat_driver', '$password'
         )";
     mysqli_query($conn, $input);
     echo "<div align='center'><h5> Silahkan Tunggu, Data Sedang Disimpan....</h5></div>";

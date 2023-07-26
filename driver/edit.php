@@ -83,13 +83,17 @@ $hasil = mysqli_fetch_array($ambilData);
                                         </div>
 
                                         <div class="form-group">
-                                            <h4><label for="jabatan">JABATAN</label></h4>
-                                            <input type="text" class="form-control input-default" name="jabatan" id="jabatan" value="<?php echo $hasil['jabatan']; ?>">
+                                            <h4><label for="jabatan">JABATAN </label></h4>
+                                            <br>
+                                            <h4><label><input type="radio" name="jabatan" value="DRIVER" <?php if ($hasil['jabatan'] == "DRIVER") echo "checked"; ?>> DRIVER</label></h4>
                                         </div>
 
                                         <div class="form-group">
-                                            <h4><label for="sim">TINGKAT SIM</label></h4>
-                                            <input type="text" class="form-control input-default" name="sim" id="sim" value="<?php echo $hasil['sim']; ?>">
+                                            <h4><label for="sim">TINGKAT SIM </label></h4>
+                                            <br>
+                                            <h4><label><input type="radio" name="sim" value="SIM A" <?php if ($hasil['sim'] == "SIM A") echo "checked"; ?>> SIM A</label></h4>
+                                            <h4><label><input type="radio" name="sim" value="SIM B1" <?php if ($hasil['sim'] == "SIM B1") echo "checked"; ?>> SIM B1</label></h4>
+                                            <h4><label><input type="radio" name="sim" value="SIM B2" <?php if ($hasil['sim'] == "SIM B2") echo "checked"; ?>> SIM B2</label></h4>
                                         </div>
 
                                         <div class="form-group">

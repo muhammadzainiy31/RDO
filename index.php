@@ -27,7 +27,7 @@ if (isset($_POST["login"])) {
     }
 
     // Pengalihan halaman jika NIK tidak ditemukan atau password salah
-    header("Location: default/index.php");
+    header("Location: ./index.php");
     exit;
 }
 ?>

@@ -71,7 +71,6 @@
                                 <th>Berlaku SIM</th>
                                 <th>Alamat</th>
                                 <th>password</th>
-                                <th>level</th>
                                 <th>Aksi</th>
                             </tr>
                             <?php
@@ -91,7 +90,6 @@
                                         <td><?php echo $hasil['berlaku_sim'] ?></td>
                                         <td><?php echo $hasil['alamat_driver'] ?></td>
                                         <td><?php echo $hasil['password'] ?></td>
-                                        <td><?php echo $hasil['level'] ?></td>
                                         <td>
                                             <div class="d-flex">
                                                 <a href="edit.php?nik=<?php echo $hasil['nik']; ?>" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-pencil"></i></a>

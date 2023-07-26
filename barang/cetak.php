@@ -47,7 +47,7 @@
 				</td>
 		</table>
 		<center>
-			<h2>REPORT DATA BARANG</h2>
+			<h2>LAPORAN DATA BARANG</h2>
 		</center>
 
 		<?php

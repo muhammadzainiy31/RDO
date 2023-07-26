@@ -1,5 +1,16 @@
 <?php
+session_start();
+
+// Periksa apakah pengguna sudah login
+if (!isset($_SESSION["login"])) {
+    header("Location: login.php"); // Mengarahkan pengguna ke halaman login jika belum login
+    exit; // Menghentikan eksekusi skrip
+}
+?>
+
+<?php
 include "../koneksi.php";
+$nik = $_SESSION["nik"];
 $id_pengiriman = $_GET['id_pengiriman'];
 $ambilData = mysqli_query($conn, "SELECT tb_pengirim.*, tb_customer.* FROM tb_pengirim INNER JOIN tb_customer ON tb_pengirim.id_cust = tb_customer.id_cust WHERE id_pengiriman = '$id_pengiriman'");
 $hasil = mysqli_fetch_array($ambilData);
@@ -63,8 +74,8 @@ if (isset($_POST['submit'])) {
     ***********************************-->
     <div id="main-wrapper">
 
-        <?php include "../theme-header.php" ?>
-        <?php include "../theme-sidebar.php" ?>
+        <?php include "theme-header.php" ?>
+        <?php include "theme-sidebar.php" ?>
 
         <!--**********************************
          Content body start
@@ -144,7 +155,7 @@ if (isset($_POST['submit'])) {
         ***********************************-->
 
 
-        <?php include "../theme-footer.php" ?>
+        <?php include "theme-footer.php" ?>
 
     </div>
     <!--**********************************

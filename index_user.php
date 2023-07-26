@@ -16,23 +16,18 @@ if (isset($_POST["login"])) {
             $_SESSION["id_driver"] = $hasil["id_driver"];
             $_SESSION["nama_driver"] = $hasil["nama_driver"];
             $_SESSION["nik"] = $hasil["nik"];
-            $_SESSION["level"] = $hasil["level"];
 
-            if ($hasil["level"] == 1) {
-                header("Location: dashboard/index.php");
-                exit;
-            } else if ($hasil["level"] == 2) {
-                header("Location: user/index.php");
-                exit;
-            }
+            header("Location: user/index.php");
+            exit;
         } else {
             $error = true; // Password salah
         }
     } else {
-        $error = true; // NIK tidak ditemukan
+        $_SESSION["login"] = false; // NIK tidak ditemukan, jadi set login ke false
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en" class="h-100">

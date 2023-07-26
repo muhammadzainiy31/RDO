@@ -177,13 +177,17 @@ if (!isset($_SESSION["login"])) {
         echo "Data pembelian tidak tersedia.";
     }
     ?>
+
 </div>
 
 
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                                                            <a href="#" class="btn btn-primary" onclick="cetakModal('<?php echo $hasil['id_surat']; ?>')">Cetak</a>
+</div>
                                                         </div>
                                                     </div>
+
                                                 </div>
                                             </div>
                                         </td>
@@ -255,6 +259,22 @@ if (!isset($_SESSION["login"])) {
             }
         }
     </script>
+
+<script>
+function cetakModal(id_surat) {
+    // Cari elemen dengan ID yang sesuai
+    var modalContent = document.getElementById('detailModal' + id_surat).innerHTML;
+    
+    // Buka jendela baru untuk mencetak konten modal
+    var printWindow = window.open('', '', 'width=800,height=600');
+    printWindow.document.write('<html><head><title>Detail Pembelian</title></head><body>');
+    printWindow.document.write(modalContent);
+    printWindow.document.write('</body></html>');
+    printWindow.document.close();
+    printWindow.print();
+}
+</script>
+
     <!-- Circle progress -->
 </body>
 

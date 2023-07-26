@@ -1,5 +1,6 @@
 <?php
 session_start();
+$nik = $_SESSION["nik"];
 
 // Periksa apakah pengguna sudah login
 if (!isset($_SESSION["login"])) {
@@ -47,7 +48,7 @@ if (!isset($_SESSION["login"])) {
                     <div class="card-header">
                         <h4 class="card-title">DASHBOARD</h4>
                     </div>
-                    <br><br>
+                    <br>
 
                     <div class="row">
                         <div class="col-md-4">

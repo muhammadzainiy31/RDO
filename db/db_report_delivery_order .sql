@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 24 Jul 2023 pada 15.58
+-- Waktu pembuatan: 26 Jul 2023 pada 16.22
 -- Versi server: 10.4.28-MariaDB
 -- Versi PHP: 8.2.4
 
@@ -2342,7 +2342,11 @@ INSERT INTO `riwayat_servis` (`id_servis`, `no_plat`, `tanggal_servis`, `keteran
 (80098, 'JK 7890 LM', '0000-00-00', 'ok', '2023-06-07', '100.000'),
 (80099, 'JK 7890 LM', '0000-00-00', 'ok', '2023-06-07', '100.000'),
 (80100, 'JK 7890 LM', '2023-07-13', 'kampas rem', '2023-07-19', '30'),
-(80101, 'AB 1234 CM', '2023-07-10', 'GANTI LAMPU', '2023-07-17', '300.000');
+(80101, 'AB 1234 CM', '2023-07-10', 'GANTI LAMPU', '2023-07-17', '300.000'),
+(80102, 'AB 1234 CM', '2023-07-26', 'oli', '2023-07-27', '50000'),
+(80103, 'FG 3456 HI', '2023-07-14', 'AC', '2023-07-19', '150.000'),
+(80104, 'BC 5678 EF', '2023-07-20', 'Lampu Depan', '2023-07-27', '200.000'),
+(80105, 'JK 7890 LM', '2023-07-22', 'oli', '2023-07-23', '80.000');
 
 -- --------------------------------------------------------
 
@@ -2354,17 +2358,16 @@ CREATE TABLE `tb_admin` (
   `id` int(11) NOT NULL,
   `nama` varchar(100) NOT NULL,
   `nik` int(11) NOT NULL,
-  `password` varchar(100) NOT NULL,
-  `level` varchar(200) NOT NULL
+  `password` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `tb_admin`
 --
 
-INSERT INTO `tb_admin` (`id`, `nama`, `nik`, `password`, `level`) VALUES
-(6, 'rapi', 123, '$2y$10$4dC/U8WPU50t2UkjQovOGecN.KFuI07S2Kvyc9VzV.78MugogOQYO', '1'),
-(12, 'Agus', 526341, '123456', '1');
+INSERT INTO `tb_admin` (`id`, `nama`, `nik`, `password`) VALUES
+(6, 'rapi', 123, '$2y$10$4dC/U8WPU50t2UkjQovOGecN.KFuI07S2Kvyc9VzV.78MugogOQYO'),
+(12, 'Agus', 526341, '$2y$10$4dC/U8WPU50t2UkjQovOGecN.KFuI07S2Kvyc9VzV.78MugogOQYO');
 
 -- --------------------------------------------------------
 
@@ -2385,7 +2388,7 @@ CREATE TABLE `tb_armada` (
 
 INSERT INTO `tb_armada` (`id`, `no_plat`, `type_armada`, `tahun`) VALUES
 (1, 'AB 1234 CM', 'HINO', '2018'),
-(2, 'JK 7890 LM', 'TAYO', '2022'),
+(2, 'JK 7890 LM', 'TAYO', '2015'),
 (3, 'FG 3456 HI', 'HINO', '2000'),
 (4, 'BC 5678 EF', 'KUDA', '2001');
 
@@ -2408,16 +2411,21 @@ CREATE TABLE `tb_barang` (
 --
 
 INSERT INTO `tb_barang` (`kode_brg`, `nama_brg`, `id_dep`, `restok`, `jumlah_brg`) VALUES
-(114, 'Barang 1', 8002, 10, '48'),
-(115, 'Barang 2', 8002, 5, '20'),
-(116, 'Barang 3', 8001, 15, '5'),
-(117, 'Barang 4', 8002, 8, '90'),
-(118, 'Barang 5', 8003, 12, '100'),
-(119, 'Barang 6', 8002, 3, '67'),
-(120, 'Barang 7', 8001, 20, '152'),
-(121, 'Barang 8', 8003, 7, '70'),
-(122, 'Barang 9', 8001, 9, '35'),
-(123, 'Barang 10', 8001, 6, '53');
+(151, 'Meja Makan', 8001, 5, '130'),
+(152, 'Kursi Sofa', 8002, 10, '500'),
+(153, 'Lemari Pakaian', 8000, 10, '400'),
+(154, 'Rak Buku', 8000, 5, '250'),
+(155, 'Meja Rias', 8000, 15, '260'),
+(156, 'Kursi Kantor', 8003, 10, '350'),
+(157, 'Sofa Bed', 8002, 5, '125'),
+(158, 'Meja TV', 8002, 20, '400'),
+(159, 'Kasur Springbed', 8000, 10, '500'),
+(160, 'Lemari TV', 8002, 20, '300'),
+(161, 'Meja Belajar', 8003, 5, '200'),
+(162, 'Kursi Makan', 8001, 15, '147'),
+(163, 'Lemari Baju', 8000, 10, '95'),
+(164, 'Rak Sepatu', 8000, 15, '50'),
+(165, 'Kursi Santai', 0, 20, '0');
 
 -- --------------------------------------------------------
 
@@ -2525,13 +2533,13 @@ CREATE TABLE `tb_customer` (
 --
 
 INSERT INTO `tb_customer` (`id_cust`, `nama_cust`, `no_telpon`, `alamat_cust`, `kecamatan`, `rute`) VALUES
-(2015, 'Dono', '081298765433', 'Banjarbaru', 'Banjarmasin Barat', 'BJB'),
+(2015, 'Dono', '081298765433', 'PAL 7', 'Banjarmasin Barat', 'BJM'),
 (2016, 'BUDI', '081250523426', 'BJM', 'Banjarmasin Utara', 'BJM'),
-(2018, 'japri', '08125056541', 'BJM', 'Banjarmasin Utara', 'BJB'),
+(2018, 'japri', '08125056541', 'BJM', 'Liang Anggang', 'BJB'),
 (2021, 'paman', '081234567893', 'JL.KAYU TANGI', 'Banjarmasin Barat', 'BJM'),
-(2024, 'Malik', '081234567893', 'Alamat 3', 'Banjarmasin Barat', 'LUAR KOTA'),
-(2026, 'didik', '081250523426', 'BJM', 'Jorong', 'BJM'),
-(2027, 'ass', '08124568943', 'Jalan Pemuda No. 30, Surabaya', 'Pulau Laut Timur', '');
+(2024, 'Malik', '081234567893', 'TANAH LAUT', 'Bati Bati', 'LUAR KOTA'),
+(2026, 'didik', '081250523426', 'Asam-asam', 'Kintap', 'LUAR KOTA'),
+(2028, 'Agus', '081256479823', 'Jalan Gatot Subroto No. 15, angsana', 'Angsana', 'LUAR KOTA');
 
 -- --------------------------------------------------------
 
@@ -2565,8 +2573,7 @@ INSERT INTO `tb_departemen` (`id_dep`, `nama`) VALUES
 (8000, 'KAMAR TIDUR'),
 (8001, 'DAPUR DAN RUANG MAKAN'),
 (8002, 'RUANG TAMU'),
-(8003, 'RUANG KERJA'),
-(8005, 'ACC');
+(8003, 'RUANG KERJA');
 
 -- --------------------------------------------------------
 
@@ -2579,26 +2586,24 @@ CREATE TABLE `tb_driver` (
   `nik` int(5) NOT NULL,
   `nama_driver` varchar(100) NOT NULL,
   `tanggal_lahir` date NOT NULL,
-  `jabatan` varchar(100) NOT NULL,
-  `sim` varchar(10) NOT NULL,
+  `jabatan` enum('DRIVER','') NOT NULL,
+  `sim` enum('SIM A','SIM B1','SIM B2','') NOT NULL,
   `berlaku_sim` date NOT NULL,
   `alamat_driver` varchar(100) NOT NULL,
-  `password` varchar(100) NOT NULL,
-  `level` enum('1','2','') NOT NULL
+  `password` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data untuk tabel `tb_driver`
 --
 
-INSERT INTO `tb_driver` (`id_driver`, `nik`, `nama_driver`, `tanggal_lahir`, `jabatan`, `sim`, `berlaku_sim`, `alamat_driver`, `password`, `level`) VALUES
-(1, 12345, 'Andi Susanto', '1990-01-01', 'Driver', 'B2 UMUM', '1990-01-01', 'Jalan Raya 72', '$2y$10$R1G8QXHO/zulS/AVfX.TFuWebHaKgh9biRLubmU/tEhbJ0a9qrtaO', '2'),
-(2, 98765, 'Budi Santosa', '1995-02-15', 'Driver', 'SIM A', '1995-02-15', 'Jalan Harapan 1', '$2y$10$R1G8QXHO/zulS/AVfX.TFuWebHaKgh9biRLubmU/tEhbJ0a9qrtaO', '2'),
-(3, 23456, 'Doni Prasetyo', '1985-07-10', 'Driver', 'B2 UMUM', '2023-07-10', 'Jalan Maju 789', '$2y$10$R1G8QXHO/zulS/AVfX.TFuWebHaKgh9biRLubmU/tEhbJ0a9qrtaO', '2'),
-(4, 56789, 'Ahmad Santoso', '1992-04-20', 'Driver', 'SIM A', '2023-04-20', 'Jalan Baru 321', '$2y$10$R1G8QXHO/zulS/AVfX.TFuWebHaKgh9biRLubmU/tEhbJ0a9qrtaO', '2'),
-(5, 90123, 'Rudi Kusuma', '1988-11-30', 'Driver', 'B2 UMUM', '2023-11-30', 'Jalan Sejahtera 567', '$2y$10$R1G8QXHO/zulS/AVfX.TFuWebHaKgh9biRLubmU/tEhbJ0a9qrtaO', '2'),
-(6, 34567, 'Hadi Pranata', '1993-09-25', 'Driver', 'SIM A', '2023-09-25', 'Jalan Damai 890', '$2y$10$R1G8QXHO/zulS/AVfX.TFuWebHaKgh9biRLubmU/tEhbJ0a9qrtaO', '2'),
-(7, 67890, 'Rizki Santoso', '1991-06-05', 'Driver', 'B2 UMUM', '2023-06-05', 'Jalan Indah 1234', '$2y$10$R1G8QXHO/zulS/AVfX.TFuWebHaKgh9biRLubmU/tEhbJ0a9qrtaO', '2');
+INSERT INTO `tb_driver` (`id_driver`, `nik`, `nama_driver`, `tanggal_lahir`, `jabatan`, `sim`, `berlaku_sim`, `alamat_driver`, `password`) VALUES
+(3, 23456, 'Doni Prasetyo s', '1985-07-10', 'DRIVER', 'SIM A', '1985-07-10', 'Jalan Maju 789', '$2y$10$R1G8QXHO/zulS/AVfX.TFuWebHaKgh9biRLubmU/tEhbJ0a9qrtaO'),
+(4, 56789, 'Ahmad Santoso', '1992-04-20', 'DRIVER', 'SIM B1', '1992-04-20', 'Jalan Baru 321', '$2y$10$R1G8QXHO/zulS/AVfX.TFuWebHaKgh9biRLubmU/tEhbJ0a9qrtaO'),
+(6, 34567, 'Hadi Pranata', '1993-09-25', 'DRIVER', 'SIM A', '2023-09-25', 'Jalan Damai 890', '$2y$10$R1G8QXHO/zulS/AVfX.TFuWebHaKgh9biRLubmU/tEhbJ0a9qrtaO'),
+(7, 67890, 'Rizki Santoso', '1991-06-05', 'DRIVER', 'SIM B2', '1991-06-05', 'Jalan Indah 1234', '$2y$10$R1G8QXHO/zulS/AVfX.TFuWebHaKgh9biRLubmU/tEhbJ0a9qrtaO'),
+(25, 90123, 'Budi Santosa', '1997-07-09', 'DRIVER', 'SIM B1', '2025-07-17', 'Jalan Harapan 7', '$2y$10$4dC/U8WPU50t2UkjQovOGecN.KFuI07S2Kvyc9VzV.78MugogOQYO'),
+(26, 156711, 'Andre', '1998-07-26', 'DRIVER', 'SIM A', '2024-07-25', 'Jalan Raya 70', '$2y$10$4dC/U8WPU50t2UkjQovOGecN.KFuI07S2Kvyc9VzV.78MugogOQYO');
 
 -- --------------------------------------------------------
 
@@ -2638,20 +2643,8 @@ CREATE TABLE `tb_pembelian` (
 --
 
 INSERT INTO `tb_pembelian` (`id_pembelian`, `id_surat`, `id_cust`, `kode_brg`, `qty`) VALUES
-(45, 10127, 2024, 119, '5'),
-(46, 10127, 2024, 119, '3'),
-(47, 10131, 2016, 121, '2'),
-(48, 10133, 2015, 119, '5'),
-(49, 10129, 2015, 114, '5'),
-(50, 10130, 2016, 116, '5'),
-(51, 10130, 2016, 121, '5'),
-(52, 10141, 2025, 120, '3'),
-(53, 10139, 2017, 119, '3'),
-(54, 10143, 2024, 122, '5'),
-(55, 10146, 2024, 114, '2'),
-(56, 10146, 2024, 123, '5'),
-(57, 10147, 2021, 120, '5'),
-(58, 10147, 2021, 123, '10');
+(61, 10149, 2028, 163, '5'),
+(62, 10149, 2028, 162, '3');
 
 -- --------------------------------------------------------
 
@@ -2682,7 +2675,9 @@ INSERT INTO `tb_pengirim` (`id_pengiriman`, `id_surat`, `id_cust`, `no_plat`, `n
 (400088, 10142, 2016, 'JK 7890 LM', '67890'),
 (400089, 10143, 2024, 'JK 7890 LM', '34567'),
 (400090, 10144, 2016, 'JK 7890 LM', '12345'),
-(400091, 10146, 2024, 'AB 1234 CM', '12345');
+(400091, 10146, 2024, 'AB 1234 CM', '12345'),
+(400092, 10148, 2028, 'AB 1234 CM', '12345'),
+(400093, 10149, 2028, 'JK 7890 LM', '23456');
 
 -- --------------------------------------------------------
 
@@ -2719,23 +2714,7 @@ CREATE TABLE `tb_surat` (
 --
 
 INSERT INTO `tb_surat` (`id_surat`, `id_cust`, `tanggal_kirim`) VALUES
-(10128, 2017, '2023-07-19'),
-(10130, 2016, '2023-07-19'),
-(10133, 2015, '2023-07-19'),
-(10134, 2015, '2023-07-19'),
-(10135, 2016, '2023-07-19'),
-(10136, 2012, '2023-07-19'),
-(10137, 2014, '2023-07-19'),
-(10138, 2015, '2023-07-19'),
-(10139, 2017, '2023-07-17'),
-(10140, 2012, '2023-07-19'),
-(10141, 2025, '2023-07-18'),
-(10142, 2016, '2023-07-20'),
-(10143, 2024, '2023-07-22'),
-(10144, 2016, '2023-07-24'),
-(10145, 2021, '2023-07-05'),
-(10146, 2024, '2023-07-25'),
-(10147, 2021, '2023-07-25');
+(10149, 2028, '2023-07-27');
 
 -- --------------------------------------------------------
 
@@ -5118,7 +5097,7 @@ ALTER TABLE `template_zenziva`
 -- AUTO_INCREMENT untuk tabel `riwayat_servis`
 --
 ALTER TABLE `riwayat_servis`
-  MODIFY `id_servis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80102;
+  MODIFY `id_servis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80106;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_admin`
@@ -5136,7 +5115,7 @@ ALTER TABLE `tb_armada`
 -- AUTO_INCREMENT untuk tabel `tb_barang`
 --
 ALTER TABLE `tb_barang`
-  MODIFY `kode_brg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=131;
+  MODIFY `kode_brg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=166;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_berlaku_sim`
@@ -5166,7 +5145,7 @@ ALTER TABLE `tb_cekout`
 -- AUTO_INCREMENT untuk tabel `tb_customer`
 --
 ALTER TABLE `tb_customer`
-  MODIFY `id_cust` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2028;
+  MODIFY `id_cust` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2029;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_cus_royal`
@@ -5184,7 +5163,7 @@ ALTER TABLE `tb_departemen`
 -- AUTO_INCREMENT untuk tabel `tb_driver`
 --
 ALTER TABLE `tb_driver`
-  MODIFY `id_driver` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_driver` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_jrk_tempuh`
@@ -5196,13 +5175,13 @@ ALTER TABLE `tb_jrk_tempuh`
 -- AUTO_INCREMENT untuk tabel `tb_pembelian`
 --
 ALTER TABLE `tb_pembelian`
-  MODIFY `id_pembelian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `id_pembelian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_pengirim`
 --
 ALTER TABLE `tb_pengirim`
-  MODIFY `id_pengiriman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=400092;
+  MODIFY `id_pengiriman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=400094;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_rdo`
@@ -5214,7 +5193,7 @@ ALTER TABLE `tb_rdo`
 -- AUTO_INCREMENT untuk tabel `tb_surat`
 --
 ALTER TABLE `tb_surat`
-  MODIFY `id_surat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10148;
+  MODIFY `id_surat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10150;
 
 --
 -- AUTO_INCREMENT untuk tabel `template_zenziva`

@@ -62,6 +62,7 @@
                             <th>No</th>
                             <th>Kode Departemen</th>
                             <th>Nama </th>
+                            <th>Aksi </th>
                         </tr>
                         <?php
                         include '../koneksi.php';
@@ -71,11 +72,15 @@
                             while ($hasil = mysqli_fetch_array($tampil)) {
 
                         ?>
-                                <tr align="center">
-                                    <td><?php echo $no++ ?> </td>
+                               <tr align="center">
+                                    <td><?php echo $no++ ?></td>
                                     <td><?php echo $hasil['id_dep'] ?></td>
                                     <td><?php echo $hasil['nama'] ?></td>
+                                    <td>
                                         <div class="d-flex">
+                                            <a href="edit.php?id_dep=<?php echo $hasil['id_dep']; ?>" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-pencil"></i></a>
+                                            <a href="hapus.php?id_dep=<?php echo $hasil['id_dep']; ?>" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
+                                        </div>
                                     </td>
                                 </tr>
                             <?php }

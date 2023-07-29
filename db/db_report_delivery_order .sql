@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 26 Jul 2023 pada 16.22
+-- Waktu pembuatan: 29 Jul 2023 pada 15.28
 -- Versi server: 10.4.28-MariaDB
 -- Versi PHP: 8.2.4
 
@@ -2419,46 +2419,13 @@ INSERT INTO `tb_barang` (`kode_brg`, `nama_brg`, `id_dep`, `restok`, `jumlah_brg
 (156, 'Kursi Kantor', 8003, 10, '350'),
 (157, 'Sofa Bed', 8002, 5, '125'),
 (158, 'Meja TV', 8002, 20, '400'),
-(159, 'Kasur Springbed', 8000, 10, '500'),
+(159, 'Kasur Springbed', 8000, 10, '497'),
 (160, 'Lemari TV', 8002, 20, '300'),
 (161, 'Meja Belajar', 8003, 5, '200'),
 (162, 'Kursi Makan', 8001, 15, '147'),
 (163, 'Lemari Baju', 8000, 10, '95'),
 (164, 'Rak Sepatu', 8000, 15, '50'),
 (165, 'Kursi Santai', 0, 20, '0');
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `tb_berlaku_sim`
---
-
-CREATE TABLE `tb_berlaku_sim` (
-  `id_sim` int(11) NOT NULL,
-  `driver` text NOT NULL,
-  `usia` text NOT NULL,
-  `tingkat_sim` text NOT NULL,
-  `berlaku_sim` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `tb_brg_laku`
---
-
-CREATE TABLE `tb_brg_laku` (
-  `id_laris` int(11) NOT NULL,
-  `kode_brg` int(11) NOT NULL,
-  `terjual` int(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data untuk tabel `tb_brg_laku`
---
-
-INSERT INTO `tb_brg_laku` (`id_laris`, `kode_brg`, `terjual`) VALUES
-(1, 122, 0);
 
 -- --------------------------------------------------------
 
@@ -2485,7 +2452,8 @@ INSERT INTO `tb_cekin` (`id_cekin`, `id_pengiriman`, `dari`, `tujuan`, `km_beran
 (10, 400073, 'banjarmasin', 'bjb', '10', '00:57:00'),
 (11, 400087, 'a', 'b', '12', '19:42:00'),
 (12, 400088, 'gudang', 'banjarmasin', '12', '00:50:00'),
-(13, 400088, 'pal 15', 'bjm', '13', '00:54:00');
+(13, 400088, 'pal 15', 'bjm', '13', '00:54:00'),
+(14, 400094, '', '', '', '20:22:00');
 
 -- --------------------------------------------------------
 
@@ -2511,7 +2479,8 @@ INSERT INTO `tb_cekout` (`id_cekout`, `id_pengiriman`, `km_tiba`, `jam_tiba`, `s
 (11, 400070, 123, '22:25:00', 'TERKIRIM', 'ok', '1.png'),
 (12, 400073, 123, '00:57:00', 'TERKIRIM', 'ok', '1.jpg'),
 (13, 400087, 13, '19:42:00', 'TERKIRIM', 'ok', '1.jpg'),
-(15, 400088, 13, '00:51:00', 'TERKIRIM', 'ok', '3.jpg');
+(15, 400088, 13, '00:51:00', 'TERKIRIM', 'ok', '3.jpg'),
+(17, 400094, 13, '20:22:00', 'TERKIRIM', 'ok', '1.jpg');
 
 -- --------------------------------------------------------
 
@@ -2602,7 +2571,7 @@ INSERT INTO `tb_driver` (`id_driver`, `nik`, `nama_driver`, `tanggal_lahir`, `ja
 (4, 56789, 'Ahmad Santoso', '1992-04-20', 'DRIVER', 'SIM B1', '1992-04-20', 'Jalan Baru 321', '$2y$10$R1G8QXHO/zulS/AVfX.TFuWebHaKgh9biRLubmU/tEhbJ0a9qrtaO'),
 (6, 34567, 'Hadi Pranata', '1993-09-25', 'DRIVER', 'SIM A', '2023-09-25', 'Jalan Damai 890', '$2y$10$R1G8QXHO/zulS/AVfX.TFuWebHaKgh9biRLubmU/tEhbJ0a9qrtaO'),
 (7, 67890, 'Rizki Santoso', '1991-06-05', 'DRIVER', 'SIM B2', '1991-06-05', 'Jalan Indah 1234', '$2y$10$R1G8QXHO/zulS/AVfX.TFuWebHaKgh9biRLubmU/tEhbJ0a9qrtaO'),
-(25, 90123, 'Budi Santosa', '1997-07-09', 'DRIVER', 'SIM B1', '2025-07-17', 'Jalan Harapan 7', '$2y$10$4dC/U8WPU50t2UkjQovOGecN.KFuI07S2Kvyc9VzV.78MugogOQYO'),
+(25, 90123, 'Budi Santosa', '1997-07-09', 'DRIVER', 'SIM B1', '2025-07-17', 'Jalan Harapan 7', '$2y$10$R1G8QXHO/zulS/AVfX.TFuWebHaKgh9biRLubmU/tEhbJ0a9qrtaO'),
 (26, 156711, 'Andre', '1998-07-26', 'DRIVER', 'SIM A', '2024-07-25', 'Jalan Raya 70', '$2y$10$4dC/U8WPU50t2UkjQovOGecN.KFuI07S2Kvyc9VzV.78MugogOQYO');
 
 -- --------------------------------------------------------
@@ -2644,7 +2613,8 @@ CREATE TABLE `tb_pembelian` (
 
 INSERT INTO `tb_pembelian` (`id_pembelian`, `id_surat`, `id_cust`, `kode_brg`, `qty`) VALUES
 (61, 10149, 2028, 163, '5'),
-(62, 10149, 2028, 162, '3');
+(62, 10149, 2028, 162, '3'),
+(63, 10150, 2016, 159, '3');
 
 -- --------------------------------------------------------
 
@@ -2677,7 +2647,8 @@ INSERT INTO `tb_pengirim` (`id_pengiriman`, `id_surat`, `id_cust`, `no_plat`, `n
 (400090, 10144, 2016, 'JK 7890 LM', '12345'),
 (400091, 10146, 2024, 'AB 1234 CM', '12345'),
 (400092, 10148, 2028, 'AB 1234 CM', '12345'),
-(400093, 10149, 2028, 'JK 7890 LM', '23456');
+(400093, 10149, 2028, 'JK 7890 LM', '23456'),
+(400094, 10150, 2016, 'JK 7890 LM', '90123');
 
 -- --------------------------------------------------------
 
@@ -2714,7 +2685,8 @@ CREATE TABLE `tb_surat` (
 --
 
 INSERT INTO `tb_surat` (`id_surat`, `id_cust`, `tanggal_kirim`) VALUES
-(10149, 2028, '2023-07-27');
+(10149, 2028, '2023-07-27'),
+(10150, 2016, '2023-07-30');
 
 -- --------------------------------------------------------
 
@@ -5006,18 +4978,6 @@ ALTER TABLE `tb_barang`
   ADD PRIMARY KEY (`kode_brg`);
 
 --
--- Indeks untuk tabel `tb_berlaku_sim`
---
-ALTER TABLE `tb_berlaku_sim`
-  ADD PRIMARY KEY (`id_sim`);
-
---
--- Indeks untuk tabel `tb_brg_laku`
---
-ALTER TABLE `tb_brg_laku`
-  ADD PRIMARY KEY (`id_laris`);
-
---
 -- Indeks untuk tabel `tb_cekin`
 --
 ALTER TABLE `tb_cekin`
@@ -5118,28 +5078,16 @@ ALTER TABLE `tb_barang`
   MODIFY `kode_brg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=166;
 
 --
--- AUTO_INCREMENT untuk tabel `tb_berlaku_sim`
---
-ALTER TABLE `tb_berlaku_sim`
-  MODIFY `id_sim` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT untuk tabel `tb_brg_laku`
---
-ALTER TABLE `tb_brg_laku`
-  MODIFY `id_laris` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
 -- AUTO_INCREMENT untuk tabel `tb_cekin`
 --
 ALTER TABLE `tb_cekin`
-  MODIFY `id_cekin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_cekin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_cekout`
 --
 ALTER TABLE `tb_cekout`
-  MODIFY `id_cekout` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_cekout` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_customer`
@@ -5175,13 +5123,13 @@ ALTER TABLE `tb_jrk_tempuh`
 -- AUTO_INCREMENT untuk tabel `tb_pembelian`
 --
 ALTER TABLE `tb_pembelian`
-  MODIFY `id_pembelian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `id_pembelian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_pengirim`
 --
 ALTER TABLE `tb_pengirim`
-  MODIFY `id_pengiriman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=400094;
+  MODIFY `id_pengiriman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=400095;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_rdo`
@@ -5193,7 +5141,7 @@ ALTER TABLE `tb_rdo`
 -- AUTO_INCREMENT untuk tabel `tb_surat`
 --
 ALTER TABLE `tb_surat`
-  MODIFY `id_surat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10150;
+  MODIFY `id_surat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10151;
 
 --
 -- AUTO_INCREMENT untuk tabel `template_zenziva`

@@ -72,6 +72,7 @@ if (!isset($_SESSION["login"])) {
                                 </div>
                                 <div class="col-auto form-group">
                                     <button type="submit" name="filter" class="btn btn-success mt-3">Tampilkan</button>
+                                    
                                 </div>
                             </div>
                         </form>
@@ -103,6 +104,8 @@ if (!isset($_SESSION["login"])) {
                             <?php
                             include '../koneksi.php';
                             $no = 1;
+
+                            
 
                             if (isset($_POST['filter'])) {
                                 // Ambil tanggal mulai dan tanggal sampai dari form
@@ -152,47 +155,42 @@ if (!isset($_SESSION["login"])) {
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
-    <?php
-    $query_pembelian = "SELECT tb_pembelian.*, tb_customer.id_cust, tb_customer.nama_cust, tb_customer.alamat_cust, tb_customer.no_telpon, tb_pembelian.kode_brg, tb_pembelian.qty
-                        FROM tb_pembelian
-                        JOIN tb_surat ON tb_pembelian.id_surat = tb_surat.id_surat
-                        JOIN tb_customer ON tb_surat.id_cust = tb_customer.id_cust
-                        WHERE tb_pembelian.id_surat = " . $hasil['id_surat'];
+                                                            <?php
+                                                            $query_pembelian = "SELECT tb_pembelian.*, tb_customer.id_cust, tb_customer.nama_cust, tb_customer.alamat_cust, tb_customer.no_telpon, tb_pembelian.kode_brg, tb_pembelian.qty
+                                                        FROM tb_pembelian
+                                                        JOIN tb_surat ON tb_pembelian.id_surat = tb_surat.id_surat
+                                                        JOIN tb_customer ON tb_surat.id_cust = tb_customer.id_cust
+                                                        WHERE tb_pembelian.id_surat = " . $hasil['id_surat'];
 
-    $result_pembelian = mysqli_query($conn, $query_pembelian);
+                                                            $result_pembelian = mysqli_query($conn, $query_pembelian);
 
-    if (mysqli_num_rows($result_pembelian) > 0) {
-        while ($pembelian = mysqli_fetch_assoc($result_pembelian)) {
-            echo "<p>ID Pembelian: " . $pembelian['id_pembelian'] . "</p>";
-            echo "<p>ID Surat: " . $pembelian['id_surat'] . "</p>";
-            echo "<p>ID Customer: " . $pembelian['id_cust'] . "</p>";
-            echo "<p>Nama Customer: " . $pembelian['nama_cust'] . "</p>";
-            echo "<p>Alamat: " . $pembelian['alamat_cust'] . "</p>";
-            echo "<p>NO Telpon: " . $pembelian['no_telpon'] . "</p>";
-            echo "<p>ID Barang: " . $pembelian['kode_brg'] . "</p>";
-            echo "<p>Jumlah: " . $pembelian['qty'] . "</p>";
-            echo "<br>";
-        }
-    } else {
-        echo "Data pembelian tidak tersedia.";
-    }
-    ?>
+                                                            if (mysqli_num_rows($result_pembelian) > 0) {
+                                                                while ($pembelian = mysqli_fetch_assoc($result_pembelian)) {
+                                                                    echo "<p>ID Pembelian: " . $pembelian['id_pembelian'] . "</p>";
+                                                                    echo "<p>ID Surat: " . $pembelian['id_surat'] . "</p>";
+                                                                    echo "<p>ID Customer: " . $pembelian['id_cust'] . "</p>";
+                                                                    echo "<p>Nama Customer: " . $pembelian['nama_cust'] . "</p>";
+                                                                    echo "<p>Alamat: " . $pembelian['alamat_cust'] . "</p>";
+                                                                    echo "<p>NO Telpon: " . $pembelian['no_telpon'] . "</p>";
+                                                                    echo "<p>ID Barang: " . $pembelian['kode_brg'] . "</p>";
+                                                                    echo "<p>Jumlah: " . $pembelian['qty'] . "</p>";
+                                                                    echo "<br>";
+                                                                }
+                                                            } else {
+                                                                echo "Data pembelian tidak tersedia.";
+                                                            }
+                                                            ?>
 
-</div>
-
+                                                        </div>
 
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                                                             <a href="#" class="btn btn-primary" onclick="cetakModal('<?php echo $hasil['id_surat']; ?>')">Cetak</a>
-</div>
                                                         </div>
                                                     </div>
-
                                                 </div>
                                             </div>
                                         </td>
-
-
 
                                         <td>
                                             <div class="d-flex">
@@ -217,7 +215,11 @@ if (!isset($_SESSION["login"])) {
                             }
                             ?>
                         </table>
-                    </div>
+                        
+                        <?php if (isset($_POST['filter']) && mysqli_num_rows($result) > 0) : ?>
+                         <a href="cetakdata_pertanggal.php?mulai_tanggal=<?php echo $mulai_tanggal; ?>&sampai_tanggal=<?php echo $sampai_tanggal; ?>" class="btn btn-primary mt-3">Cetak Pertanggal</a>
+                        <?php endif; ?>
+                        </div>
                     <br>
                 </div>
             </div>
@@ -239,43 +241,18 @@ if (!isset($_SESSION["login"])) {
 
     <script>
         function searchData() {
-            var input, filter, table, tr, td, i, txtValue;
-            input = document.getElementById("searchInput");
-            filter = input.value.toUpperCase();
-            table = document.getElementsByClassName("table")[0];
-            tr = table.getElementsByTagName("tr");
+            // ... (JavaScript code for search functionality)
+        }
 
-            for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[3]; // Ganti angka 2 dengan indeks kolom nama
-
-                if (td) {
-                    txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                        tr[i].style.display = "";
-                    } else {
-                        tr[i].style.display = "none";
-                    }
-                }
-            }
+        // JavaScript untuk cetak data
+        function cetakData() {
+            var printContents = document.querySelector('.content-body').innerHTML;
+            var originalContents = document.body.innerHTML;
+            document.body.innerHTML = printContents;
+            window.print();
+            document.body.innerHTML = originalContents;
         }
     </script>
-
-<script>
-function cetakModal(id_surat) {
-    // Cari elemen dengan ID yang sesuai
-    var modalContent = document.getElementById('detailModal' + id_surat).innerHTML;
-    
-    // Buka jendela baru untuk mencetak konten modal
-    var printWindow = window.open('', '', 'width=800,height=600');
-    printWindow.document.write('<html><head><title>Detail Pembelian</title></head><body>');
-    printWindow.document.write(modalContent);
-    printWindow.document.write('</body></html>');
-    printWindow.document.close();
-    printWindow.print();
-}
-</script>
-
-    <!-- Circle progress -->
 </body>
 
 </html>

@@ -10,7 +10,6 @@
     <link rel="icon" type="image/png" sizes="16x16" href="../images/2.png">
     <link href="../vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
-
 </head>
 
 <body>
@@ -23,7 +22,6 @@
     </div>
 
     <div id="main-wrapper">
-
         <?php include "../theme-header.php" ?>
         <?php include "../theme-sidebar.php" ?>
 
@@ -44,8 +42,6 @@
                             <button type="button" class="input-group-text" onclick="searchData()"><i class="flaticon-381-search-2"></i></button>
                         </div>
                     </div>
-
-                 
                     <br>
                     <br>
                     <a href="../customer/input.php" class="btn btn-primary">Tambah Data</a>
@@ -64,11 +60,23 @@
                         </tr>
                         <?php
                         include '../koneksi.php';
-                        $no = 1;
-                        $tampil = mysqli_query($conn, "SELECT * FROM tb_customer ORDER BY id_cust DESC");
+                        $jumlahDataPerHalaman = 5; // Jumlah data per halaman
+                        $jumlahData = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM tb_customer"));
+                        $jumlahHalaman = ceil($jumlahData / $jumlahDataPerHalaman);
+
+                        $halamanSaatIni = isset($_GET['halaman']) ? (int)$_GET['halaman'] : 1;
+                        if ($halamanSaatIni < 1) {
+                            $halamanSaatIni = 1;
+                        } elseif ($halamanSaatIni > $jumlahHalaman) {
+                            $halamanSaatIni = $jumlahHalaman;
+                        }
+
+                        $batasAwal = ($halamanSaatIni - 1) * $jumlahDataPerHalaman;
+                        $no = ($halamanSaatIni - 1) * $jumlahDataPerHalaman + 1;
+
+                        $tampil = mysqli_query($conn, "SELECT * FROM tb_customer ORDER BY id_cust DESC LIMIT $batasAwal, $jumlahDataPerHalaman");
                         if (mysqli_num_rows($tampil) > 0) {
                             while ($hasil = mysqli_fetch_array($tampil)) {
-
                         ?>
                                 <tr align="center">
                                     <td><?php echo $no++ ?></td>
@@ -79,7 +87,6 @@
                                     <td><?php echo $hasil['kecamatan'] ?> </td>
                                     <td><?php echo $hasil['rute'] ?> </td>
                                     <td>
-
                                         <div class="d-flex">
                                             <a href="edit.php?id_cust=<?php echo $hasil['id_cust']; ?>" class="btn btn-primary shadow btn-xs sharp mr-1"><i class="fa fa-pencil"></i></a>
                                             <a href="hapus.php?id_cust=<?php echo $hasil['id_cust']; ?>" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
@@ -94,28 +101,35 @@
                         <?php } ?>
                     </table>
                     <br>
-
+                    <nav>
+                        <ul class="pagination pagination-gutter pagination-primary no-bg">
+                            <li class="page-item <?php echo ($halamanSaatIni == 1) ? 'disabled' : ''; ?>">
+                                <a class="page-link" href="?halaman=<?php echo ($halamanSaatIni - 1); ?>">Previous</a>
+                            </li>
+                            <?php for ($halaman = 1; $halaman <= $jumlahHalaman; $halaman++) : ?>
+                                <li class="page-item <?php echo ($halaman == $halamanSaatIni) ? 'active' : ''; ?>">
+                                    <a class="page-link" href="?halaman=<?php echo $halaman; ?>"><?php echo $halaman; ?></a>
+                                </li>
+                            <?php endfor; ?>
+                            <li class="page-item <?php echo ($halamanSaatIni == $jumlahHalaman) ? 'disabled' : ''; ?>">
+                                <a class="page-link" href="?halaman=<?php echo ($halamanSaatIni + 1); ?>">Next</a>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </div>
     </div>
-    </div>
-    </div>
 
     <?php include "../theme-footer.php" ?>
-
-    </div>
 
     <!-- Required vendors -->
     <script src="../vendor/global/global.min.js"></script>
     <script src="../vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
     <script src="../js/custom.min.js"></script>
     <script src="../js/deznav-init.js"></script>
-
-
     <script src="../vendor/highlightjs/highlight.pack.min.js"></script>
     <!-- Circle progress -->
-
     <script>
         function searchData() {
             var input, filter, table, tr, td, i, txtValue;
@@ -138,7 +152,6 @@
             }
         }
     </script>
-
 </body>
 
 </html>

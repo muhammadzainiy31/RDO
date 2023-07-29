@@ -62,6 +62,9 @@
                     <br>
                     <br>
                     <a href="cetak.php" class="btn btn-primary">Cetak Laporan</a>
+                    <?php if (isset($_POST['filter'])) : ?>
+                        <a href="cetakdata_pertanggal.php?mulai_tanggal=<?php echo $mulai_tanggal; ?>&sampai_tanggal=<?php echo $sampai_tanggal; ?>" class="btn btn-primary">Cetak Data</a>
+                    <?php endif; ?>
                     <br><br>
                     <table class="table table-bordered">
                         <thead align="center" bgcolor="#32c8ed">
@@ -126,7 +129,10 @@
                             }
                             ?>
                         </tbody>
-                    </table>
+                    </table> 
+                    <?php if (isset($_POST['filter']) && mysqli_num_rows($result) > 0) : ?>
+                         <a href="cetakdata_pertanggal.php?mulai_tanggal=<?php echo $mulai_tanggal; ?>&sampai_tanggal=<?php echo $sampai_tanggal; ?>" class="btn btn-primary mt-3">Cetak Pertanggal</a>
+                        <?php endif; ?>
                 </div>
             </div>
         </div>

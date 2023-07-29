@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -73,7 +74,7 @@
                     <br>
                     <a href="../pengiriman/index.php" class="btn btn-primary">Lihat Pengiriman</a>
                     <a href="cetak.php" class="btn btn-primary">Cetak Report</a>
-                    <br>
+                    
                     <br>
                     <div class="scroll-horizontal">
                         <table class="table table-bordered">
@@ -220,6 +221,11 @@
                                 </tr>
                             <?php } ?>
                         </table>
+
+                        <?php if (isset($_POST['filter']) && mysqli_num_rows($result) > 0) : ?>
+                         <a href="cetakdata_pertanggal.php?mulai_tanggal=<?php echo $mulai_tanggal; ?>&sampai_tanggal=<?php echo $sampai_tanggal; ?>" class="btn btn-primary mt-3">Cetak Pertanggal</a>
+                        <?php endif; ?>
+
                     </div>
                     <br>
                 </div>

@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<title>APLIKASI REPORT DELIVERY ORDER | CETAK DATA ARMADA</title>
+	<title>APLIKASI REPORT DELIVERY ORDER |DATA RIWAYAT PENGIRIMAN DRIVER</title>
 	<style Type="text/css">
 		body {
 			font-family: arial;
@@ -47,7 +47,7 @@
 				</td>
 		</table>
 		<center>
-			<h2>REPORT DATA RIWAYAT PENGIRIMAN DRIVER</h2>
+			<h2>LAPORAN DATA RIWAYAT PENGIRIMAN DRIVER</h2>
 		</center>
 
 		<?php

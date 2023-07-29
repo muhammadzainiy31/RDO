@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -144,6 +145,10 @@
                             }
                             ?>
                         </table>
+                         
+                        <?php if (isset($_POST['filter']) && mysqli_num_rows($result) > 0) : ?>
+                         <a href="cetakdata_pertanggal.php?mulai_tanggal=<?php echo $mulai_tanggal; ?>&sampai_tanggal=<?php echo $sampai_tanggal; ?>" class="btn btn-primary mt-3">Cetak Pertanggal</a>
+                        <?php endif; ?>
                     </div>
                     <br>
                 </div>

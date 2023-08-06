@@ -185,7 +185,7 @@ if (!isset($_SESSION["login"])) {
 
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                                                            <a href="#" class="btn btn-primary" onclick="cetakModal('<?php echo $hasil['id_surat']; ?>')">Cetak</a>
+                                                            <a href="cetak_beli.php" class="btn btn-primary" onclick="cetakModal('<?php echo $hasil['id_surat']; ?>')">Cetak</a>
                                                         </div>
                                                     </div>
                                                 </div>

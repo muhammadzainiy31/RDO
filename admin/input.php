@@ -76,7 +76,7 @@
 
                                       
                                 <button class="btn btn-primary mr-2" name="simpan">Simpan</button>
-                                <a href="transaksi.php" class="btn btn-danger">Batal</a>
+                                <a href="index.php" class="btn btn-danger">Batal</a>
                                 </form>
                             </div>
                         </div>

@@ -180,7 +180,7 @@ if (!isset($_SESSION["login"])) {
                                         <td><?php echo $hasil['jam_tiba'] ?></td>
                                         <td><?php echo $hasil['status'] ?></td>
                                         <td><?php echo $hasil['keterangan'] ?></td>
-                                        <td><img src="../images/<?php echo $hasil['foto'] ?>" alt="foto" width="50"></td>
+                                        <td><img src="../images/avatar/<?php echo $hasil["foto"] ?>" alt="foto" width="50"></td>
                                     </tr>
                                 <?php }
                             } else { ?>

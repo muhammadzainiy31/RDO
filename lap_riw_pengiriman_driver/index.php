@@ -169,26 +169,36 @@
                                                         </div>
                                                         <div class="modal-body">
                                                             <?php
-                                                            if (!empty($hasil['nama_brg'])) {
-                                                                // Membagi nama barang, kode barang, dan jumlah menjadi array
-                                                                $nama_barang = explode(",", $hasil['nama_brg']);
-                                                                $kode_barang = explode(",", $hasil['kode_brg']);
-                                                                $jumlah = explode(",", $hasil['qty']);
+                                                            $query_pembelian = "SELECT tb_pembelian.*, tb_customer.id_cust, tb_customer.nama_cust, tb_customer.alamat_cust, tb_customer.no_telpon, tb_pembelian.kode_brg, tb_pembelian.qty
+                                                        FROM tb_pembelian
+                                                        JOIN tb_surat ON tb_pembelian.id_surat = tb_surat.id_surat
+                                                        JOIN tb_customer ON tb_surat.id_cust = tb_customer.id_cust
+                                                        WHERE tb_pembelian.id_surat = " . $hasil['id_surat'];
 
-                                                                // Menampilkan setiap barang dalam detail pembelian menggunakan perulangan foreach
-                                                                foreach ($nama_barang as $index => $nama) {
-                                                                    echo "<p>Nama Barang: " . $nama . "</p>";
-                                                                    echo "<p>Kode Barang: " . $kode_barang[$index] . "</p>";
-                                                                    echo "<p>Jumlah: " . $jumlah[$index] . "</p>";
+                                                            $result_pembelian = mysqli_query($conn, $query_pembelian);
+
+                                                            if (mysqli_num_rows($result_pembelian) > 0) {
+                                                                while ($pembelian = mysqli_fetch_assoc($result_pembelian)) {
+                                                                    echo "<p>ID Pembelian: " . $pembelian['id_pembelian'] . "</p>";
+                                                                    echo "<p>ID Surat: " . $pembelian['id_surat'] . "</p>";
+                                                                    echo "<p>ID Customer: " . $pembelian['id_cust'] . "</p>";
+                                                                    echo "<p>Nama Customer: " . $pembelian['nama_cust'] . "</p>";
+                                                                    echo "<p>Alamat: " . $pembelian['alamat_cust'] . "</p>";
+                                                                    echo "<p>NO Telpon: " . $pembelian['no_telpon'] . "</p>";
+                                                                    echo "<p>ID Barang: " . $pembelian['kode_brg'] . "</p>";
+                                                                    echo "<p>Jumlah: " . $pembelian['qty'] . "</p>";
                                                                     echo "<br>";
                                                                 }
                                                             } else {
                                                                 echo "Data pembelian tidak tersedia.";
                                                             }
                                                             ?>
+
                                                         </div>
+
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                                                            <a href="#" class="btn btn-primary" onclick="cetakModal('<?php echo $hasil['id_surat']; ?>')">Cetak</a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -205,7 +215,7 @@
                                         <td><?php echo $hasil['jam_tiba'] ?></td>
                                         <td><?php echo $hasil['status'] ?></td>
                                         <td><?php echo $hasil['keterangan'] ?></td>
-                                        <td><img src="../images/avatar/<?php echo $hasil["foto"] ?>" alt="foto" width="50"></td>
+                                        <td><img src="../images/foto/<?php echo $hasil["foto"] ?>" alt="foto" width="50"></td>
                                     </tr>
                                 <?php
                                 }

@@ -77,7 +77,9 @@ if (mysqli_num_rows($result) > 0) {
                         <p>Alamat: <?php echo $driver['alamat_driver']; ?></p>
                         <!-- Anda dapat menampilkan informasi lainnya sesuai dengan kolom yang ada di tabel tb_driver -->
 
-                        <a href="edit_password.php" class="btn btn-warning">Ganti Password</a>
+                        <a href="edit_password.php?nik=<?php echo $nik; ?>" class="btn btn-primary mt-3">Edit Password</a>
+
+
                     <?php } else { ?>
                         <p>Profil driver tidak ditemukan.</p>
                     <?php } ?>

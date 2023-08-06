@@ -143,6 +143,13 @@ JOIN tb_customer ON tb_surat.id_cust = tb_customer.id_cust WHERE tanggal_kirim =
 
 
                                         <td><?php echo $hasil['tanggal_kirim'] ?></td>
+                                        
+
+
+
+
+
+
                                     </tr>
                                 <?php
                                 }

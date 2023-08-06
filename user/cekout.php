@@ -23,7 +23,7 @@ if (isset($_POST['submit'])) {
     $foto = $_FILES['foto']['name'];
 
 
-    move_uploaded_file($_FILES['foto']['tmp_name'], '../images/barang/' . $foto);
+    move_uploaded_file($_FILES['foto']['tmp_name'], '../images/foto/' . $foto);
 
     $input = "INSERT INTO tb_cekout (id_pengiriman, km_tiba, jam_tiba, status, keterangan, foto) VALUES ('$id_pengiriman', '$km_tiba','$jam_tiba', '$status', '$keterangan', '$foto')";
 

@@ -11,7 +11,8 @@ if (isset($_POST["login"])) {
     if (mysqli_num_rows($ambilData) == 1) {
         $hasil = mysqli_fetch_assoc($ambilData);
 
-        if (password_verify($password, $hasil["password"])) {
+        // Memeriksa apakah password sesuai (baik plain text atau hashed)
+        if ($password === $hasil["password"] || password_verify($password, $hasil["password"])) {
             $_SESSION["login"] = true;
             $_SESSION["nama"] = $hasil["nama"];
             $_SESSION["nik"] = $hasil["nik"];
@@ -27,10 +28,11 @@ if (isset($_POST["login"])) {
     }
 
     // Pengalihan halaman jika NIK tidak ditemukan atau password salah
-    header("Location: ./index.php");
+    header("Location: ./index.php?error=true");
     exit;
 }
 ?>
+
 
 
 <!DOCTYPE html>

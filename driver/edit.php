@@ -106,6 +106,11 @@ $hasil = mysqli_fetch_array($ambilData);
                                             <input type="text" class="form-control input-default" name="alamat_driver" id="alamat_driver" value="<?php echo $hasil['alamat_driver']; ?>">
                                         </div>
 
+                                        <div class="form-group">
+                                            <h4><label for="password">ALAMAT</label></h4>
+                                            <input type="text" class="form-control input-default" name="password" id="password" value="<?php echo $hasil['password']; ?>">
+                                        </div>
+
                                         <input type="hidden" name="status" value="1">
                                         <div class="mt-4"></div>
                                         <button class="btn btn-primary mr-2" name="simpan">Simpan</button>
@@ -152,7 +157,8 @@ if (isset($_POST['simpan'])) {
     $sim = $_POST['sim'];
     $berlaku_sim = $_POST['berlaku_sim'];
     $alamat_driver = $_POST['alamat_driver'];
-    mysqli_query($conn, "UPDATE tb_driver SET nik='$nik', nama_driver='$nama_driver', tanggal_lahir='$tanggal_lahir', jabatan='$jabatan', sim='$sim',berlaku_sim='$berlaku_sim', alamat_driver='$alamat_driver' 
+    $password = $_POST['password'];
+    mysqli_query($conn, "UPDATE tb_driver SET nik='$nik', nama_driver='$nama_driver', tanggal_lahir='$tanggal_lahir', jabatan='$jabatan', sim='$sim',berlaku_sim='$berlaku_sim', alamat_driver='$alamat_driver', password='$password' 
         WHERE nik='$id'") or die(mysqli_error($conn));
 
     echo "<div align='center'><h5> Silahkan Tunggu, Data Sedang Diupdate....</h5></div>";

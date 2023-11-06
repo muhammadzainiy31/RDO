@@ -8,7 +8,6 @@ if (!isset($_SESSION["login"])) {
 }
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -65,6 +64,7 @@ if (!isset($_SESSION["login"])) {
                     <div class="scroll-horizontal">
                         <table class="table table-bordered">
                             <tr align="center" bgcolor="#32c8ed">
+                                <th>Download</th>
                                 <th>No</th>
                                 <th>Id Pengiriman</th>
                                 <th>Id Surat</th>
@@ -98,7 +98,7 @@ if (!isset($_SESSION["login"])) {
                             tb_customer.*, tb_cekin.*, tb_cekout.*, tb_armada.type_armada, tb_driver.nama_driver
                             FROM tb_pengirim
                             JOIN tb_surat ON tb_pengirim.id_surat = tb_surat.id_surat
-                        JOIN 
+                            JOIN 
                             tb_customer ON tb_pengirim.id_cust = tb_customer.id_cust
                             JOIN tb_armada ON tb_pengirim.no_plat = tb_armada.no_plat
                             JOIN tb_driver ON tb_pengirim.nik = tb_driver.nik
@@ -106,11 +106,17 @@ if (!isset($_SESSION["login"])) {
                             JOIN tb_cekout ON tb_pengirim.id_pengiriman = tb_cekout.id_pengiriman WHERE tb_pengirim.nik='$nik'
                             ORDER BY tb_pengirim.id_pengiriman DESC");
 
-
                             if (mysqli_num_rows($tampil) > 0) {
                                 while ($hasil = mysqli_fetch_array($tampil)) {
-                            ?>
+                                    ?>
                                     <tr align="center">
+                                        <td>
+                                            <a href='download.php?id_pengiriman=<?php echo $hasil['id_pengiriman']; ?>' class="btn btn-rounded btn-warning">
+                                                <span class="btn-icon-left text-warning">
+                                                    <i class="fa fa-download color-warning"></i>
+                                                </span>
+                                            </a>
+                                        </td>
                                         <td><?php echo $no++ ?></td>
                                         <td><?php echo $hasil['id_pengiriman'] ?></td>
                                         <td><?php echo $hasil['id_surat'] ?></td>
@@ -134,33 +140,34 @@ if (!isset($_SESSION["login"])) {
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                 <span aria-hidden="true">&times;</span>
                                                             </button>
-                                                        </div> <div class="modal-body">
-    <?php
-    $query_pembelian = "SELECT tb_pembelian.*, tb_customer.id_cust, tb_customer.nama_cust, tb_customer.alamat_cust, tb_customer.no_telpon, tb_pembelian.kode_brg, tb_pembelian.qty
-                        FROM tb_pembelian
-                        JOIN tb_surat ON tb_pembelian.id_surat = tb_surat.id_surat
-                        JOIN tb_customer ON tb_surat.id_cust = tb_customer.id_cust
-                        WHERE tb_pembelian.id_surat = " . $hasil['id_surat'];
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <?php
+                                                            $query_pembelian = "SELECT tb_pembelian.*, tb_customer.id_cust, tb_customer.nama_cust, tb_customer.alamat_cust, tb_customer.no_telpon, tb_pembelian.kode_brg, tb_pembelian.qty
+                                                                FROM tb_pembelian
+                                                                JOIN tb_surat ON tb_pembelian.id_surat = tb_surat.id_surat
+                                                                JOIN tb_customer ON tb_surat.id_cust = tb_customer.id_cust
+                                                                WHERE tb_pembelian.id_surat = " . $hasil['id_surat'];
 
-    $result_pembelian = mysqli_query($conn, $query_pembelian);
+                                                            $result_pembelian = mysqli_query($conn, $query_pembelian);
 
-    if (mysqli_num_rows($result_pembelian) > 0) {
-        while ($pembelian = mysqli_fetch_assoc($result_pembelian)) {
-            echo "<p>ID Pembelian: " . $pembelian['id_pembelian'] . "</p>";
-            echo "<p>ID Surat: " . $pembelian['id_surat'] . "</p>";
-            echo "<p>ID Customer: " . $pembelian['id_cust'] . "</p>";
-            echo "<p>Nama Customer: " . $pembelian['nama_cust'] . "</p>";
-            echo "<p>Alamat: " . $pembelian['alamat_cust'] . "</p>";
-            echo "<p>NO Telpon: " . $pembelian['no_telpon'] . "</p>";
-            echo "<p>ID Barang: " . $pembelian['kode_brg'] . "</p>";
-            echo "<p>Jumlah: " . $pembelian['qty'] . "</p>";
-            echo "<br>";
-        }
-    } else {
-        echo "Data pembelian tidak tersedia.";
-    }
-    ?>
-</div>
+                                                            if (mysqli_num_rows($result_pembelian) > 0) {
+                                                                while ($pembelian = mysqli_fetch_assoc($result_pembelian)) {
+                                                                    echo "<p>ID Pembelian: " . $pembelian['id_pembelian'] . "</p>";
+                                                                    echo "<p>ID Surat: " . $pembelian['id_surat'] . "</p>";
+                                                                    echo "<p>ID Customer: " . $pembelian['id_cust'] . "</p>";
+                                                                    echo "<p>Nama Customer: " . $pembelian['nama_cust'] . "</p>";
+                                                                    echo "<p>Alamat: " . $pembelian['alamat_cust'] . "</p>";
+                                                                    echo "<p>NO Telpon: " . $pembelian['no_telpon'] . "</p>";
+                                                                    echo "<p>ID Barang: " . $pembelian['kode_brg'] . "</p>";
+                                                                    echo "<p>Jumlah: " . $pembelian['qty'] . "</p>";
+                                                                    echo "<br>";
+                                                                }
+                                                            } else {
+                                                                echo "Data pembelian tidak tersedia.";
+                                                            }
+                                                            ?>
+                                                        </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                                                         </div>
@@ -182,8 +189,10 @@ if (!isset($_SESSION["login"])) {
                                         <td><?php echo $hasil['keterangan'] ?></td>
                                         <td><img src="../images/avatar/<?php echo $hasil["foto"] ?>" alt="foto" width="50"></td>
                                     </tr>
-                                <?php }
-                            } else { ?>
+                            <?php
+                                }
+                            } else {
+                            ?>
                                 <tr>
                                     <td colspan="7" align="center">Data kosong</td>
                                 </tr>
@@ -208,9 +217,8 @@ if (!isset($_SESSION["login"])) {
     <script src="../js/custom.min.js"></script>
     <script src="../js/deznav-init.js"></script>
 
-
     <script src="../vendor/highlightjs/highlight.pack.min.js"></script>
-    
+
     <script>
         function searchData() {
             var input, filter, table, tr, td, i, txtValue;

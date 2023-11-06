@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 29 Jul 2023 pada 15.28
+-- Waktu pembuatan: 23 Agu 2023 pada 14.01
 -- Versi server: 10.4.28-MariaDB
 -- Versi PHP: 8.2.4
 
@@ -2367,7 +2367,8 @@ CREATE TABLE `tb_admin` (
 
 INSERT INTO `tb_admin` (`id`, `nama`, `nik`, `password`) VALUES
 (6, 'rapi', 123, '$2y$10$4dC/U8WPU50t2UkjQovOGecN.KFuI07S2Kvyc9VzV.78MugogOQYO'),
-(12, 'Agus', 526341, '$2y$10$4dC/U8WPU50t2UkjQovOGecN.KFuI07S2Kvyc9VzV.78MugogOQYO');
+(12, 'Agus', 526341, '$2y$10$4dC/U8WPU50t2UkjQovOGecN.KFuI07S2Kvyc9VzV.78MugogOQYO'),
+(13, 'Agus m', 859674, '123');
 
 -- --------------------------------------------------------
 
@@ -2378,7 +2379,7 @@ INSERT INTO `tb_admin` (`id`, `nama`, `nik`, `password`) VALUES
 CREATE TABLE `tb_armada` (
   `id` int(11) NOT NULL,
   `no_plat` varchar(11) NOT NULL,
-  `type_armada` enum('HINO','TAYO','KUDA','') NOT NULL,
+  `type_armada` enum('HINO','TAYO','KUDA') NOT NULL,
   `tahun` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -2415,17 +2416,16 @@ INSERT INTO `tb_barang` (`kode_brg`, `nama_brg`, `id_dep`, `restok`, `jumlah_brg
 (152, 'Kursi Sofa', 8002, 10, '500'),
 (153, 'Lemari Pakaian', 8000, 10, '400'),
 (154, 'Rak Buku', 8000, 5, '250'),
-(155, 'Meja Rias', 8000, 15, '260'),
+(155, 'Meja Rias', 8000, 15, '3'),
 (156, 'Kursi Kantor', 8003, 10, '350'),
-(157, 'Sofa Bed', 8002, 5, '125'),
+(157, 'Sofa Bed', 8002, 5, '119'),
 (158, 'Meja TV', 8002, 20, '400'),
 (159, 'Kasur Springbed', 8000, 10, '497'),
-(160, 'Lemari TV', 8002, 20, '300'),
-(161, 'Meja Belajar', 8003, 5, '200'),
+(160, 'Lemari TV', 8002, 20, '5'),
+(161, 'Meja Belajar', 8003, 5, '196'),
 (162, 'Kursi Makan', 8001, 15, '147'),
-(163, 'Lemari Baju', 8000, 10, '95'),
-(164, 'Rak Sepatu', 8000, 15, '50'),
-(165, 'Kursi Santai', 0, 20, '0');
+(163, 'Lemari Baju', 8000, 10, '92'),
+(164, 'Rak Sepatu', 8000, 15, '10');
 
 -- --------------------------------------------------------
 
@@ -2447,13 +2447,8 @@ CREATE TABLE `tb_cekin` (
 --
 
 INSERT INTO `tb_cekin` (`id_cekin`, `id_pengiriman`, `dari`, `tujuan`, `km_berangkat`, `jam_berangkat`) VALUES
-(8, 400071, 'gudang', 'banjrmasin', '10', '21:10:00'),
-(9, 400070, 'pal 15', 'banjrmasin', '10', '23:13:00'),
-(10, 400073, 'banjarmasin', 'bjb', '10', '00:57:00'),
-(11, 400087, 'a', 'b', '12', '19:42:00'),
-(12, 400088, 'gudang', 'banjarmasin', '12', '00:50:00'),
-(13, 400088, 'pal 15', 'bjm', '13', '00:54:00'),
-(14, 400094, '', '', '', '20:22:00');
+(18, 400103, 'pal 15', 'banjarmasin', '12', '19:19:00'),
+(19, 400104, 'pal 15', 'bjm', '1015', '20:32:00');
 
 -- --------------------------------------------------------
 
@@ -2476,11 +2471,8 @@ CREATE TABLE `tb_cekout` (
 --
 
 INSERT INTO `tb_cekout` (`id_cekout`, `id_pengiriman`, `km_tiba`, `jam_tiba`, `status`, `keterangan`, `foto`) VALUES
-(11, 400070, 123, '22:25:00', 'TERKIRIM', 'ok', '1.png'),
-(12, 400073, 123, '00:57:00', 'TERKIRIM', 'ok', '1.jpg'),
-(13, 400087, 13, '19:42:00', 'TERKIRIM', 'ok', '1.jpg'),
-(15, 400088, 13, '00:51:00', 'TERKIRIM', 'ok', '3.jpg'),
-(17, 400094, 13, '20:22:00', 'TERKIRIM', 'ok', '1.jpg');
+(25, 400103, 13, '19:19:00', 'TERKIRIM', 'ok', '5.PNG'),
+(26, 400104, 13, '20:33:00', 'TERKIRIM', 'ok', '8.jpg');
 
 -- --------------------------------------------------------
 
@@ -2494,7 +2486,7 @@ CREATE TABLE `tb_customer` (
   `no_telpon` text NOT NULL,
   `alamat_cust` varchar(100) NOT NULL,
   `kecamatan` text NOT NULL,
-  `rute` text NOT NULL
+  `rute` enum('BJB','BJM','LUAR KOTA') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -2508,7 +2500,8 @@ INSERT INTO `tb_customer` (`id_cust`, `nama_cust`, `no_telpon`, `alamat_cust`, `
 (2021, 'paman', '081234567893', 'JL.KAYU TANGI', 'Banjarmasin Barat', 'BJM'),
 (2024, 'Malik', '081234567893', 'TANAH LAUT', 'Bati Bati', 'LUAR KOTA'),
 (2026, 'didik', '081250523426', 'Asam-asam', 'Kintap', 'LUAR KOTA'),
-(2028, 'Agus', '081256479823', 'Jalan Gatot Subroto No. 15, angsana', 'Angsana', 'LUAR KOTA');
+(2028, 'Agus', '081256479823', 'Jalan Gatot Subroto No. 15, angsana', 'Angsana', 'LUAR KOTA'),
+(2030, 'Muhammad Zaini', '081250523426', 'Handil Bakti', 'Alalak', 'BJM');
 
 -- --------------------------------------------------------
 
@@ -2555,7 +2548,7 @@ CREATE TABLE `tb_driver` (
   `nik` int(5) NOT NULL,
   `nama_driver` varchar(100) NOT NULL,
   `tanggal_lahir` date NOT NULL,
-  `jabatan` enum('DRIVER','') NOT NULL,
+  `jabatan` enum('DRIVER') NOT NULL,
   `sim` enum('SIM A','SIM B1','SIM B2','') NOT NULL,
   `berlaku_sim` date NOT NULL,
   `alamat_driver` varchar(100) NOT NULL,
@@ -2567,12 +2560,12 @@ CREATE TABLE `tb_driver` (
 --
 
 INSERT INTO `tb_driver` (`id_driver`, `nik`, `nama_driver`, `tanggal_lahir`, `jabatan`, `sim`, `berlaku_sim`, `alamat_driver`, `password`) VALUES
-(3, 23456, 'Doni Prasetyo s', '1985-07-10', 'DRIVER', 'SIM A', '1985-07-10', 'Jalan Maju 789', '$2y$10$R1G8QXHO/zulS/AVfX.TFuWebHaKgh9biRLubmU/tEhbJ0a9qrtaO'),
-(4, 56789, 'Ahmad Santoso', '1992-04-20', 'DRIVER', 'SIM B1', '1992-04-20', 'Jalan Baru 321', '$2y$10$R1G8QXHO/zulS/AVfX.TFuWebHaKgh9biRLubmU/tEhbJ0a9qrtaO'),
-(6, 34567, 'Hadi Pranata', '1993-09-25', 'DRIVER', 'SIM A', '2023-09-25', 'Jalan Damai 890', '$2y$10$R1G8QXHO/zulS/AVfX.TFuWebHaKgh9biRLubmU/tEhbJ0a9qrtaO'),
-(7, 67890, 'Rizki Santoso', '1991-06-05', 'DRIVER', 'SIM B2', '1991-06-05', 'Jalan Indah 1234', '$2y$10$R1G8QXHO/zulS/AVfX.TFuWebHaKgh9biRLubmU/tEhbJ0a9qrtaO'),
-(25, 90123, 'Budi Santosa', '1997-07-09', 'DRIVER', 'SIM B1', '2025-07-17', 'Jalan Harapan 7', '$2y$10$R1G8QXHO/zulS/AVfX.TFuWebHaKgh9biRLubmU/tEhbJ0a9qrtaO'),
-(26, 156711, 'Andre', '1998-07-26', 'DRIVER', 'SIM A', '2024-07-25', 'Jalan Raya 70', '$2y$10$4dC/U8WPU50t2UkjQovOGecN.KFuI07S2Kvyc9VzV.78MugogOQYO');
+(3, 23456, 'Doni Prasetyo s', '1985-07-10', 'DRIVER', 'SIM A', '1985-07-10', 'Jalan Maju 789', '123'),
+(4, 56789, 'Ahmad Santoso', '1992-04-20', 'DRIVER', 'SIM B1', '1992-04-20', 'Jalan Baru 321', '123'),
+(6, 34567, 'Hadi Pranata', '1993-09-25', 'DRIVER', 'SIM A', '2023-09-25', 'Jalan Damai 890', '147258'),
+(7, 67890, 'Rizki Santoso', '1991-06-05', 'DRIVER', 'SIM B2', '2024-06-18', 'Jalan Indah 1234', '258369'),
+(25, 90123, 'Budi Santosa', '1997-07-09', 'DRIVER', 'SIM B1', '2025-07-17', 'Jalan Harapan 7', '987654'),
+(26, 156711, 'Andre', '1998-07-26', 'DRIVER', 'SIM B2', '2025-06-18', 'Jalan Raya 70', '654789');
 
 -- --------------------------------------------------------
 
@@ -2614,7 +2607,16 @@ CREATE TABLE `tb_pembelian` (
 INSERT INTO `tb_pembelian` (`id_pembelian`, `id_surat`, `id_cust`, `kode_brg`, `qty`) VALUES
 (61, 10149, 2028, 163, '5'),
 (62, 10149, 2028, 162, '3'),
-(63, 10150, 2016, 159, '3');
+(63, 10150, 2016, 159, '3'),
+(64, 10156, 2026, 155, '2'),
+(65, 10155, 2024, 161, '3'),
+(66, 10154, 2021, 164, '2'),
+(67, 10152, 2016, 164, '5'),
+(68, 10153, 2018, 161, '1'),
+(69, 10151, 2015, 157, '6'),
+(70, 10157, 2016, 160, '5'),
+(71, 10159, 2015, 163, '3'),
+(72, 10161, 2030, 155, '5');
 
 -- --------------------------------------------------------
 
@@ -2635,38 +2637,7 @@ CREATE TABLE `tb_pengirim` (
 --
 
 INSERT INTO `tb_pengirim` (`id_pengiriman`, `id_surat`, `id_cust`, `no_plat`, `nik`) VALUES
-(400073, 10133, 2015, 'AB 1234 CM', '90123'),
-(400082, 10136, 2012, 'AB 1234 CM', '34567'),
-(400083, 10137, 2014, 'AB 1234 CM', '34567'),
-(400084, 10138, 2015, 'JK 7890 LM', '34567'),
-(400085, 10138, 2015, 'FG 3456 HI', '34567'),
-(400086, 10140, 2012, 'JK 7890 LM', '34567'),
-(400087, 10139, 2017, 'AB 1234 CM', '90123'),
-(400088, 10142, 2016, 'JK 7890 LM', '67890'),
-(400089, 10143, 2024, 'JK 7890 LM', '34567'),
-(400090, 10144, 2016, 'JK 7890 LM', '12345'),
-(400091, 10146, 2024, 'AB 1234 CM', '12345'),
-(400092, 10148, 2028, 'AB 1234 CM', '12345'),
-(400093, 10149, 2028, 'JK 7890 LM', '23456'),
-(400094, 10150, 2016, 'JK 7890 LM', '90123');
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `tb_rdo`
---
-
-CREATE TABLE `tb_rdo` (
-  `id_rdo` int(11) NOT NULL,
-  `id_pengiriman` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data untuk tabel `tb_rdo`
---
-
-INSERT INTO `tb_rdo` (`id_rdo`, `id_pengiriman`) VALUES
-(200030, 400071);
+(400104, 10161, 2030, 'AB 1234 CM', '23456');
 
 -- --------------------------------------------------------
 
@@ -2685,8 +2656,10 @@ CREATE TABLE `tb_surat` (
 --
 
 INSERT INTO `tb_surat` (`id_surat`, `id_cust`, `tanggal_kirim`) VALUES
-(10149, 2028, '2023-07-27'),
-(10150, 2016, '2023-07-30');
+(10159, 2015, '2023-08-07'),
+(10160, 2018, '2023-08-16'),
+(10161, 2030, '2023-08-19'),
+(10162, 2015, '2023-08-20');
 
 -- --------------------------------------------------------
 
@@ -5032,12 +5005,6 @@ ALTER TABLE `tb_pengirim`
   ADD PRIMARY KEY (`id_pengiriman`);
 
 --
--- Indeks untuk tabel `tb_rdo`
---
-ALTER TABLE `tb_rdo`
-  ADD PRIMARY KEY (`id_rdo`);
-
---
 -- Indeks untuk tabel `tb_surat`
 --
 ALTER TABLE `tb_surat`
@@ -5063,7 +5030,7 @@ ALTER TABLE `riwayat_servis`
 -- AUTO_INCREMENT untuk tabel `tb_admin`
 --
 ALTER TABLE `tb_admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_armada`
@@ -5081,19 +5048,19 @@ ALTER TABLE `tb_barang`
 -- AUTO_INCREMENT untuk tabel `tb_cekin`
 --
 ALTER TABLE `tb_cekin`
-  MODIFY `id_cekin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_cekin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_cekout`
 --
 ALTER TABLE `tb_cekout`
-  MODIFY `id_cekout` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_cekout` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_customer`
 --
 ALTER TABLE `tb_customer`
-  MODIFY `id_cust` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2029;
+  MODIFY `id_cust` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2031;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_cus_royal`
@@ -5123,25 +5090,19 @@ ALTER TABLE `tb_jrk_tempuh`
 -- AUTO_INCREMENT untuk tabel `tb_pembelian`
 --
 ALTER TABLE `tb_pembelian`
-  MODIFY `id_pembelian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `id_pembelian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_pengirim`
 --
 ALTER TABLE `tb_pengirim`
-  MODIFY `id_pengiriman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=400095;
-
---
--- AUTO_INCREMENT untuk tabel `tb_rdo`
---
-ALTER TABLE `tb_rdo`
-  MODIFY `id_rdo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=200031;
+  MODIFY `id_pengiriman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=400105;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_surat`
 --
 ALTER TABLE `tb_surat`
-  MODIFY `id_surat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10151;
+  MODIFY `id_surat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10163;
 
 --
 -- AUTO_INCREMENT untuk tabel `template_zenziva`

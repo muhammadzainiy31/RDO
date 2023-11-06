@@ -50,6 +50,9 @@
                     <br>
                     <a href="../lap_surat_jalan/index.php" class="btn btn-primary">Lihat Surat Jalan</a>
                     <br>
+                    <br>
+                    <a href="../progres/index.php" class="btn btn-primary">Cek Progres Pengiriman</a>
+                    <br>
 
                     <br>
 

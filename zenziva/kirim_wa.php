@@ -1,7 +1,7 @@
 <?php
 if (isset($_GET['no_telpon'])) {
     $userkey = '557c1b512b1c';
-    $passkey = 'c9366daf73869ef5252c19a4';
+    $passkey = '0684f494398eb65b58b781dc';
     //$url = 'https://console.zenziva.net/reguler/api/sendsms/';
     $url = 'https://console.zenziva.net/wareguler/api/sendWA/';
     $curlHandle = curl_init();

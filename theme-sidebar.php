@@ -65,7 +65,7 @@
                     <li><a href="../rekap_pengiriman_driver/index.php">Rekap Pengiriman Driver</a></li>
                     <li><a href="../lap_jarak_tempuh/index.php">Jarak Tempuh Armada</a></li>
                     <li><a href="../lap_riw_servis_mobil/index.php">Riwayat Servis Armada</a></li>
-                    <li><a href="../rdo/index.php">RDO</a></li>
+                    <li><a href="../do/index.php">RDO</a></li>
                 </ul>
             </li>
         </ul>

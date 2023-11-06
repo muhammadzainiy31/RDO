@@ -136,7 +136,7 @@ if (!isset($_SESSION["login"])) {
                                         <button type="button" class="btn btn-secondary" onclick="window.location.href='../lap_riw_servis_mobil/index.php'">Riwayat Servis Armada</button>
                                         <button type="button" class="btn btn-secondary" onclick="window.location.href='../lap_jarak_tempuh/index.php'">Jarak Tempuh Armada</button>
                                         <button type="button" class="btn btn-secondary" onclick="window.location.href='../terkirim/index.php'">Data Pengiriman Terkirim</button>
-                                        <button type="button" class="btn btn-secondary" onclick="window.location.href='../rdo/index.php'">RDO</button>
+                                        <button type="button" class="btn btn-secondary" onclick="window.location.href='../do/index.php'">RDO</button>
                                     </div>
                                 </div>
                             </div>
